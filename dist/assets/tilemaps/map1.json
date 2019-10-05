@@ -58,6 +58,16 @@
          "spacing":0,
          "tilecount":240,
          "tileheight":16,
+         "tiles":[
+                {
+                 "id":182,
+                 "properties":[
+                        {
+                         "name":"is_chest",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }],
          "tilewidth":16
         }],
  "tilewidth":16,
