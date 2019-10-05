@@ -38,7 +38,7 @@ export default class Prison extends Phaser.State {
     this.getActivable(position).doAction();
   }
 
-  private getActivable(position: Point): Activable {
+  public getActivable(position: Point): Activable {
     const corners = [
       position.left(),
       position.right(),

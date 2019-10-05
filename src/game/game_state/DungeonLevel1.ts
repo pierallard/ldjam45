@@ -9,6 +9,7 @@ export default class DungeonLevel1 extends Phaser.State {
   private door: Door;
   private messageBox: MessageBox;
   private tilemap: Prison;
+  private showDoorMessage: boolean;
 
   constructor(sprite: Phaser.Sprite) {
     super();
@@ -16,6 +17,7 @@ export default class DungeonLevel1 extends Phaser.State {
     this.door = new Door(new Point(5, 5));
     this.messageBox = null;
     this.tilemap = new Prison();
+    this.showDoorMessage = true;
   }
 
   public create(game: Phaser.Game) {
@@ -44,6 +46,11 @@ export default class DungeonLevel1 extends Phaser.State {
     }
     this.player.update(game);
     this.door.update(game);
+    if (this.showDoorMessage && this.tilemap.getActivable(this.player.getPosition()) instanceof Door) {
+      this.showDoorMessage = false;
+      this.addMessageBox(game, 'Appuyay sur Entray pour crochtay la porte', () => {
+      });
+    }
   }
 
   private addMessageBox(game: Phaser.Game, message: string, callback) {

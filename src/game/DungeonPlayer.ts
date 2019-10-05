@@ -78,4 +78,8 @@ export class DungeonPlayer {
       point.y * TILE_SIZE
     );
   }
+
+  public getPosition(): Point {
+    return this.position;
+  }
 }
