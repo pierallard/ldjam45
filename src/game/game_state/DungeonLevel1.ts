@@ -5,6 +5,7 @@ import {MessageBox} from "../MessageBox";
 import Prison from "../Prison";
 import MenuDLC from '../MenuDLC';
 import {Pie} from "../Pie";
+import {DLCItem} from "../DLCList";
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
@@ -29,10 +30,6 @@ export default class DungeonLevel1 extends Phaser.State {
   public create(game: Phaser.Game) {
     this.tilemap.create(game);
 
-    this.game.add.button(5, 5, 'button', () => {
-      game.state.start('PlayerRoom');
-    }, this, 2, 1, 0);
-
     this.player.create(game, this.tilemap);
     if (this.showBeginningMessage) {
       this.showBeginningMessage = false;
@@ -45,8 +42,9 @@ export default class DungeonLevel1 extends Phaser.State {
       });
     }
 
-    this.menuDLC.create(game, (dlcItem) => {
-      alert('buy: ' + dlcItem.name);
+    this.menuDLC.create(game, (dlcItem: DLCItem) => {
+      // TODO Cinematic
+      game.state.start('PlayerRoom');
     });
   }
 
