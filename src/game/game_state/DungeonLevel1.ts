@@ -10,6 +10,7 @@ export default class DungeonLevel1 extends Phaser.State {
   private door: Door;
   private messageBox: MessageBox;
   private tilemap: Prison;
+  private menuDLC: MenuDLC;
 
   constructor(sprite: Phaser.Sprite) {
     super();
@@ -17,6 +18,7 @@ export default class DungeonLevel1 extends Phaser.State {
     this.door = new Door(new Point(5, 5));
     this.messageBox = null;
     this.tilemap = new Prison();
+    this.menuDLC = new MenuDLC(true);
   }
 
   public create(game: Phaser.Game) {
@@ -35,8 +37,7 @@ export default class DungeonLevel1 extends Phaser.State {
       });
     });
 
-    const menuDLC = new MenuDLC(true);
-    menuDLC.create(game);
+    this.menuDLC.create(game);
   }
 
   public update(game: Phaser.Game) {
