@@ -14,10 +14,10 @@ export class DungeonPlayer {
 
   constructor() {
     this.isMoving = false;
+    this.position = new Point(0, 0);
   }
 
   public create(game: Phaser.Game) {
-    this.position = new Point(0, 0);
     this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, 'normal_hero');
 
     this.leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
@@ -51,6 +51,7 @@ export class DungeonPlayer {
 
     game.time.events.add(MOVE_TIME, () => {
       this.isMoving = false;
+      this.position = position;
       this.sprite.x = DungeonPlayer.getRealPosition(position).x;
       this.sprite.y = DungeonPlayer.getRealPosition(position).y;
     });
