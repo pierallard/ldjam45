@@ -1,11 +1,15 @@
 import {DungeonPlayer} from "../DungeonPlayer";
+import {Door} from "../Door";
+import Point from "../Point";
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
+  private door: Door;
 
   constructor(sprite: Phaser.Sprite) {
     super();
     this.player = new DungeonPlayer();
+    this.door = new Door(new Point(5, 5));
   }
 
   public create(game: Phaser.Game) {
@@ -17,9 +21,11 @@ export default class DungeonLevel1 extends Phaser.State {
     }, this, 2, 1, 0);
 
     this.player.create(game);
+    this.door.create(game);
   }
 
   public update(game: Phaser.Game) {
     this.player.update(game);
+    this.door.update(game);
   }
 }
