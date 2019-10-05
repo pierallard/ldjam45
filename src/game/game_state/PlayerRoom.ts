@@ -11,26 +11,14 @@ import ItemsToSell from "./Items/ItemsToSell";
 import BritneyPoster from "./Items/BritneyPoster";
 
 export default class PlayerRoom extends Phaser.State {
+  private itemsToSell: ItemsToSell;
   private sprite: Phaser.Sprite;
   private wallet: Wallet;
   private walletGUI: WalletGUI;
 
-  private itemsToSell: ItemsToSell;
-  private lampLava: Lamp;
-  private chair: Chair;
-  private basket: Basket;
-  private office: Office;
-  private playboy: Playboy;
-
   constructor() {
     super();
     this.itemsToSell = new ItemsToSell();
-    this.lampLava = new Lamp();
-    this.chair = new Chair();
-    this.basket = new Basket();
-    this.office = new Office();
-    this.playboy = new Playboy();
-
     this.wallet = new Wallet();
     this.walletGUI = new WalletGUI(this.wallet);
   }
@@ -44,12 +32,6 @@ export default class PlayerRoom extends Phaser.State {
     }, this, 2, 1, 0);
 
     this.sprite = game.add.sprite(50, 50, 'normal_hero');
-    this.lampLava.create(game, 1, 120);
-    this.chair.create(game, 70, 90);
-    this.basket.create(game, 70, 1);
-    this.office.create(game, 1, 1);
-    this.playboy.create(game, 1, 70);
-
   }
 
   private setupItems(game: Phaser.Game) {
@@ -60,6 +42,26 @@ export default class PlayerRoom extends Phaser.State {
     const britneyPoster = new BritneyPoster(this.wallet);
     britneyPoster.create(game, 70, 40);
     this.itemsToSell.add(britneyPoster);
+
+    const playboy = new Playboy(this.wallet);
+    playboy.create(game, 1, 70);
+    this.itemsToSell.add(playboy);
+
+    const office = new Office(this.wallet);
+    office.create(game, 1, 1);
+    this.itemsToSell.add(office);
+
+    const basket = new Basket(this.wallet);
+    basket.create(game, 70, 1);
+    this.itemsToSell.add(basket);
+
+    const lampLava = new Lamp(this.wallet);
+    lampLava.create(game, 1, 120);
+    this.itemsToSell.add(lampLava);
+
+    const chair = new Chair(this.wallet);
+    chair.create(game, 70, 90);
+    this.itemsToSell.add(chair);
   }
 
   public update(game: Phaser.Game) {
