@@ -6,6 +6,16 @@ import DungeonLevel1 from "./game_state/DungeonLevel1";
 
 import * as data from '../tilemaps/map1.json';
 
+const PROPERTIES = {};
+for (let i = 0; i < data.tilesets[0].tiles.length; i++) {
+  const tile = data.tilesets[0].tiles[i];
+  const properties = {};
+  for (let j = 0; j < tile.properties.length; j++) {
+    properties[tile.properties[j].name] = tile.properties[j].value;
+  }
+  PROPERTIES[tile.id] = properties;
+}
+
 export default class Prison extends Phaser.State {
   private map: Tilemap;
   private activableObjects: Activable[];
@@ -26,9 +36,6 @@ export default class Prison extends Phaser.State {
     const walls = this.map.createLayer("walls");
     const items = this.map.createLayer("items");
 
-    console.log(data.tilesets[0].tiles);
-
-    console.log(this.map)
     // TODO boucle
     this.activableObjects.push(new Door(this.level, new Point(7, 1)));
 
@@ -42,11 +49,11 @@ export default class Prison extends Phaser.State {
   public canGoTo(position: Point) {
     const floorTile = this.map.getTile(position.x, position.y, "floor");
     if (floorTile) {
-      console.log(position.x, position.y, floorTile)
+      console.log(this.getTileProperties(floorTile))
     }
     const itemTile = this.map.getTile(position.x, position.y, "items");
     if (itemTile) {
-      console.log(position.x, position.y, itemTile)
+      console.log(this.getTileProperties(itemTile))
     }
     return true;
   }
@@ -78,5 +85,9 @@ export default class Prison extends Phaser.State {
     }
 
     return null;
+  }
+
+  private getTileProperties(tile: Phaser.Tile) {
+    return PROPERTIES[tile.index - 1];
   }
 }
