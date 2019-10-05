@@ -73,6 +73,11 @@ export default class Preload extends Phaser.State {
     this.game.load.image('buy_dlc_button', 'src/assets/images/buy_dlc_button.png');
     this.game.load.image('paypal', 'src/assets/images/paypal.png');
     this.game.load.image('cursor', 'src/assets/images/cursor.png');
+    this.game.load.image('menu_dlc_arrow_down', 'dist/assets/images/menu_dlc_arrow_down.png');
+    this.game.load.image('menu_dlc_arrow_up', 'dist/assets/images/menu_dlc_arrow_up.png');
+    this.game.load.image('menu_dlc_slider_handle', 'dist/assets/images/menu_dlc_slider_handle.png');
+    this.game.load.image('menu_dlc_background', 'dist/assets/images/menu_dlc_background.png');
+    this.game.load.image('menu_dlc_header', 'dist/assets/images/menu_dlc_header.png');
 
 
     this.game.load.image('dlc_thumb_1', 'src/assets/images/dlc_thumb_1.png');
@@ -112,6 +117,9 @@ export default class Preload extends Phaser.State {
     this.game.load.spritesheet('basket', 'src/assets/images/basket.jpeg', 283, 178);
     this.game.load.spritesheet('playboy_magazine', 'src/assets/images/playboy_magazine.jpg', 670, 978);
     this.game.load.spritesheet('britney_poster', 'src/assets/images/britney_poster.jpg', 210, 230);
+    this.game.load.spritesheet('bed', 'src/assets/images/bed.jpg', 680, 680);
+    this.game.load.spritesheet('game_boy', 'src/assets/images/game_boy.jpeg', 225, 225);
+    this.game.load.spritesheet('pokemon_card', 'src/assets/images/pokemon_card.jpeg', 225, 225);
   }
 
   private loadFonts() {

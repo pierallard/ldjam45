@@ -3,27 +3,18 @@ import Tilemap = Phaser.Tilemap;
 import {Door} from "./Door";
 import {Activable} from "./Activable";
 import DungeonLevel1 from "./game_state/DungeonLevel1";
-
-import * as data from '../assets/tilemaps/map1.json';
-
-const PROPERTIES = {};
-for (let i = 0; i < data.tilesets[0].tiles.length; i++) {
-  const tile = data.tilesets[0].tiles[i];
-  const properties = {};
-  for (let j = 0; j < tile.properties.length; j++) {
-    properties[tile.properties[j].name] = tile.properties[j].value;
-  }
-  PROPERTIES[tile.id] = properties;
-}
+import TilemapsProperties from "./TilemapsProperties"
 
 export default class Prison extends Phaser.State {
   private map: Tilemap;
   private activableObjects: Activable[];
   private level: DungeonLevel1;
+  private tilemapProperties: TilemapsProperties;
 
-  constructor(level: DungeonLevel1) {
+  constructor(level: DungeonLevel1, tilemapProperties: TilemapsProperties) {
     super();
     this.level = level;
+    this.tilemapProperties = tilemapProperties;
   }
 
   public create(game: Phaser.Game) {
@@ -86,20 +77,18 @@ export default class Prison extends Phaser.State {
     return null;
   }
 
-  private getTileProperties(tile: Phaser.Tile) {
-    return PROPERTIES[tile.index - 1];
-  }
-
   private populateActivables() {
     for (let x = 0; x < this.map.width; x++) {
       for (let y = 0; y < this.map.height; y++) {
         const tile = this.map.getTile(x, y, "items");
         if (!tile) { continue; }
-        const properties = this.getTileProperties(tile);
+
+        const properties = this.tilemapProperties.getTileProperties(tile);
 
         if (properties === undefined || properties.name === undefined) {
           continue;
         }
+
         switch (properties.name) {
           case "door": {
             this.activableObjects.push(new Door(this.level, new Point(tile.x, tile.y)));

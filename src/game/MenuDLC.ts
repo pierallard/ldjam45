@@ -1,5 +1,5 @@
 import DLCList, { DLCItem } from "./DLCList";
-import { dlcPreview } from './DLCConstants' ;
+import { dlcPreview, header, slider, sliderArrow } from './DLCConstants' ;
 
 /**
  * MenuDLC AKA Herve45 est la dialog box pour afficher les dlcs et le menu
@@ -31,6 +31,13 @@ export default class MenuDLC {
       return sprite;
     }
 
+    const buttonify = (img: string, x = 0, y = 0, cb: Function) => {
+      const button = game.add.button(x, y, img, cb, 2, 1, 0);
+      this.menuGroup.add(button);
+
+      return button;
+    };
+
     const textify = (text: string, x = 0, y = 0) => {
       const textEntity = game.add.bitmapText(x, y, 'Carrier Command', text, 5);
       this.menuGroup.add(textEntity);
@@ -46,56 +53,27 @@ export default class MenuDLC {
     this.menu = spritify('menu_dlc_background');
     textify('Menu DLC', 0, 0);
 
-    const dlcList = new DLCList([
-      {
-        description: [
-          '1Lorem ipsum dolor sit',
-          '1consectetur adipisicing.',
-          '1Beatae doloribus obcaec',
-          '1aperiam provident.',
-          '1quas asperiores quos,',
-        ],
-        name: 'Wololoh',
-        image: 'dlc_1',
-      },
-      {
-        description: [
-          '2Lorem ipsum dolor sit',
-          '2consectetur adipisicing.',
-          '2Beatae doloribus obcaec',
-          '2aperiam provident.',
-          '2quas asperiores quos,',
-        ],
-        name: 'Wololoh2',
-        image: 'dlc_1',
-      },
-      {
-        description: [
-          '3Lorem ipsum dolor sit',
-          '3consectetur adipisicing.',
-          '3Beatae doloribus obcaec',
-          '3aperiam provident.',
-          '3quas asperiores quos,',
-        ],
-        name: 'Wololoh3',
-        image: 'dlc_1',
-      },
-      {
-        description: [
-          '4Lorem ipsum dolor sit',
-          '4consectetur adipisicing.',
-          '4Beatae doloribus obcaec',
-          '4aperiam provident.',
-          '4quas asperiores quos,',
-        ],
-        name: 'Wololoh4',
-        image: 'dlc_1',
-      }
-    ]);
+    const dlcList = new DLCList(Array.from(Array(10).keys()).map((_, i) => ({
+      description: [
+        i + 'Lorem ipsum dolor sit',
+        i + 'consectetur adipisicing.',
+        i + 'Beatae doloribus obcaec',
+        i + 'aperiam provident.',
+        i + 'quas asperiores quos,',
+      ],
+      name: 'Wololoh' + i,
+      image: 'dlc_1',
+      price: i + 0.99,
+    })));
 
     dlcList.create(game, this.menuGroup, (dlcItem) => {
       this.showDLCPreview(game, dlcItem)
     });
+
+    buttonify('menu_dlc_header', header.x, header.y, () => {});
+    buttonify('menu_dlc_arrow_down', slider.x, slider.height + slider.y - sliderArrow.height, () => {});
+    buttonify('menu_dlc_arrow_up', slider.x, slider.y, () => {});
+    buttonify('menu_dlc_slider_handle', slider.x, slider.y + sliderArrow.height, () => {});
   }
 
   showDLCPreview = (game: Phaser.Game, dlcItem: DLCItem) => {
