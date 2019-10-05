@@ -13,6 +13,7 @@ import {DLCItem} from "../DLCList";
 import GameBoy from "./Items/GameBoy";
 import PokemonCard from "./Items/PokemonCard";
 import {Cursor} from "./Cursor";
+import {GAME_HEIGHT, GAME_WIDTH, SCALE} from "../../app";
 
 
 export default class PlayerRoom extends Phaser.State {
@@ -31,6 +32,12 @@ export default class PlayerRoom extends Phaser.State {
   }
 
   public create(game: Phaser.Game) {
+    this.game.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
+    this.game.renderer.renderSession.roundPixels = false;
+    this.game.width = GAME_WIDTH;
+    this.game.height = GAME_HEIGHT;
+    this.game.renderer.resize(1200, 900);
+
     this.setupItems(game);
     this.walletGUI.create(game);
     //game.add.image(0, 0, 'playerroombackground');
@@ -41,6 +48,7 @@ export default class PlayerRoom extends Phaser.State {
     this.sprite = game.add.sprite(50, 50, 'normal_hero');
 
     this.cursor = new Cursor(game);
+    this.cursor.scale.set(4,4);
     this.game.add.existing(this.cursor);
   }
 

@@ -9,7 +9,7 @@ import {DLCItem} from "../DLCList";
 import PlayerRoom from "./PlayerRoom";
 import TilemapsProperties from "../TilemapsProperties";
 import {Cursor} from "./Cursor";
-import {TILE_SIZE} from "../../app";
+import {SCALE, TILE_SIZE} from "../../app";
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
@@ -36,6 +36,12 @@ export default class DungeonLevel1 extends Phaser.State {
   }
 
   public create(game: Phaser.Game) {
+    this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+    this.game.scale.setUserScale(SCALE, SCALE);
+
+    this.game.renderer.renderSession.roundPixels = true;
+    Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
+
     this.tilemap.create(game);
 
     this.player.create(game, this.tilemap);

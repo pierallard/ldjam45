@@ -8,6 +8,7 @@ export class Cursor extends Phaser.Sprite {
 
   create(game: Phaser.Game) {
     game.add.sprite(game.world.centerX, game.world.centerY, 'cursor');
+    this.anchor.set(0.5, 0.5);
   }
 
   update2(game: Phaser.Game) {
