@@ -67,10 +67,16 @@ export default class Preload extends Phaser.State {
 
   private loadImages() {
     this.game.load.image('menu_dlc_background', 'src/assets/images/menu_dlc_background.png');
-    this.game.load.image('dlc_item', 'src/assets/images/dlc_item.png');
-    this.game.load.image('dlc_item_selected', 'src/assets/images/dlc_item_selected.png');
-    this.game.load.image('dlc_item_preview', 'src/assets/images/dlc_item_preview.png');
-    this.game.load.image('buy_dlc_button', 'src/assets/images/buy_dlc_button.png');
+    this.game.load.image('menu_dlc_arrow_down', 'dist/assets/images/menu_dlc_arrow_down.png');
+    this.game.load.image('menu_dlc_arrow_up', 'dist/assets/images/menu_dlc_arrow_up.png');
+    this.game.load.image('menu_dlc_slider_handle', 'dist/assets/images/menu_dlc_slider_handle.png');
+    this.game.load.image('menu_dlc_background', 'dist/assets/images/menu_dlc_background.png');
+    this.game.load.image('menu_dlc_header', 'dist/assets/images/menu_dlc_header.png');
+    this.game.load.image('dlc_item', 'dist/assets/images/dlc_item.png');
+    this.game.load.image('dlc_item_selected', 'dist/assets/images/dlc_item_selected.png');
+    this.game.load.image('dlc_item_acheted', 'dist/assets/images/dlc_item_acheted.png');
+    this.game.load.image('dlc_item_preview', 'dist/assets/images/dlc_item_preview.png');
+    this.game.load.image('buy_dlc_button', 'dist/assets/images/buy_dlc_button.png');
 
     this.game.load.image('dlc_thumb_1', 'src/assets/images/dlc_thumb_1.png');
 

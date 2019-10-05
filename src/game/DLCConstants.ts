@@ -5,6 +5,18 @@ export const header = {
   height: 26,
 };
 
+export const slider = {
+  x: 296,
+  y: 26,
+  width: 4,
+  height: 174,
+};
+
+export const sliderArrow = {
+  width: 4,
+  height: 8,
+};
+
 export const dlcList = {
   x: 150,
   y: header.height,
