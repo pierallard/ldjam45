@@ -9,6 +9,7 @@ import WalletGUI from "./Kapitalism/WalletGUI";
 import Playboy from "./Items/Playboy";
 import ItemsToSell from "./Items/ItemsToSell";
 import BritneyPoster from "./Items/BritneyPoster";
+import Bed from "./Items/Bed";
 
 export default class PlayerRoom extends Phaser.State {
   private itemsToSell: ItemsToSell;
@@ -62,6 +63,10 @@ export default class PlayerRoom extends Phaser.State {
     const chair = new Chair(this.wallet);
     chair.create(game, 70, 90);
     this.itemsToSell.add(chair);
+
+    const bed = new Bed(this.wallet);
+    bed.create(game, 130, 1);
+    this.itemsToSell.add(bed);
   }
 
   public update(game: Phaser.Game) {

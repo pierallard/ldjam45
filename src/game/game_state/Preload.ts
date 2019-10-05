@@ -109,6 +109,7 @@ export default class Preload extends Phaser.State {
     this.game.load.spritesheet('basket', 'dist/assets/images/basket.jpeg', 283, 178);
     this.game.load.spritesheet('playboy_magazine', 'dist/assets/images/playboy_magazine.jpg', 670, 978);
     this.game.load.spritesheet('britney_poster', 'dist/assets/images/britney_poster.jpg', 210, 230);
+    this.game.load.spritesheet('bed', 'dist/assets/images/bed.jpg', 680, 680);
   }
 
   private loadFonts() {
