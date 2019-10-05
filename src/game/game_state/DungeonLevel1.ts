@@ -45,7 +45,9 @@ export default class DungeonLevel1 extends Phaser.State {
       });
     }
 
-    this.menuDLC.create(game);
+    this.menuDLC.create(game, (dlcItem) => {
+      alert('buy: ' + dlcItem.name);
+    });
   }
 
   public update(game: Phaser.Game) {
