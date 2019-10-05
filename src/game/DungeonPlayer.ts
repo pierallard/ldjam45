@@ -5,7 +5,7 @@ import Prison from "./Prison";
 export const MOVE_TIME = Phaser.Timer.SECOND * 0.3;
 
 export class DungeonPlayer {
-  private sprite: Phaser.Sprite;
+  public sprite: Phaser.Sprite;
   private position: Point;
   private leftKey: Phaser.Key;
   private rightKey: Phaser.Key;
@@ -23,6 +23,12 @@ export class DungeonPlayer {
   public create(game: Phaser.Game, tilemap: Prison) {
     this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, 'normal_hero');
     this.tilemap = tilemap;
+
+    this.sprite.anchor.setTo(.5,.5);
+    game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+    this.sprite.body.collideWorldBounds = true;
+    this.sprite.body.setCircle(8, 0, 0);
+
     this.leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     this.rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
     this.upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -31,19 +37,31 @@ export class DungeonPlayer {
   }
 
   public update(game: Phaser.Game) {
+    this.stopPlayer();
+    const velocityDeFrite = 50;
     if (this.isMoving) {
       // c'est une animation, ne fais rien Michel.
     } else if (this.leftKey.isDown) {
-      this.moveTo(game, this.position.left());
+      this.sprite.body.velocity.x = -velocityDeFrite;
     } else if (this.rightKey.isDown) {
-      this.moveTo(game, this.position.right());
+      this.sprite.body.velocity.x = +velocityDeFrite;
     } else if (this.upKey.isDown) {
-      this.moveTo(game, this.position.up());
+      this.sprite.body.velocity.y = -velocityDeFrite;
     } else if (this.downKey.isDown) {
-      this.moveTo(game, this.position.down());
+      this.sprite.body.velocity.y = +velocityDeFrite;
     } else if (this.actionKey.isDown) {
       this.doAction(game);
+    } else {
+      this.stopPlayer();
     }
+    this.setFakePosition();
+  }
+
+  public stopPlayer()
+  {
+    this.sprite.body.velocity.y = 0;
+    this.sprite.body.velocity.x = 0;
+    this.setFakePosition();
   }
 
   private doAction(game: Phaser.Game) {
@@ -52,24 +70,11 @@ export class DungeonPlayer {
     }
   }
 
-  private moveTo(game: Phaser.Game, position: Point) {
-    if (!this.tilemap.canGoTo(position)) {
-      return;
-    }
-
-    this.isMoving = true;
-
-    game.add.tween(this.sprite).to({
-      x: DungeonPlayer.getRealPosition(position).x,
-      y: DungeonPlayer.getRealPosition(position).y
-    }, MOVE_TIME, Phaser.Easing.Default, true);
-
-    game.time.events.add(MOVE_TIME, () => {
-      this.isMoving = false;
-      this.position = position;
-      this.sprite.x = DungeonPlayer.getRealPosition(position).x;
-      this.sprite.y = DungeonPlayer.getRealPosition(position).y;
-    });
+  private setFakePosition() {
+    this.position = new Point(
+        Math.floor(this.sprite.x / TILE_SIZE),
+        Math.floor(this.sprite.y / TILE_SIZE)
+    );
   }
 
   private static getRealPosition(point: Point) {

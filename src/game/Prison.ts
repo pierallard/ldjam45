@@ -3,15 +3,34 @@ import Tilemap = Phaser.Tilemap;
 import {Door} from "./Door";
 import {Activable} from "./Activable";
 import DungeonLevel1 from "./game_state/DungeonLevel1";
+
 import TilemapsProperties from "./TilemapsProperties"
+
+
+import * as data from '../assets/tilemaps/map1.json';
+import {DungeonPlayer} from "./DungeonPlayer";
+
+const PROPERTIES = {};
+for (let i = 0; i < data.tilesets[0].tiles.length; i++) {
+  const tile = data.tilesets[0].tiles[i];
+  const properties = {};
+  for (let j = 0; j < tile.properties.length; j++) {
+    properties[tile.properties[j].name] = tile.properties[j].value;
+  }
+  PROPERTIES[tile.id] = properties;
+}
+
 
 export default class Prison extends Phaser.State {
   private map: Tilemap;
   private activableObjects: Activable[];
   private level: DungeonLevel1;
+  private player;
+  private walls;
+  private items;
   private tilemapProperties: TilemapsProperties;
 
-  constructor(level: DungeonLevel1, tilemapProperties: TilemapsProperties) {
+  constructor(level: DungeonLevel1, tilemapProperties: TilemapsProperties, player: DungeonPlayer) {
     super();
     this.level = level;
     this.tilemapProperties = tilemapProperties;
@@ -21,11 +40,21 @@ export default class Prison extends Phaser.State {
     this.activableObjects = [];
     this.map = game.add.tilemap('prison', 16, 16);
     this.map.addTilesetImage("dungeon_sheet", "tiles");
+    this.map.setCollision(
+        [
+          1, 2, 3, 4, 5, 6, 7, 8
+        ]
+    );
     this.map.enableDebug = true;
-
     const floor = this.map.createLayer("floor");
-    const walls = this.map.createLayer("walls");
-    const items = this.map.createLayer("items");
+    this.walls = this.map.createLayer("walls");
+    this.items = this.map.createLayer("items");
+
+    //this.items.debug = true;
+    //this.walls.debug = true;
+    this.walls.resizeWorld();
+    this.items.resizeWorld();
+
 
     this.populateActivables();
 
@@ -33,7 +62,8 @@ export default class Prison extends Phaser.State {
   }
 
   public update(game: Phaser.Game) {
-
+      this.game.physics.arcade.collide(this.player, this.walls);
+    this.game.physics.arcade.collide(this.player, this.items);
   }
 
   public canGoTo(position: Point) {

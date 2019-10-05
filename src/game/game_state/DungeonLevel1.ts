@@ -29,7 +29,7 @@ export default class DungeonLevel1 extends Phaser.State {
     this.tilemapProperties = new TilemapsProperties();
     this.player = new DungeonPlayer(new Point(1, 2));
     this.messageBox = null;
-    this.tilemap = new Prison(this, this.tilemapProperties);
+    this.tilemap = new Prison(this, this.tilemapProperties, this.player);
     this.showDoorMessage = true;
     this.showBeginningMessage = true;
     this.pie = null;
@@ -51,7 +51,9 @@ export default class DungeonLevel1 extends Phaser.State {
       this.showBeginningMessage = false;
 
       this.addMessageBox(game, 'je suis enfermay ! Je dois sortir!', () => {
+        this.player.stopPlayer();
         game.time.events.add(0.5 * Phaser.Timer.SECOND, () => {
+          this.player.stopPlayer();
           this.addMessageBox(game, 'Appuyez sur AZDS pour bougeay', () => {
           });
         });
@@ -108,10 +110,16 @@ export default class DungeonLevel1 extends Phaser.State {
     }
     this.player.update(game);
     if (this.showDoorMessage && this.tilemap.getActivable(this.player.getPosition()) instanceof Door) {
+      this.player.stopPlayer();
       this.showDoorMessage = false;
       this.addMessageBox(game, 'Appuyay sur Entray pour crochtay la porte', () => {
       });
     }
+  }
+
+  public render()
+  {
+      this.game.debug.body(this.player.sprite);
   }
 
   public addMessageBox(game: Phaser.Game, message: string, callback) {
