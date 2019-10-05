@@ -9,6 +9,7 @@ import Playboy from "./Items/Playboy";
 import ItemsToSell from "./Items/ItemsToSell";
 import BritneyPoster from "./Items/BritneyPoster";
 import {DLCItem} from "../DLCList";
+import {Cursor} from "./Cursor";
 
 export default class PlayerRoom extends Phaser.State {
   private itemsToSell: ItemsToSell;
@@ -16,6 +17,7 @@ export default class PlayerRoom extends Phaser.State {
   private wallet: Wallet;
   private walletGUI: WalletGUI;
   private dlcItem: DLCItem;
+  private cursor: Cursor;
 
   constructor() {
     super();
@@ -33,6 +35,9 @@ export default class PlayerRoom extends Phaser.State {
     }, this, 2, 1, 0);
 
     this.sprite = game.add.sprite(50, 50, 'normal_hero');
+
+    this.cursor = new Cursor(game);
+    this.game.add.existing(this.cursor);
   }
 
   private setupItems(game: Phaser.Game) {
@@ -68,6 +73,7 @@ export default class PlayerRoom extends Phaser.State {
   public update(game: Phaser.Game) {
     this.walletGUI.update(game);
 
+    this.cursor.update2(game);
   }
 
   public setdlcItem(dlcItem: DLCItem) {

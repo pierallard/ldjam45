@@ -7,6 +7,8 @@ import MenuDLC from '../MenuDLC';
 import {Pie} from "../Pie";
 import {DLCItem} from "../DLCList";
 import PlayerRoom from "./PlayerRoom";
+import {Cursor} from "./Cursor";
+import {TILE_SIZE} from "../../app";
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
@@ -16,6 +18,8 @@ export default class DungeonLevel1 extends Phaser.State {
   private showDoorMessage: boolean;
   private pie: Pie;
   private showBeginningMessage: boolean;
+  private cursor: Cursor;
+  private paypal: Phaser.Image;
 
   constructor(sprite: Phaser.Sprite) {
     super();
@@ -44,14 +48,30 @@ export default class DungeonLevel1 extends Phaser.State {
     }
 
     this.menuDLC.create(game, (dlcItem: DLCItem) => {
-      // TODO Cinematic
-      game.state.start('PlayerRoom');
-      const playerRoom = game.state.states['PlayerRoom'];
-      (<PlayerRoom> playerRoom).setdlcItem(dlcItem);
+      this.paypal.visible = true;
+      this.cursor.enablez(false);
+      game.add.tween(this.cursor).to({
+        x: 156,
+        y: 101
+      }, 2 * Phaser.Timer.SECOND, Phaser.Easing.Default, true);
+      game.time.events.add(2 * Phaser.Timer.SECOND, () => {
+        game.state.start('PlayerRoom');
+        this.cursor.enablez(true);
+
+        const playerRoom = game.state.states['PlayerRoom'];
+        (<PlayerRoom> playerRoom).setdlcItem(dlcItem);
+      });
     });
+
+    this.paypal = game.add.image(0, 0, 'paypal');
+    this.paypal.visible = false;
+
+    this.cursor = new Cursor(game);
+    this.game.add.existing(this.cursor);
   }
 
   public update(game: Phaser.Game) {
+    this.cursor.update2(game);
     if (null !== this.messageBox) {
       if (this.messageBox.update(game)) {
         this.messageBox = null;
