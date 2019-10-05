@@ -97,9 +97,9 @@ export default class Preload extends Phaser.State {
     this.game.load.spritesheet('evil_coin', 'dist/assets/images/evil_coin.png', 60, 60);
     this.game.load.image('shadow', 'dist/assets/images/shadow.png');
     */this.game.load.image('logo', 'dist/assets/images/logo1.png');/*
-    this.game.load.spritesheet('watch', 'dist/assets/images/watch.png', 24, 29);
+    this.game.load.spritesheet('watch', 'dist/assets/images/watch.png', 24, 29);*/
     this.game.load.spritesheet('tshirt', 'dist/assets/images/tshirt.jpg', 679, 724);
-    this.game.load.spritesheet('lamp-lava', 'dist/assets/images/lamp-lava.jpg', 600, 600);*/
+    this.game.load.spritesheet('lamp-lava', 'dist/assets/images/lamp-lava.jpg', 600, 600);
     this.game.load.spritesheet('lamp-lava', 'dist/assets/images/lamp-lava.jpg', 600, 600);
     this.game.load.spritesheet('office', 'dist/assets/images/office.jpg', 680, 680);
     this.game.load.spritesheet('chair', 'dist/assets/images/chair.png', 500, 500);
