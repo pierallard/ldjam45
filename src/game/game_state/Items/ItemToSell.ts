@@ -1,5 +1,4 @@
 import Wallet from "../Kapitalism/Wallet";
-import {DLCItem} from "../../DLCList";
 import PlayerRoom from "../PlayerRoom";
 
 export abstract class ItemToSell {
@@ -19,7 +18,7 @@ export abstract class ItemToSell {
     {
         this.wallet.add(this.price);
         this.sprite.destroy();
-        if (this.wallet.total() >= this.playerRoom.dlcItem.price){
+        if (this.wallet.total() >= this.playerRoom.dlcItem.dlc.price){
             this.playerRoom.backToTheGame();
         }
     }
