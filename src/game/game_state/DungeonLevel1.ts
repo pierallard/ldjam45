@@ -51,6 +51,7 @@ export default class DungeonLevel1 extends Phaser.State {
       game.state.start('PlayerRoom');
       const playerRoom = game.state.states['PlayerRoom'];
       (<PlayerRoom> playerRoom).setdlcItem(dlcItem);
+      dlcItem.achete();
     });
   }
 
