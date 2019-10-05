@@ -21,7 +21,7 @@ export default class PlayerRoom extends Phaser.State {
   private sprite: Phaser.Sprite;
   private wallet: Wallet;
   private walletGUI: WalletGUI;
-  private dlcItem: DLCItem;
+  public dlcItem: DLCItem;
   private cursor: Cursor;
 
   constructor() {
@@ -53,54 +53,58 @@ export default class PlayerRoom extends Phaser.State {
   }
 
   private setupItems(game: Phaser.Game) {
-    const tshirt = new Tshirt(this.wallet);
+    const tshirt = new Tshirt(this.wallet, this);
     tshirt.create(game, 35, 70);
     this.itemsToSell.add(tshirt);
 
-    const britneyPoster = new BritneyPoster(this.wallet);
+    const britneyPoster = new BritneyPoster(this.wallet, this);
     britneyPoster.create(game, 70, 40);
     this.itemsToSell.add(britneyPoster);
 
-    const playboy = new Playboy(this.wallet);
+    const playboy = new Playboy(this.wallet, this);
     playboy.create(game, 1, 70);
     this.itemsToSell.add(playboy);
 
-    const office = new Office(this.wallet);
+    const office = new Office(this.wallet, this);
     office.create(game, 1, 1);
     this.itemsToSell.add(office);
 
-    const basket = new Basket(this.wallet);
+    const basket = new Basket(this.wallet, this);
     basket.create(game, 70, 1);
     this.itemsToSell.add(basket);
 
-    const lampLava = new Lamp(this.wallet);
+    const lampLava = new Lamp(this.wallet, this);
     lampLava.create(game, 1, 120);
     this.itemsToSell.add(lampLava);
 
-    const chair = new Chair(this.wallet);
+    const chair = new Chair(this.wallet, this);
     chair.create(game, 70, 90);
     this.itemsToSell.add(chair);
 
-    const bed = new Bed(this.wallet);
+    const bed = new Bed(this.wallet, this);
     bed.create(game, 130, 1);
     this.itemsToSell.add(bed);
 
-    const gameBoy = new GameBoy(this.wallet);
+    const gameBoy = new GameBoy(this.wallet, this);
     gameBoy.create(game, 130, 70);
     this.itemsToSell.add(gameBoy);
 
-    const pokemonCard = new PokemonCard(this.wallet);
+    const pokemonCard = new PokemonCard(this.wallet, this);
     pokemonCard.create(game, 130, 100);
     this.itemsToSell.add(pokemonCard);
   }
 
   public update(game: Phaser.Game) {
     this.walletGUI.update(game);
-
     this.cursor.update2(game);
   }
 
   public setdlcItem(dlcItem: DLCItem) {
     this.dlcItem = dlcItem;
+  }
+
+  public backToTheGame()
+  {
+    this.game.state.start('DungeonLevel1');
   }
 }
