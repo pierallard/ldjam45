@@ -39,7 +39,7 @@ export default class PlayerRoom extends Phaser.State {
     this.setupItems(game);
     this.walletGUI.create(game);
     //game.add.image(0, 0, 'playerroombackground');
-    this.game.add.button(5, 5, 'button', () => {
+    this.game.add.button(250, 50, 'button', () => {
       game.state.start('DungeonLevel1');
     }, this, 2, 1, 0);
 
