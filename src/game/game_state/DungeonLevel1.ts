@@ -1,5 +1,12 @@
+import {DungeonPlayer} from "../DungeonPlayer";
+
 export default class DungeonLevel1 extends Phaser.State {
-  private sprite: Phaser.Sprite;
+  private player: DungeonPlayer;
+
+  constructor(sprite: Phaser.Sprite) {
+    super();
+    this.player = new DungeonPlayer();
+  }
 
   public create(game: Phaser.Game) {
     game.add.image(0, 0, 'dungeonlevel1', 0);
@@ -11,10 +18,11 @@ export default class DungeonLevel1 extends Phaser.State {
     this.game.add.button(5, 5, 'button', () => {
       game.state.start('DungeonLevel1');
     }, this, 2, 1, 0);
-    this.sprite = game.add.sprite(50, 50, 'normal_hero');
+
+    this.player.create(game);
   }
 
   public update(game: Phaser.Game) {
-
+    this.player.update(game);
   }
 }

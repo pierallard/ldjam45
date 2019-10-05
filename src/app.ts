@@ -13,7 +13,7 @@ import PlayerRoom from "./game/game_state/PlayerRoom";
 export const SCALE = 4;
 const GAME_WIDTH = 1200;
 const GAME_HEIGHT = 800;
-export const TILE_SIZE = 24;
+export const TILE_SIZE = 16;
 
 class SimpleGame extends Phaser.Game {
     constructor() {
