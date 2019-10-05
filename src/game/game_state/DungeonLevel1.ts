@@ -22,6 +22,7 @@ export default class DungeonLevel1 extends Phaser.State {
   private showBeginningMessage: boolean;
   private cursor: Cursor;
   private paypal: Phaser.Image;
+  private paypalAlreadyMontred: boolean;
 
   constructor(sprite: Phaser.Sprite) {
     super();
@@ -33,6 +34,7 @@ export default class DungeonLevel1 extends Phaser.State {
     this.showBeginningMessage = true;
     this.pie = null;
     this.menuDLC = new MenuDLC(true);
+    this.paypalAlreadyMontred = false;
   }
 
   public create(game: Phaser.Game) {
@@ -57,20 +59,30 @@ export default class DungeonLevel1 extends Phaser.State {
     }
 
     this.menuDLC.create(game, (dlcItem: DLCItem) => {
-      this.paypal.visible = true;
-      this.cursor.enablez(false);
-      game.add.tween(this.cursor).to({
-        x: 156,
-        y: 101
-      }, 2 * Phaser.Timer.SECOND, Phaser.Easing.Default, true);
-      game.time.events.add(2 * Phaser.Timer.SECOND, () => {
+      if (!this.paypalAlreadyMontred) {
+        this.paypalAlreadyMontred = true;
+        this.paypal.visible = true;
+        this.cursor.enablez(false);
+        game.add.tween(this.cursor).to({
+          x: 156,
+          y: 101
+        }, 2 * Phaser.Timer.SECOND, Phaser.Easing.Default, true);
+        game.time.events.add(2 * Phaser.Timer.SECOND, () => {
+          game.state.start('PlayerRoom');
+          this.cursor.enablez(true);
+
+          const playerRoom = game.state.states['PlayerRoom'];
+          (<PlayerRoom>playerRoom).setdlcItem(dlcItem);
+          dlcItem.achete();
+        });
+      } else {
         game.state.start('PlayerRoom');
         this.cursor.enablez(true);
 
         const playerRoom = game.state.states['PlayerRoom'];
-        (<PlayerRoom> playerRoom).setdlcItem(dlcItem);
+        (<PlayerRoom>playerRoom).setdlcItem(dlcItem);
         dlcItem.achete();
-      });
+      }
     });
 
     this.paypal = game.add.image(0, 0, 'paypal');
