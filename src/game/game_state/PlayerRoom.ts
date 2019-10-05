@@ -1,4 +1,3 @@
-
 import Tshirt from "./Items/Tshirt";
 import Lamp from "./Items/Lamp";
 import Chair from "./Items/Chair";

@@ -10,8 +10,10 @@ export default class MenuDLC {
   private menuGroup: Phaser.Group;
   private hudGroup: Phaser.Group;
   private onBuy: (dlcItem: DLCItem) => void;
+  private shouldShowOpenMenuDLCButton: boolean;
 
-  constructor(private shouldShowOpenMenuDLCButton: boolean) {
+  constructor(shouldShowOpenMenuDLCButton: boolean) {
+    this.shouldShowOpenMenuDLCButton = shouldShowOpenMenuDLCButton;
   }
 
   create = (game: Phaser.Game, onBuy: (dlcItem: DLCItem) => void) => {
@@ -125,6 +127,7 @@ export default class MenuDLC {
   }
 
   displayButton = () => {
+    this.shouldShowOpenMenuDLCButton = true;
     this.hudGroup.visible = true;
   };
 
