@@ -6,6 +6,7 @@ import Prison from "../Prison";
 import MenuDLC from '../MenuDLC';
 import {Pie} from "../Pie";
 import {DLCItem} from "../DLCList";
+import PlayerRoom from "./PlayerRoom";
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
@@ -45,6 +46,8 @@ export default class DungeonLevel1 extends Phaser.State {
     this.menuDLC.create(game, (dlcItem: DLCItem) => {
       // TODO Cinematic
       game.state.start('PlayerRoom');
+      const playerRoom = game.state.states['PlayerRoom'];
+      (<PlayerRoom> playerRoom).setdlcItem(dlcItem);
     });
   }
 
