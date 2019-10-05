@@ -1,4 +1,5 @@
-import DLCList from "./DLCList";
+import DLCList, { DLCItem } from "./DLCList";
+import { dlcPreview } from './DLCConstants' ;
 
 /**
  * MenuDLC AKA Herve45 est la dialog box pour afficher les dlcs et le menu
@@ -8,11 +9,13 @@ export default class MenuDLC {
   private button: Phaser.Button;
   private menuGroup: Phaser.Group;
   private hudGroup: Phaser.Group;
+  private onBuy: (dlcItem: DLCItem) => void;
 
   constructor(private shouldShowOpenMenuDLCButton: boolean) {
   }
 
-  create = (game: Phaser.Game) => {
+  create = (game: Phaser.Game, onBuy: (dlcItem: DLCItem) => void) => {
+    this.onBuy = onBuy;
     this.hudGroup = game.add.group(null, 'HUD');
     game.add.existing(this.hudGroup);
     this.menuGroup = game.add.group(null, 'MenuDLC');
@@ -44,43 +47,73 @@ export default class MenuDLC {
     const dlcList = new DLCList([
       {
         description: [
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-          'Beatae doloribus obcaecati aperiam provident. Reiciendis quas asperiores quos perferendis,',
-          'culpa nostrum temporibus iusto harum architecto dolor, aut nulla quisquam a illo.',
+          '1Lorem ipsum dolor sit',
+          '1consectetur adipisicing.',
+          '1Beatae doloribus obcaec',
+          '1aperiam provident.',
+          '1quas asperiores quos,',
         ],
         name: 'Wololoh',
         image: 'dlc_1',
       },
       {
         description: [
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-          'Beatae doloribus obcaecati aperiam provident. Reiciendis quas asperiores quos perferendis,',
-          'culpa nostrum temporibus iusto harum architecto dolor, aut nulla quisquam a illo.',
+          '2Lorem ipsum dolor sit',
+          '2consectetur adipisicing.',
+          '2Beatae doloribus obcaec',
+          '2aperiam provident.',
+          '2quas asperiores quos,',
         ],
         name: 'Wololoh2',
         image: 'dlc_1',
       },
       {
         description: [
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-          'Beatae doloribus obcaecati aperiam provident. Reiciendis quas asperiores quos perferendis,',
-          'culpa nostrum temporibus iusto harum architecto dolor, aut nulla quisquam a illo.',
+          '3Lorem ipsum dolor sit',
+          '3consectetur adipisicing.',
+          '3Beatae doloribus obcaec',
+          '3aperiam provident.',
+          '3quas asperiores quos,',
         ],
         name: 'Wololoh3',
         image: 'dlc_1',
       },
       {
         description: [
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-          'Beatae doloribus obcaecati aperiam provident. Reiciendis quas asperiores quos perferendis,',
-          'culpa nostrum temporibus iusto harum architecto dolor, aut nulla quisquam a illo.',
+          '4Lorem ipsum dolor sit',
+          '4consectetur adipisicing.',
+          '4Beatae doloribus obcaec',
+          '4aperiam provident.',
+          '4quas asperiores quos,',
         ],
         name: 'Wololoh4',
         image: 'dlc_1',
       }
     ]);
 
-    dlcList.create(game, this.menuGroup);
+    dlcList.create(game, this.menuGroup, (dlcItem) => {
+      this.showDLCPreview(game, dlcItem)
+    });
+  }
+
+  showDLCPreview = (game: Phaser.Game, dlcItem: DLCItem) => {
+    const preview = game.add.image(dlcPreview.x, dlcPreview.y, 'dlc_item_preview');
+    this.menuGroup.add(preview);
+
+    const textEntity = game.add.bitmapText(dlcPreview.x + 50  , dlcPreview.y + 15, 'Carrier Command', dlcItem.name, 8);
+    this.menuGroup.add(textEntity);
+
+    dlcItem.description.forEach((desc, i) => {
+      const textEntity = game.add.bitmapText(dlcPreview.x + 8, dlcPreview.y + 50 + (i*10), 'Carrier Command', desc, 4);
+      this.menuGroup.add(textEntity);
+    });
+
+
+    const button = game.add.button(dlcPreview.x + 20, 160, 'buy_dlc_button', () => {
+      this.onBuy(dlcItem);
+    }, 2, 1, 0);
+  
+    this.menuGroup.add(button);
   }
 
   open = () => {
