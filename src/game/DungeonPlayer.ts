@@ -48,7 +48,7 @@ export class DungeonPlayer {
 
   private doAction(game: Phaser.Game) {
     if (this.tilemap.isThereSomethingActivableNearTheCurrentPositionOfThePlayerPlease(this.position)) {
-      this.tilemap.doAction(this.position);
+      this.tilemap.doAction(this.position, game);
     }
   }
 
