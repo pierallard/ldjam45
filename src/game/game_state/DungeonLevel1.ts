@@ -32,7 +32,7 @@ export default class DungeonLevel1 extends Phaser.State {
     this.showDoorMessage = true;
     this.showBeginningMessage = true;
     this.pie = null;
-    this.menuDLC = new MenuDLC(false);
+    this.menuDLC = new MenuDLC(true);
   }
 
   public create(game: Phaser.Game) {
