@@ -31,7 +31,12 @@ export class Door implements Activable {
       this.position.x * TILE_SIZE + 2,
       this.position.y * TILE_SIZE + 2
     ), Phaser.Timer.SECOND * 3, () => {
-      this.level.addMessageBox(game, 'Congrats, tu as deverouillay ' + this.crochetage + '% de la porte', () => {});
+        let message = 'Congrats, tu as deverouillay ' + this.crochetage + '% de la porte!';
+        if (this.crochetage > 1) {
+            message += "\n\nUn petit DLCay ? ;)"
+            this.level.displayDLCButton();
+        }
+      this.level.addMessageBox(game, message, () => {});
     });
   }
 }

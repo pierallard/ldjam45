@@ -4,6 +4,8 @@ import {Door} from "./Door";
 import {Activable} from "./Activable";
 import DungeonLevel1 from "./game_state/DungeonLevel1";
 
+import * as data from '../tilemaps/map1.json';
+
 export default class Prison extends Phaser.State {
   private map: Tilemap;
   private activableObjects: Activable[];
@@ -23,6 +25,8 @@ export default class Prison extends Phaser.State {
     const floor = this.map.createLayer("floor");
     const walls = this.map.createLayer("walls");
     const items = this.map.createLayer("items");
+
+    console.log(data.tilesets[0].tiles);
 
     console.log(this.map)
     // TODO boucle
