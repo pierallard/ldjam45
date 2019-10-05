@@ -22,7 +22,7 @@ export default class DungeonLevel1 extends Phaser.State {
     this.tilemap = new Prison(this);
     this.showDoorMessage = true;
     this.pie = null;
-    this.menuDLC = new MenuDLC(true);
+    this.menuDLC = new MenuDLC(false);
   }
 
   public create(game: Phaser.Game) {
@@ -75,8 +75,6 @@ export default class DungeonLevel1 extends Phaser.State {
   }
 
   public displayDLCButton() {
-    this.game.add.button(7 * TILE_SIZE, 5 * TILE_SIZE, 'DLC', () => {
-    });
-    this.game.add.bitmapText(7 * TILE_SIZE, 5 * TILE_SIZE, 'Carrier Command', "DLC ?", 5);
+    this.menuDLC.displayButton();
   }
 }
