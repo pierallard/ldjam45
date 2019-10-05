@@ -3,12 +3,15 @@ import {Door} from "../Door";
 import Point from "../Point";
 import {MessageBox} from "../MessageBox";
 import Prison from "../Prison";
+import MenuDLC from '../MenuDLC';
 import {Pie} from "../Pie";
+import {TILE_SIZE} from "../../app";
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
   private messageBox: MessageBox;
   private tilemap: Prison;
+  private menuDLC: MenuDLC;
   private showDoorMessage: boolean;
   private pie: Pie;
 
@@ -19,6 +22,7 @@ export default class DungeonLevel1 extends Phaser.State {
     this.tilemap = new Prison(this);
     this.showDoorMessage = true;
     this.pie = null;
+    this.menuDLC = new MenuDLC(true);
   }
 
   public create(game: Phaser.Game) {
@@ -35,6 +39,8 @@ export default class DungeonLevel1 extends Phaser.State {
         this.addMessageBox(game, 'Appuyez sur AZDS pour bougeay', () => {});
       });
     });
+
+    this.menuDLC.create(game);
   }
 
   public update(game: Phaser.Game) {
@@ -66,5 +72,11 @@ export default class DungeonLevel1 extends Phaser.State {
   public addPie(game: Phaser.Game, position: Point, duration: number, callback: any) {
     this.pie = new Pie(position, duration, callback);
     this.pie.create(game);
+  }
+
+  public displayDLCButton() {
+    this.game.add.button(7 * TILE_SIZE, 5 * TILE_SIZE, 'DLC', () => {
+    });
+    this.game.add.bitmapText(7 * TILE_SIZE, 5 * TILE_SIZE, 'Carrier Command', "DLC ?", 5);
   }
 }
