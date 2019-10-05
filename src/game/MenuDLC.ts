@@ -1,6 +1,8 @@
 import DLCList, { DLCItem, DLC } from "./DLCList";
 import { dlcPreview, header, slider, sliderArrow } from './DLCConstants' ;
 
+export const DLC_CROCHETAGE = 'Crochetage';
+
 /**
  * MenuDLC AKA Herve45 est la dialog box pour afficher les dlcs et le menu
  */
@@ -15,7 +17,15 @@ export default class MenuDLC {
 
   constructor(shouldShowOpenMenuDLCButton: boolean) {
     this.shouldShowOpenMenuDLCButton = shouldShowOpenMenuDLCButton;
-    this.dlcs = Array.from(Array(10).keys()).map((_, i) => ({
+    this.dlcs = [];
+    this.dlcs.push({
+      description: [''],
+      name: DLC_CROCHETAGE,
+      image: 'dlc_0',
+      price: 200,
+      isAcheted: false
+    });
+    this.dlcs = this.dlcs.concat(Array.from(Array(10).keys()).map((_, i) => ({
       description: [
         i + 'Lorem ipsum dolor sit',
         i + 'consectetur adipisicing.',
@@ -27,8 +37,7 @@ export default class MenuDLC {
       image: 'dlc_1',
       price: i + 0.99,
       isAcheted: false,
-    }));
-    debugger;
+    })));
   }
 
   create = (game: Phaser.Game, onBuy: (dlcItem: DLCItem) => void) => {
