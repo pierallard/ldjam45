@@ -1,7 +1,7 @@
 import Point from "./Point";
 import {Activable} from "./Activable";
 import DungeonLevel1 from "./game_state/DungeonLevel1";
-import {TILE_SIZE} from "../app";
+import {DEBUG, TILE_SIZE} from "../app";
 
 export class Door implements Activable {
   private position: Point;
@@ -22,7 +22,6 @@ export class Door implements Activable {
   }
 
   update(game: Phaser.Game) {
-
   }
 
   doAction(game: Phaser.Game) {
@@ -30,13 +29,16 @@ export class Door implements Activable {
     this.level.addPie(game, new Point(
       this.position.x * TILE_SIZE + 2,
       this.position.y * TILE_SIZE + 2
-    ), Phaser.Timer.SECOND * 3, () => {
+    ), DEBUG ? Phaser.Timer.SECOND / 2 : Phaser.Timer.SECOND * 3, () => {
         let message = 'Congrats, tu as deverouillay ' + this.crochetage + '% de la porte!';
         if (this.crochetage > 1) {
             message += "\n\nUn petit DLCay ? ;)"
-            this.level.displayDLCButton();
         }
-      this.level.addMessageBox(game, message, () => {});
+      this.level.addMessageBox(game, message, () => {
+        if (this.crochetage > 1) {
+          this.level.displayDLCButton();
+        }
+      });
     });
   }
 }

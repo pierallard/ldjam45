@@ -4,8 +4,7 @@ import {Door} from "./Door";
 import {Activable} from "./Activable";
 import DungeonLevel1 from "./game_state/DungeonLevel1";
 
-import * as data from '../tilemaps/map1.json';
-import { throws } from "assert";
+import * as data from '../assets/tilemaps/map1.json';
 
 const PROPERTIES = {};
 for (let i = 0; i < data.tilesets[0].tiles.length; i++) {
@@ -16,7 +15,6 @@ for (let i = 0; i < data.tilesets[0].tiles.length; i++) {
   }
   PROPERTIES[tile.id] = properties;
 }
-console.log(PROPERTIES)
 
 export default class Prison extends Phaser.State {
   private map: Tilemap;

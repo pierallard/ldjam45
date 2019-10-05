@@ -10,6 +10,8 @@ import {Logo} from "./game/game_state/Logo";
 import DungeonLevel1 from "./game/game_state/DungeonLevel1";
 import PlayerRoom from "./game/game_state/PlayerRoom";
 
+export const DEBUG = true;
+
 export const SCALE = 4;
 const GAME_WIDTH = 1200;
 const GAME_HEIGHT = 800;

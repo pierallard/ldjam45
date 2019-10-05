@@ -10,12 +10,14 @@ import Playboy from "./Items/Playboy";
 import ItemsToSell from "./Items/ItemsToSell";
 import BritneyPoster from "./Items/BritneyPoster";
 import Bed from "./Items/Bed";
+import {DLCItem} from "../DLCList";
 
 export default class PlayerRoom extends Phaser.State {
   private itemsToSell: ItemsToSell;
   private sprite: Phaser.Sprite;
   private wallet: Wallet;
   private walletGUI: WalletGUI;
+  private dlcItem: DLCItem;
 
   constructor() {
     super();
@@ -28,7 +30,7 @@ export default class PlayerRoom extends Phaser.State {
     this.setupItems(game);
     this.walletGUI.create(game);
     //game.add.image(0, 0, 'playerroombackground');
-    this.game.add.button(5, 5, 'button', () => {
+    this.game.add.button(250, 50, 'button', () => {
       game.state.start('DungeonLevel1');
     }, this, 2, 1, 0);
 
@@ -72,5 +74,9 @@ export default class PlayerRoom extends Phaser.State {
   public update(game: Phaser.Game) {
     this.walletGUI.update(game);
 
+  }
+
+  public setdlcItem(dlcItem: DLCItem) {
+    this.dlcItem = dlcItem;
   }
 }
