@@ -3,6 +3,7 @@ import {Door} from "../Door";
 import Point from "../Point";
 import {MessageBox} from "../MessageBox";
 import Prison from "../Prison";
+import MenuDLC from '../MenuDLC';
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
@@ -33,6 +34,9 @@ export default class DungeonLevel1 extends Phaser.State {
         this.addMessageBox(game, 'Appuyez sur AZDS pour bougeay', () => {});
       });
     });
+
+    const menuDLC = new MenuDLC(true);
+    menuDLC.create(game);
   }
 
   public update(game: Phaser.Game) {
