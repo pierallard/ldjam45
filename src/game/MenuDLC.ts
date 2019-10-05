@@ -35,11 +35,11 @@ export default class MenuDLC {
       return text;
     } 
 
-    const button = game.add.button(game.width - 29, 5, 'bloc_box', () => {
+    this.button = game.add.button(game.width - 29, 5, 'bloc_box', () => {
       this.open();
     }, 2, 1, 0);
   
-    this.hudGroup.add(button);
+    this.hudGroup.add(this.button);
     this.hudGroup.visible = this.shouldShowOpenMenuDLCButton;
     this.menu = spritify('menu_dlc_background');
     textify('Menu DLC', 0, 0);
@@ -125,7 +125,7 @@ export default class MenuDLC {
   }
 
   displayButton = () => {
-    this.button.visible = false;
+    this.hudGroup.visible = true;
   };
 
   update = () => {

@@ -5,7 +5,8 @@ import {MessageBox} from "../MessageBox";
 import Prison from "../Prison";
 import MenuDLC from '../MenuDLC';
 import {Pie} from "../Pie";
-import {TILE_SIZE} from "../../app";
+import {DLCItem} from "../DLCList";
+import PlayerRoom from "./PlayerRoom";
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
@@ -14,6 +15,7 @@ export default class DungeonLevel1 extends Phaser.State {
   private menuDLC: MenuDLC;
   private showDoorMessage: boolean;
   private pie: Pie;
+  private showBeginningMessage: boolean;
 
   constructor(sprite: Phaser.Sprite) {
     super();
@@ -21,27 +23,31 @@ export default class DungeonLevel1 extends Phaser.State {
     this.messageBox = null;
     this.tilemap = new Prison(this);
     this.showDoorMessage = true;
+    this.showBeginningMessage = true;
     this.pie = null;
-    this.menuDLC = new MenuDLC(true);
+    this.menuDLC = new MenuDLC(false);
   }
 
   public create(game: Phaser.Game) {
     this.tilemap.create(game);
 
-    game.add.bitmapText(50, 180, 'Carrier Command', "Dungeon Level 1", 5);
-    this.game.add.button(5, 5, 'button', () => {
-      game.state.start('PlayerRoom');
-    }, this, 2, 1, 0);
-
     this.player.create(game, this.tilemap);
-    this.addMessageBox(game, 'je suis enfermay ! Je dois sortir!',() => {
-      game.time.events.add(0.5  * Phaser.Timer.SECOND, () => {
-        this.addMessageBox(game, 'Appuyez sur AZDS pour bougeay', () => {});
-      });
-    });
+    if (this.showBeginningMessage) {
+      this.showBeginningMessage = false;
 
-    this.menuDLC.create(game, (dlcItem) => {
-      alert('buy: ' + dlcItem.name);
+      this.addMessageBox(game, 'je suis enfermay ! Je dois sortir!', () => {
+        game.time.events.add(0.5 * Phaser.Timer.SECOND, () => {
+          this.addMessageBox(game, 'Appuyez sur AZDS pour bougeay', () => {
+          });
+        });
+      });
+    }
+
+    this.menuDLC.create(game, (dlcItem: DLCItem) => {
+      // TODO Cinematic
+      game.state.start('PlayerRoom');
+      const playerRoom = game.state.states['PlayerRoom'];
+      (<PlayerRoom> playerRoom).setdlcItem(dlcItem);
     });
   }
 
@@ -77,8 +83,6 @@ export default class DungeonLevel1 extends Phaser.State {
   }
 
   public displayDLCButton() {
-    this.game.add.button(7 * TILE_SIZE, 5 * TILE_SIZE, 'DLC', () => {
-    });
-    this.game.add.bitmapText(7 * TILE_SIZE, 5 * TILE_SIZE, 'Carrier Command', "DLC ?", 5);
+    this.menuDLC.displayButton();
   }
 }
