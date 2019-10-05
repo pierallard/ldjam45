@@ -67,6 +67,7 @@ export default class Preload extends Phaser.State {
 
   private loadImages() {
     this.game.load.image('playerroombackground', 'dist/assets/images/playerroombackground.png');
+    this.game.load.image('dungeonlevel1', 'dist/assets/images/dungeonlevel1.png');
     this.game.load.spritesheet('normal_hero', 'dist/assets/images/gentil_hero_all.png', 60, 30);
 
 
