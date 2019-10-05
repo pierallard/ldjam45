@@ -44,6 +44,7 @@ export class SoundManager {
   private static sounds: Sound[];
 
   static create(game: Phaser.Game) {
+    return;
     if (!this.music) {
       this.music = game.add.audio('music');
       this.music.loop = true;
