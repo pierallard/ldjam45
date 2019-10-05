@@ -50,7 +50,7 @@
         {
          "columns":24,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/Downloads\/dungeon_sheet.png",
+         "image":"..\/tilesets\/dungeon_sheet.png",
          "imageheight":160,
          "imagewidth":384,
          "margin":0,
@@ -58,6 +58,16 @@
          "spacing":0,
          "tilecount":240,
          "tileheight":16,
+         "tiles":[
+                {
+                 "id":182,
+                 "properties":[
+                        {
+                         "name":"is_chest",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }],
          "tilewidth":16
         }],
  "tilewidth":16,
