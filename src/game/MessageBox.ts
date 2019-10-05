@@ -8,10 +8,11 @@ export class MessageBox {
   private bitmapText: BitmapText;
   private spacebar: Phaser.Key;
   private graphics: Phaser.Graphics;
+  private callback: any;
 
-  constructor(str: string) {
+  constructor(str: string, callback: any) {
     this.message = str;
-    this.shouldRenderText = false;
+    this.callback = callback;
   }
 
   create(game: Phaser.Game) {
@@ -32,12 +33,14 @@ export class MessageBox {
           this.bitmapText.destroy(true);
           this.graphics.destroy(true);
 
+          this.callback();
+
           return true;
         }
       } else {
         this.bitmapText.text = this.message;
         this.shouldRenderText = false;
-        game.time.events.add(0.3 * Phaser.Timer.SECOND, () => {
+        game.time.events.add(0.5 * Phaser.Timer.SECOND, () => {
           this.shouldRenderText = true;
         });
 

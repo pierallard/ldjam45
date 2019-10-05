@@ -25,22 +25,26 @@ export default class DungeonLevel1 extends Phaser.State {
 
     this.player.create(game);
     this.door.create(game);
-    this.addMessageBox(game, 'je suis enfermay ! Je dois sortir!');
+    this.addMessageBox(game, 'je suis enfermay ! Je dois sortir!',() => {
+      game.time.events.add(0.5  * Phaser.Timer.SECOND, () => {
+        this.addMessageBox(game, 'Appuyez sur AZDS pour bougeay', () => {});
+      });
+    });
   }
 
   public update(game: Phaser.Game) {
     if (null !== this.messageBox) {
       if (this.messageBox.update(game)) {
         this.messageBox = null;
-      };
+      }
       return;
     }
     this.player.update(game);
     this.door.update(game);
   }
 
-  private addMessageBox(game: Phaser.Game, jeSuisEnfermay: string) {
-    this.messageBox = new MessageBox(jeSuisEnfermay);
+  private addMessageBox(game: Phaser.Game, message: string, callback) {
+    this.messageBox = new MessageBox(message, callback);
     this.messageBox.create(game);
   }
 }
