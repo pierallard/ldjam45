@@ -15,9 +15,6 @@ export default class DungeonLevel1 extends Phaser.State {
     this.game.add.button(5, 5, 'button', () => {
       game.state.start('PlayerRoom');
     }, this, 2, 1, 0);
-    this.game.add.button(5, 5, 'button', () => {
-      game.state.start('DungeonLevel1');
-    }, this, 2, 1, 0);
 
     this.player.create(game);
   }
