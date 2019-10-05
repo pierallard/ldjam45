@@ -1,5 +1,6 @@
 import Point from "./Point";
 import {TILE_SIZE} from "../app";
+import Prison from "./Prison";
 
 export const MOVE_TIME = Phaser.Timer.SECOND * 0.3;
 
@@ -11,15 +12,16 @@ export class DungeonPlayer {
   private upKey: Phaser.Key;
   private downKey: Phaser.Key;
   private isMoving: boolean;
+  private tilemap: Prison;
 
   constructor() {
     this.isMoving = false;
     this.position = new Point(0, 0);
   }
 
-  public create(game: Phaser.Game) {
+  public create(game: Phaser.Game, tilemap: Prison) {
     this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, 'normal_hero');
-
+    this.tilemap = tilemap;
     this.leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     this.rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
     this.upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -41,8 +43,11 @@ export class DungeonPlayer {
   }
 
   private moveTo(game: Phaser.Game, position: Point) {
+    if (!this.tilemap.canGoTo(position)) {
+      return;
+    }
+
     this.isMoving = true;
-    this.position = position;
 
     game.add.tween(this.sprite).to({
       x: DungeonPlayer.getRealPosition(position).x,
