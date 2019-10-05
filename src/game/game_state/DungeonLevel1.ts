@@ -7,11 +7,13 @@ import MenuDLC from '../MenuDLC';
 import {Pie} from "../Pie";
 import {DLCItem} from "../DLCList";
 import PlayerRoom from "./PlayerRoom";
+import TilemapsProperties from "../TilemapsProperties";
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
   private messageBox: MessageBox;
   private tilemap: Prison;
+  private tilemapProperties: TilemapsProperties;
   private menuDLC: MenuDLC;
   private showDoorMessage: boolean;
   private pie: Pie;
@@ -19,9 +21,10 @@ export default class DungeonLevel1 extends Phaser.State {
 
   constructor(sprite: Phaser.Sprite) {
     super();
+    this.tilemapProperties = new TilemapsProperties();
     this.player = new DungeonPlayer(new Point(1, 2));
     this.messageBox = null;
-    this.tilemap = new Prison(this);
+    this.tilemap = new Prison(this, this.tilemapProperties);
     this.showDoorMessage = true;
     this.showBeginningMessage = true;
     this.pie = null;
