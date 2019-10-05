@@ -1,6 +1,7 @@
 import {DungeonPlayer} from "../DungeonPlayer";
 import {Door} from "../Door";
 import Point from "../Point";
+import {MessageBox} from "../MessageBox";
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
@@ -22,10 +23,16 @@ export default class DungeonLevel1 extends Phaser.State {
 
     this.player.create(game);
     this.door.create(game);
+    this.addMessageBox(game, 'je suis enfermay');
   }
 
   public update(game: Phaser.Game) {
     this.player.update(game);
     this.door.update(game);
+  }
+
+  private addMessageBox(game: Phaser.Game, jeSuisEnfermay: string) {
+    const messageBox = new MessageBox(jeSuisEnfermay);
+    messageBox.create(game);
   }
 }
