@@ -78,14 +78,14 @@ export default class Preload extends Phaser.State {
     this.game.load.spritesheet('normal_hero', 'dist/assets/images/knight.png', 16, 16);
     this.game.load.image('dungeonlevel1', 'dist/assets/images/dungeonlevel1.png');
 
-    this.game.load.image('tiles', 'dist/assets/tilesets/dungeon_sheet.png');
-    this.game.load.tilemap('prison', 'dist/assets/tilemaps/map1.json', null, Phaser.Tilemap.TILED_JSON);/*
+    this.game.load.image('tiles', 'src/tilesets/dungeon_sheet.png');
+    this.game.load.tilemap('prison', 'src/tilemaps/map1.json', null, Phaser.Tilemap.TILED_JSON);
 
     this.game.load.spritesheet('chips', 'dist/assets/images/chips.png', 12, 12);
     this.game.load.spritesheet('basic_ground', 'dist/assets/images/ground/basic.png', 24, 24);
-    this.game.load.spritesheet('evil_ground', 'dist/assets/images/ground/evil_basic.png', 24, 24);*/
+    this.game.load.spritesheet('evil_ground', 'dist/assets/images/ground/evil_basic.png', 24, 24);
     this.game.load.image('bloc_box', 'dist/assets/images/ground/bloc.png');
-    /*this.game.load.image('bloc_box2', 'dist/assets/images/ground/bloc3.png');
+    this.game.load.image('bloc_box2', 'dist/assets/images/ground/bloc3.png');
     this.game.load.image('evil_bloc_box', 'dist/assets/images/ground/evil_bloc.png');
     this.game.load.image('evil_bloc_box2', 'dist/assets/images/ground/evil_bloc3.png');
     this.game.load.image('bloc_stone', 'dist/assets/images/ground/bloc2.png');
@@ -99,8 +99,8 @@ export default class Preload extends Phaser.State {
     this.game.load.spritesheet('coin', 'dist/assets/images/coin.png', 24, 24);
     this.game.load.spritesheet('evil_coin', 'dist/assets/images/evil_coin.png', 60, 60);
     this.game.load.image('shadow', 'dist/assets/images/shadow.png');
-    */this.game.load.image('logo', 'dist/assets/images/logo1.png');/*
-    this.game.load.spritesheet('watch', 'dist/assets/images/watch.png', 24, 29);*/
+    this.game.load.spritesheet('watch', 'dist/assets/images/watch.png', 24, 29);
+    this.game.load.image('logo', 'dist/assets/images/logo1.png');
     this.game.load.spritesheet('tshirt', 'dist/assets/images/tshirt.jpg', 679, 724);
     this.game.load.spritesheet('lamp-lava', 'dist/assets/images/lamp-lava.jpg', 600, 600);
     this.game.load.spritesheet('lamp-lava', 'dist/assets/images/lamp-lava.jpg', 600, 600);
