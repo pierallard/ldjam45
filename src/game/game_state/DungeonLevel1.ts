@@ -17,8 +17,6 @@ export default class DungeonLevel1 extends Phaser.State {
   }
 
   public create(game: Phaser.Game) {
-    game.add.image(0, 0, 'dungeonlevel1', 0);
-
     let prison = new Prison();
     prison.create(game);
 
