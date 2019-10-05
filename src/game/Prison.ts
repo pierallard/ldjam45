@@ -5,6 +5,7 @@ import {Activable} from "./Activable";
 import DungeonLevel1 from "./game_state/DungeonLevel1";
 
 import * as data from '../tilemaps/map1.json';
+import { throws } from "assert";
 
 const PROPERTIES = {};
 for (let i = 0; i < data.tilesets[0].tiles.length; i++) {
@@ -15,6 +16,7 @@ for (let i = 0; i < data.tilesets[0].tiles.length; i++) {
   }
   PROPERTIES[tile.id] = properties;
 }
+console.log(PROPERTIES)
 
 export default class Prison extends Phaser.State {
   private map: Tilemap;
@@ -36,8 +38,7 @@ export default class Prison extends Phaser.State {
     const walls = this.map.createLayer("walls");
     const items = this.map.createLayer("items");
 
-    // TODO boucle
-    this.activableObjects.push(new Door(this.level, new Point(7, 1)));
+    this.populateActivables();
 
     // layer.resizeWorld();
   }
@@ -47,14 +48,14 @@ export default class Prison extends Phaser.State {
   }
 
   public canGoTo(position: Point) {
-    const floorTile = this.map.getTile(position.x, position.y, "floor");
-    if (floorTile) {
-      console.log(this.getTileProperties(floorTile))
-    }
-    const itemTile = this.map.getTile(position.x, position.y, "items");
-    if (itemTile) {
-      console.log(this.getTileProperties(itemTile))
-    }
+    // const floorTile = this.map.getTile(position.x, position.y, "floor");
+    // if (floorTile) {
+    //   console.log(this.getTileProperties(floorTile))
+    // }
+    // const itemTile = this.map.getTile(position.x, position.y, "items");
+    // if (itemTile) {
+    //   console.log(this.getTileProperties(itemTile))
+    // }
     return true;
   }
 
@@ -89,5 +90,24 @@ export default class Prison extends Phaser.State {
 
   private getTileProperties(tile: Phaser.Tile) {
     return PROPERTIES[tile.index - 1];
+  }
+
+  private populateActivables() {
+    for (let x = 0; x < this.map.width; x++) {
+      for (let y = 0; y < this.map.height; y++) {
+        const tile = this.map.getTile(x, y, "items");
+        if (!tile) { continue; }
+        const properties = this.getTileProperties(tile);
+
+        if (properties === undefined || properties.name === undefined) {
+          continue;
+        }
+        switch (properties.name) {
+          case "door": {
+            this.activableObjects.push(new Door(this.level, new Point(tile.x, tile.y)));
+          }
+        }
+      }
+    }
   }
 }

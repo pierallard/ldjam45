@@ -6,6 +6,11 @@
    <property name="name" value="floor"/>
   </properties>
  </tile>
+ <tile id="172">
+  <properties>
+   <property name="name" value="door"/>
+  </properties>
+ </tile>
  <tile id="182">
   <properties>
    <property name="is_chest" type="bool" value="true"/>
