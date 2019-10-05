@@ -1,17 +1,26 @@
 
 import Tshirt from "./Items/Tshirt";
 import Lamp from "./Items/Lamp";
+import Chair from "./Items/Chair";
+import Basket from "./Items/Basket";
+import Office from "./Items/Office";
 
 export default class PlayerRoom extends Phaser.State {
   private sprite: Phaser.Sprite;
 
   private tshirt: Tshirt;
   private lampLava: Lamp;
+  private chair: Chair;
+  private basket: Basket;
+  private office: Office;
 
   constructor() {
     super();
     this.tshirt = new Tshirt();
     this.lampLava = new Lamp();
+    this.chair = new Chair();
+    this.basket = new Basket();
+    this.office = new Office();
   }
 
   public create(game: Phaser.Game) {
@@ -23,6 +32,9 @@ export default class PlayerRoom extends Phaser.State {
     this.sprite = game.add.sprite(50, 50, 'normal_hero');
     this.tshirt.create(game, 90, 90);
     this.lampLava.create(game, 200, 90);
+    this.chair.create(game, 90, 150);
+    this.basket.create(game, 90, 1);
+    this.office.create(game, 1, 1);
   }
 
   public update(game: Phaser.Game) {
