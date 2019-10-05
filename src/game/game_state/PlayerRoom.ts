@@ -10,6 +10,8 @@ import ItemsToSell from "./Items/ItemsToSell";
 import BritneyPoster from "./Items/BritneyPoster";
 import Bed from "./Items/Bed";
 import {DLCItem} from "../DLCList";
+import GameBoy from "./Items/GameBoy";
+import PokemonCard from "./Items/PokemonCard";
 
 export default class PlayerRoom extends Phaser.State {
   private itemsToSell: ItemsToSell;
@@ -68,6 +70,14 @@ export default class PlayerRoom extends Phaser.State {
     const bed = new Bed(this.wallet);
     bed.create(game, 130, 1);
     this.itemsToSell.add(bed);
+
+    const gameBoy = new GameBoy(this.wallet);
+    gameBoy.create(game, 130, 70);
+    this.itemsToSell.add(gameBoy);
+
+    const pokemonCard = new PokemonCard(this.wallet);
+    pokemonCard.create(game, 130, 100);
+    this.itemsToSell.add(pokemonCard);
   }
 
   public update(game: Phaser.Game) {
