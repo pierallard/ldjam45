@@ -21,7 +21,6 @@ export default class PlayerRoom extends Phaser.State {
   private basket: Basket;
   private office: Office;
   private playboy: Playboy;
-  private britneyPoster: BritneyPoster;
 
   constructor() {
     super();
@@ -31,7 +30,7 @@ export default class PlayerRoom extends Phaser.State {
     this.basket = new Basket();
     this.office = new Office();
     this.playboy = new Playboy();
-    this.britneyPoster = new BritneyPoster();
+
     this.wallet = new Wallet();
     this.walletGUI = new WalletGUI(this.wallet);
   }
@@ -50,7 +49,7 @@ export default class PlayerRoom extends Phaser.State {
     this.basket.create(game, 70, 1);
     this.office.create(game, 1, 1);
     this.playboy.create(game, 1, 70);
-    this.britneyPoster.create(game, 70, 40);
+
   }
 
   private setupItems(game: Phaser.Game) {
@@ -58,6 +57,9 @@ export default class PlayerRoom extends Phaser.State {
     tshirt.create(game, 35, 70);
     this.itemsToSell.add(tshirt);
 
+    const britneyPoster = new BritneyPoster(this.wallet);
+    britneyPoster.create(game, 70, 40);
+    this.itemsToSell.add(britneyPoster);
   }
 
   public update(game: Phaser.Game) {

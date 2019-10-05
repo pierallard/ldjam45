@@ -1,3 +1,4 @@
+
 import {ItemToSell} from "./ItemToSell";
 
 export default class Tshirt extends ItemToSell {
