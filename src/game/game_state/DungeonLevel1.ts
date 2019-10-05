@@ -5,6 +5,7 @@ import {MessageBox} from "../MessageBox";
 import Prison from "../Prison";
 import MenuDLC from '../MenuDLC';
 import {Pie} from "../Pie";
+import {TILE_SIZE} from "../../app";
 
 export default class DungeonLevel1 extends Phaser.State {
   private player: DungeonPlayer;
@@ -71,5 +72,11 @@ export default class DungeonLevel1 extends Phaser.State {
   public addPie(game: Phaser.Game, position: Point, duration: number, callback: any) {
     this.pie = new Pie(position, duration, callback);
     this.pie.create(game);
+  }
+
+  public displayDLCButton() {
+    this.game.add.button(7 * TILE_SIZE, 5 * TILE_SIZE, 'DLC', () => {
+    });
+    this.game.add.bitmapText(7 * TILE_SIZE, 5 * TILE_SIZE, 'Carrier Command', "DLC ?", 5);
   }
 }
