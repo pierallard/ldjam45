@@ -12,7 +12,7 @@ export default class DungeonLevel1 extends Phaser.State {
 
   constructor(sprite: Phaser.Sprite) {
     super();
-    this.player = new DungeonPlayer();
+    this.player = new DungeonPlayer(new Point(1, 2));
     this.door = new Door(new Point(5, 5));
     this.messageBox = null;
     this.tilemap = new Prison();

@@ -1,7 +1,8 @@
 import Point from "./Point";
 import {TILE_SIZE} from "../app";
+import {Activable} from "./Activable";
 
-export class Door {
+export class Door implements Activable {
   private position: Point;
   private sprite: Phaser.Sprite;
 
@@ -18,8 +19,16 @@ export class Door {
     );
   }
 
+  getPosition(): Point {
+    return this.position;
+  }
+
   update(game: Phaser.Game) {
 
+  }
+
+  doAction() {
+    console.log('Try to open the door!');
   }
 
   private static getRealPosition(point: Point) {
