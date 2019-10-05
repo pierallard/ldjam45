@@ -1,31 +1,37 @@
 import Point from "./Point";
+import {Activable} from "./Activable";
+import DungeonLevel1 from "./game_state/DungeonLevel1";
 import {TILE_SIZE} from "../app";
 
-export class Door {
+export class Door implements Activable {
   private position: Point;
-  private sprite: Phaser.Sprite;
+  private crochetage: number;
+  private level: DungeonLevel1;
 
-  constructor(point: Point) {
+  constructor(level: DungeonLevel1, point: Point) {
+    this.level = level;
     this.position = point;
+    this.crochetage = 0;
   }
 
   create(game: Phaser.Game) {
-    this.sprite = game.add.sprite(
-      Door.getRealPosition(this.position).x,
-      Door.getRealPosition(this.position).y,
-      'bloc_box',
-      0
-    );
+  }
+
+  getPosition(): Point {
+    return this.position;
   }
 
   update(game: Phaser.Game) {
 
   }
 
-  private static getRealPosition(point: Point) {
-    return new Point(
-      point.x * TILE_SIZE,
-      point.y * TILE_SIZE
-    );
+  doAction(game: Phaser.Game) {
+    this.crochetage += 1;
+    this.level.addPie(game, new Point(
+      this.position.x * TILE_SIZE + 2,
+      this.position.y * TILE_SIZE + 2
+    ), Phaser.Timer.SECOND * 3, () => {
+      this.level.addMessageBox(game, 'Congrats, tu as deverouillay ' + this.crochetage + '% de la porte', () => {});
+    });
   }
 }

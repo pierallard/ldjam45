@@ -11,12 +11,13 @@ export class DungeonPlayer {
   private rightKey: Phaser.Key;
   private upKey: Phaser.Key;
   private downKey: Phaser.Key;
+  private actionKey: Phaser.Key;
   private isMoving: boolean;
   private tilemap: Prison;
 
-  constructor() {
+  constructor(point: Point) {
     this.isMoving = false;
-    this.position = new Point(0, 0);
+    this.position = point;
   }
 
   public create(game: Phaser.Game, tilemap: Prison) {
@@ -26,10 +27,12 @@ export class DungeonPlayer {
     this.rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
     this.upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
     this.downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    this.actionKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
   }
 
   public update(game: Phaser.Game) {
     if (this.isMoving) {
+      // c'est une animation, ne fais rien Michel.
     } else if (this.leftKey.isDown) {
       this.moveTo(game, this.position.left());
     } else if (this.rightKey.isDown) {
@@ -38,7 +41,14 @@ export class DungeonPlayer {
       this.moveTo(game, this.position.up());
     } else if (this.downKey.isDown) {
       this.moveTo(game, this.position.down());
-    } else {
+    } else if (this.actionKey.isDown) {
+      this.doAction(game);
+    }
+  }
+
+  private doAction(game: Phaser.Game) {
+    if (this.tilemap.isThereSomethingActivableNearTheCurrentPositionOfThePlayerPlease(this.position)) {
+      this.tilemap.doAction(this.position, game);
     }
   }
 
@@ -67,5 +77,9 @@ export class DungeonPlayer {
       point.x * TILE_SIZE,
       point.y * TILE_SIZE
     );
+  }
+
+  public getPosition(): Point {
+    return this.position;
   }
 }

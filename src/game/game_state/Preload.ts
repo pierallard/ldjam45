@@ -72,7 +72,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('dlc_thumb_1', 'dist/assets/images/dlc_thumb_1.png');
 
     this.game.load.image('playerroombackground', 'dist/assets/images/playerroombackground.png');
-    this.game.load.spritesheet('normal_hero', 'dist/assets/images/gentil_hero_all.png', 60, 30);
+    this.game.load.spritesheet('normal_hero', 'dist/assets/images/knight.png', 16, 16);
     this.game.load.image('dungeonlevel1', 'dist/assets/images/dungeonlevel1.png');
 
     this.game.load.image('tiles', 'dist/assets/tilesets/dungeon_sheet.png');
@@ -100,6 +100,11 @@ export default class Preload extends Phaser.State {
     this.game.load.spritesheet('watch', 'dist/assets/images/watch.png', 24, 29);
     this.game.load.spritesheet('tshirt', 'dist/assets/images/tshirt.jpg', 679, 724);
     this.game.load.spritesheet('lamp-lava', 'dist/assets/images/lamp-lava.jpg', 600, 600);*/
+    this.game.load.spritesheet('lamp-lava', 'dist/assets/images/lamp-lava.jpg', 600, 600);
+    this.game.load.spritesheet('office', 'dist/assets/images/office.jpg', 680, 680);
+    this.game.load.spritesheet('chair', 'dist/assets/images/chair.png', 500, 500);
+    this.game.load.spritesheet('basket', 'dist/assets/images/basket.jpeg', 283, 178);
+    this.game.load.spritesheet('playboy_magazine', 'dist/assets/images/playboy_magazine.jpg', 670, 978);
   }
 
   private loadFonts() {
