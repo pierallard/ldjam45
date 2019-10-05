@@ -9,6 +9,6 @@ export default class Basket {
         this.name = 'basket 80\'s';
         this.price = 12;
         this.sprite = game.add.sprite(x, y, 'basket');
-        this.sprite.scale.setTo(0.1, 0.1);
+        this.sprite.scale.setTo(0.2, 0.2);
     }
 }

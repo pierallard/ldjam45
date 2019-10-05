@@ -6,6 +6,7 @@ import Basket from "./Items/Basket";
 import Office from "./Items/Office";
 import Wallet from "./Kapitalism/Wallet";
 import WalletGUI from "./Kapitalism/WalletGUI";
+import Playboy from "./Items/Playboy";
 
 export default class PlayerRoom extends Phaser.State {
   private sprite: Phaser.Sprite;
@@ -17,6 +18,7 @@ export default class PlayerRoom extends Phaser.State {
   private chair: Chair;
   private basket: Basket;
   private office: Office;
+  private playboy: Playboy;
 
   constructor() {
     super();
@@ -25,6 +27,7 @@ export default class PlayerRoom extends Phaser.State {
     this.chair = new Chair();
     this.basket = new Basket();
     this.office = new Office();
+    this.playboy = new Playboy();
     this.wallet = new Wallet();
     this.walletGUI = new WalletGUI(this.wallet);
   }
@@ -46,6 +49,7 @@ export default class PlayerRoom extends Phaser.State {
     this.chair.create(game, 90, 150);
     this.basket.create(game, 90, 1);
     this.office.create(game, 1, 1);
+    this.playboy.create(game, 1, 70);
   }
 
   public update(game: Phaser.Game) {
