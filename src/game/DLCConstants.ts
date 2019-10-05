@@ -26,3 +26,5 @@ export const dlcPreview = {
   x: 0,
   y: header.height,
 };
+
+export const maxDlcItemsInList = 6;

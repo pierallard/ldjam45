@@ -1,5 +1,5 @@
 import DLCList, { DLCItem, DLC } from "./DLCList";
-import { dlcPreview, header, slider, sliderArrow } from './DLCConstants' ;
+import { dlcPreview, header, slider, sliderArrow, maxDlcItemsInList } from './DLCConstants' ;
 
 export const DLC_CROCHETAGE = 'Crochetage';
 
@@ -29,9 +29,10 @@ export default class MenuDLC {
       name: DLC_CROCHETAGE,
       image: 'dlc_0',
       price: 200,
-      isAcheted: false
+      isAcheted: false,
+      isSelected: true,
     });
-    this.dlcs = this.dlcs.concat(Array.from(Array(10).keys()).map((_, i) => ({
+    this.dlcs = this.dlcs.concat(Array.from(Array(15).keys()).map((_, i) => ({
       description: [
         i + 'Lorem ipsum dolor sit',
         i + 'consectetur adipisicing.',
@@ -43,6 +44,7 @@ export default class MenuDLC {
       image: 'dlc_1',
       price: i + 0.99,
       isAcheted: false,
+      isSelected: false,
     })));
   }
 
@@ -90,16 +92,27 @@ export default class MenuDLC {
     });
 
     let scrollPosition = 0;
+    const sliderHandleSteps = this.dlcs.length - maxDlcItemsInList +1;
+    const sliderHandle = buttonify('menu_dlc_slider_handle', slider.x, slider.y + sliderArrow.height, () => {});
     buttonify('menu_dlc_header', header.x, header.y, () => {});
     buttonify('menu_dlc_arrow_down', slider.x, slider.height + slider.y - sliderArrow.height, () => {
+      if (scrollPosition === sliderHandleSteps) {
+        return;
+      }
+
       scrollPosition++;
       dlcList.scroll(scrollPosition);
+      sliderHandle.y = slider.y + sliderArrow.height + (Math.round(slider.height/(sliderHandleSteps+1)) * (scrollPosition));
     });
     buttonify('menu_dlc_arrow_up', slider.x, slider.y, () => {
+      if (scrollPosition === 0) {
+        return;
+      } 
+
       scrollPosition--;
       dlcList.scroll(scrollPosition);
+      sliderHandle.y = slider.y + sliderArrow.height + (Math.round(slider.height/(sliderHandleSteps+1)) * (scrollPosition));
     });
-    buttonify('menu_dlc_slider_handle', slider.x, slider.y + sliderArrow.height, () => {});
   }
 
   showDLCPreview = (game: Phaser.Game, dlcItem: DLCItem) => {

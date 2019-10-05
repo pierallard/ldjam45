@@ -9,6 +9,7 @@ export interface DLC {
   image: string;
   price: number;
   isAcheted: boolean;
+  isSelected: boolean;
 }
 
 export class DLCItem {
@@ -19,7 +20,6 @@ export class DLCItem {
   private dlcGroup: Phaser.Group;
   private game: Phaser.Game;
   private onClick: (dlcItem: DLCItem) => void;
-  private scrollPosition = 0;
 
   constructor(
     private index: number,
@@ -40,7 +40,7 @@ export class DLCItem {
         
       });
       dlcGroup.add(this.buttonNotSelected);
-      this.buttonNotSelected.visible = false;
+      this.buttonNotSelected.visible = this.dlc.isSelected;
 
       this.titleNotAchated = game.add.bitmapText(x(35), yb(dlcItemHeight) + 5, 'Carrier Command', this.dlc.name, 5);
       this.titleNotAchated.tint = 0xFF0000;
@@ -78,6 +78,7 @@ export class DLCItem {
     }
 
     this.buttonNotSelected.visible = true;
+    this.dlc.isSelected = true;
   }
 
   unselect = () => {
@@ -86,6 +87,7 @@ export class DLCItem {
     }
 
     this.buttonNotSelected.visible = false;
+    this.dlc.isSelected = false;
   }
 
   achete = () => {
@@ -99,16 +101,21 @@ export class DLCItem {
 
     this.doCreate(this.game, this.dlcGroup, this.onClick);
   }
-} 
+}
 
 export default class DLCList {
   private scrollPosition = 0;
+  private group: Phaser.Group;
+  private internalUpdate: () => void;
 
   constructor(private dlcs: DLC[]) {
   }
 
-  create = (game: Phaser.Game, group: Phaser.Group, onDLCSelected: (dlcItem: DLCItem) => void) => {
-    const dlcsItems = this.dlcs.map(
+  doCreate = (game: Phaser.Game, group: Phaser.Group, onDLCSelected: (dlcItem: DLCItem) => void) => {
+    this.group = group;
+    const dlcsItems = this.dlcs.filter((a, i) => {
+      return i >= this.scrollPosition;
+    }).map(
       (dlc, i) => {
         const dlcItem = new DLCItem(
           i,
@@ -125,15 +132,22 @@ export default class DLCList {
       }
     );
 
-    const item = dlcsItems.find(a => !a.dlc.isAcheted);
-    if (item) {
-      item.select();
-      onDLCSelected(item);
-    }
+    return dlcsItems;
+  };
+
+  create = (game: Phaser.Game, group: Phaser.Group, onDLCSelected: (dlcItem: DLCItem) => void) => {
+    const theGroup = game.add.group(null, 'the_group_oui');
+    group.add(theGroup);
+    this.group = theGroup;
+    this.internalUpdate = () => this.doCreate(game, theGroup, onDLCSelected);
+    this.internalUpdate();
   };
 
   scroll = (scrollPosition: number) => {
+    this.group.removeChildren();//.forEach(a => (a as Phaser.Group).destroy());
+    this.group.children.forEach((a: any) => a.destroy());
     this.scrollPosition = scrollPosition;
+    this.internalUpdate();
   }
   // ...
 
