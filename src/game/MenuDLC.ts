@@ -15,6 +15,12 @@ export default class MenuDLC {
   private shouldShowOpenMenuDLCButton: boolean;
   private dlcs: DLC[];
 
+  dlcIsAcheted(name: string) {
+    return this.dlcs.find((dlc) => {
+      return dlc.name === name;
+    }).isAcheted;
+  }
+
   constructor(shouldShowOpenMenuDLCButton: boolean) {
     this.shouldShowOpenMenuDLCButton = shouldShowOpenMenuDLCButton;
     this.dlcs = [];

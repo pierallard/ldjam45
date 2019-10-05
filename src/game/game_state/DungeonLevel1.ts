@@ -127,4 +127,8 @@ export default class DungeonLevel1 extends Phaser.State {
   public displayDLCButton() {
     this.menuDLC.displayButton();
   }
+
+  public hasAchetedDlc(name): boolean {
+    return this.menuDLC.dlcIsAcheted(name);
+  }
 }
