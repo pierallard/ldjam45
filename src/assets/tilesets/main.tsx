@@ -21,6 +21,11 @@
    <property name="name" value="water"/>
   </properties>
  </tile>
+ <tile id="37">
+  <properties>
+   <property name="name" value="coca"/>
+  </properties>
+ </tile>
  <tile id="52">
   <properties>
    <property name="name" value="door"/>
