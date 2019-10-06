@@ -8,7 +8,6 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
   public LEVEL_NUMBER = 1;
   private showDoorMessage: boolean;
   private showBeginningMessage: boolean;
-  private paypal: Phaser.Image;
   private paypalAlreadyMontred: boolean;
 
   constructor() {
@@ -43,9 +42,6 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
       });
     }
 
-    this.paypal = game.add.image(0, 0, 'paypal');
-    this.paypal.visible = false;
-
     if (this.paypalAlreadyMontred) {
       this.displayDLCButton();
     }
@@ -54,10 +50,9 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
   public getDlcCallback(game: Phaser.Game, dlc: DLC) {
     if (!this.paypalAlreadyMontred) {
       this.paypalAlreadyMontred = true;
-      this.paypal.visible = true;
-      game.time.events.add(2 * Phaser.Timer.SECOND, () => {
+      // game.time.events.add(2 * Phaser.Timer.SECOND, () => {
         this.defaultDlcCallback(game, dlc);
-      });
+      // });
     } else {
       this.defaultDlcCallback(game, dlc);
     }
