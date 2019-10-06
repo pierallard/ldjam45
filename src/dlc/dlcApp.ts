@@ -39,7 +39,7 @@ const createDLCItem = (dlc: DLC, index: number, onBuy: (dlc: DLC) => void) => {
 
   if (dlc.isAcheted) {
     const price = getClass('dlcPrice', dlcItem);
-    price.innerText = `Already acheted`;
+    price.innerText = `DLC Installed`;
     const buy = getClass('dlcBuyButton', dlcItem);
     buy.remove();
   } else {
