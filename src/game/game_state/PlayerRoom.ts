@@ -27,6 +27,7 @@ export default class PlayerRoom extends Phaser.State {
   private levelName: string;
   private background: Phaser.Image;
   private playerMessageBox: PlayerMessageBox;
+  private haveDisplayedFirstMessage: boolean;
 
   constructor() {
     super();
@@ -35,6 +36,7 @@ export default class PlayerRoom extends Phaser.State {
     this.walletGUI = new WalletGUI(this.wallet);
     this.initSellableItems();
     this.playerMessageBox = new PlayerMessageBox();
+    this.haveDisplayedFirstMessage = false;
   }
 
   public create(game: Phaser.Game) {
@@ -54,6 +56,10 @@ export default class PlayerRoom extends Phaser.State {
     }, this, 2, 1, 0);
 
     this.playerMessageBox.create(game);
+    if (!this.haveDisplayedFirstMessage) {
+      this.playerMessageBox.addMessageBox(game, "Oh, I don't have money to buy\nthis DLC...\nI have to sell one of my stuff...");
+      this.haveDisplayedFirstMessage = true;
+    }
   }
 
   private initSellableItems() {
