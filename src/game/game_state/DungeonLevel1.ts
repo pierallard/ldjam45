@@ -55,11 +55,6 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
     if (!this.paypalAlreadyMontred) {
       this.paypalAlreadyMontred = true;
       this.paypal.visible = true;
-      this.cursor.setEnabled(false);
-      game.add.tween(this.cursor).to({
-        x: 156,
-        y: 101
-      }, 2 * Phaser.Timer.SECOND, Phaser.Easing.Default, true);
       game.time.events.add(2 * Phaser.Timer.SECOND, () => {
         this.defaultDlcCallback(game, dlc);
       });

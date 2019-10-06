@@ -5,7 +5,6 @@ import Point from "../Point";
 import TilemapLevel from "../TilemapLevel";
 import MenuDLC from "../MenuDLC";
 import {Pie} from "../Pie";
-import {Cursor} from "./Cursor";
 import {SCALE, TILE_SIZE} from "../../app";
 import DLCs, { isAcheted, achete } from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
@@ -20,7 +19,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   protected tilemapProperties: TilemapsProperties;
   protected menuDLC: MenuDLC;
   protected pie: Pie;
-  protected cursor: Cursor;
   protected showDLCButton: boolean;
   private blackScreen: Phaser.Graphics;
   private dlcActivator: DLCactivator;
@@ -74,10 +72,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
       this.player.switchToBusinessSuits();
     }
 
-    this.cursor = new Cursor(game);
-    this.cursor.z = 10000;
-    this.game.add.existing(this.cursor);
-
   }
 
   public update(game: Phaser.Game) {
@@ -90,7 +84,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
       this.exclamationPoint.position.y = -100;
     }
 
-    this.cursor.update2(game);
     if (null !== this.messageBox) {
       if (this.messageBox.update(game)) {
         this.messageBox = null;
@@ -157,7 +150,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
   public defaultDlcCallback(game: Phaser.Game, dlc: DLC) {
     game.state.start('PlayerRoom');
-    this.cursor.setEnabled(true);
 
     const playerRoom = game.state.states['PlayerRoom'];
     (<PlayerRoom>playerRoom).setdlcItem(dlc);
