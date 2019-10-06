@@ -23,6 +23,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   private blackScreen: Phaser.Graphics;
   private dlcActivator: DLCactivator;
   private exclamationPoint: Phaser.Image;
+  private dlc: DLC;
 
   public LEVEL_NUMBER = null;
 
@@ -34,6 +35,11 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     this.pie = null;
     this.menuDLC = new MenuDLC();
     this.dlcActivator = new DLCactivator();
+    this.dlc = null;
+  }
+
+  setDlcBuy(dlcItem: DLC) {
+    this.dlc = dlcItem;
   }
 
   abstract getStartPosition(): Point;
@@ -75,6 +81,10 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   }
 
   public update(game: Phaser.Game) {
+    if (this.dlc) {
+      this.addMessageBox(game, "Thanks for your purchase!\n\n" + this.dlc.splitName, () => {});
+      this.dlc = null;
+    }
     const activable = this.tilemap.getActivable(this.player.getPosition());
     if (null !== activable) {
       this.exclamationPoint.position.x = activable.getPosition().x * TILE_SIZE;

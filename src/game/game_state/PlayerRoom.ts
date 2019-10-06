@@ -17,6 +17,7 @@ import MarioFigurine from "./Items/MarioFigurine";
 import {ItemToSell} from "./Items/ItemToSell";
 import Underpants from "./Items/Underpants";
 import PlayerMessageBox from "../PlayerMessageBox";
+import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
 
 
 export default class PlayerRoom extends Phaser.State {
@@ -126,6 +127,9 @@ export default class PlayerRoom extends Phaser.State {
 
   public backToTheGame()
   {
-    this.game.state.start('DungeonL' + this.levelName.substr(1));
+    const name = 'DungeonL' + this.levelName.substr(1);
+    this.game.state.start(name);
+    const dungeon = <AbstractDungeonLevel> this.game.state.states[name];
+    dungeon.setDlcBuy(this.dlc);
   }
 }

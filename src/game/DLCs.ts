@@ -6,6 +6,7 @@ export interface DLC {
   price: number;
   isAcheted: boolean;
   isSelected: boolean;
+  splitName: string;
 }
 
 export const DLC_BUSINESSPACK = 'Business Man Skin Pack (Cosmetic)';
@@ -26,6 +27,7 @@ const dlcs: DLC[] = [
     price: 2.99,
     isAcheted: false,
     isSelected: false,
+    splitName: 'Lock Picking Capabilities',
   },
   {
     name: DLC_FLASHLIGHT,
@@ -37,6 +39,7 @@ const dlcs: DLC[] = [
     price: 3.99,
     isAcheted: false,
     isSelected: false,
+    splitName: 'Flashlight Item - Light Pack Platinium'
   },
   {
     name: DLC_ANIMALS,
@@ -48,6 +51,7 @@ const dlcs: DLC[] = [
     price: 2.99,
     isAcheted: false,
     isSelected: false,
+    splitName: 'Linguistic Pack: Animals',
   },
   {
     name: DLC_BUSINESSPACK,
@@ -59,6 +63,7 @@ const dlcs: DLC[] = [
     price: 4.99,
     isAcheted: false,
     isSelected: false,
+    splitName: 'Business Man Skin Pack',
   },
   {
     name: 'Hacker DLC Pack Premium',
@@ -70,6 +75,7 @@ const dlcs: DLC[] = [
     price: 3.99,
     isAcheted: false,
     isSelected: false,
+    splitName: 'Hacker DLC Pack Premium'
   },
   {
     name: DLC_MULTIPLAYER,
@@ -81,6 +87,7 @@ const dlcs: DLC[] = [
     price: 3.99,
     isAcheted: false,
     isSelected: false,
+    splitName: 'Multi-player Mode',
   },
   {
     name: DLC_TRANSHUMANISM,
@@ -91,6 +98,7 @@ const dlcs: DLC[] = [
     price: 6.99,
     isAcheted: false,
     isSelected: false,
+    splitName: 'Transhumanism',
   },
   {
     name: DLC_FAST,
@@ -101,6 +109,7 @@ const dlcs: DLC[] = [
     price: 2.99,
     isAcheted: false,
     isSelected: false,
+    splitName: 'Speed run',
   }
 ];
 
