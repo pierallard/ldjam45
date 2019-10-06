@@ -1,4 +1,11 @@
-import {DLC} from "./DLCList";
+export interface DLC {
+  name: string;
+  description: string[];
+  image: string;
+  price: number;
+  isAcheted: boolean;
+  isSelected: boolean;
+}
 
 const dlcs: DLC[] = [
   {
@@ -9,7 +16,7 @@ const dlcs: DLC[] = [
     image: 'lock_picking.png',
     price: 2.99,
     isAcheted: false,
-    isSelected: false
+    isSelected: false,
   },
   {
     name: 'Business Man Skin Pack (Cosmetic)',
@@ -19,7 +26,7 @@ const dlcs: DLC[] = [
     image: 'business_man.png',
     price: 4.99,
     isAcheted: false,
-    isSelected: false
+    isSelected: false,
   },
   {
     name: 'Hacker DLC Pack Premium',
@@ -29,8 +36,26 @@ const dlcs: DLC[] = [
     image: 'business_man.png',
     price: 3.99,
     isAcheted: false,
-    isSelected: false
+    isSelected: false,
   },
+  {
+    name: 'Hacker DLC Pack Premium',
+    description: `You always dreamed to be a Hacker?
+      With this new DLC, unlock new skills such as...
+      Hacker stuff! Become a professional of IT stuff and.. HACKER!`.split("\n"),
+    image: 'business_man.png',
+    price: 3.99,
+    isAcheted: false,
+    isSelected: false,
+  }
 ];
+
+export const achete = (name: string) => {
+  dlcs.find(dlc => dlc.name === name).isAcheted = true;
+};
+
+export const isAcheted = (name: string) => {
+  return dlcs.find(dlc => dlc.name === name).isAcheted;
+};
 
 export default dlcs;

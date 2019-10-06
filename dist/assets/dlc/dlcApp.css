@@ -1,0 +1,93 @@
+#DLCMenu {
+  display: none;
+  width: 1200px;
+  height: 800px;
+  display: none;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Lato', sans-serif;
+  background: #222;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px 20px 0 20px;
+  background: #123c5c;
+  box-sizing: border-box;
+}
+
+#dlcContainer {
+  overflow-y: auto;
+}
+
+#header {
+  height: 104px;
+  width: 100%;
+  color: white;
+}
+
+.dlcItem {
+  background: #353c5c;
+  padding: 20px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.dlcImageContainer {
+  position: relative;
+}
+
+.dlcBandeau {
+  position: absolute;
+  top: -31px;
+  left: -12px;
+  transform: rotateZ(-135deg);
+  width: 1px;
+	height: 40px;
+	border: 1px solid orange;
+	border-color: transparent transparent transparent orange;
+	border-width: 25px;
+}
+
+.dlcBandeauText {
+  position: absolute;
+  transform: rotateZ(-45deg);
+  top: 16px;
+  left: 4px;
+  font-weight: bold;
+  color: white;
+}
+
+.dlcContent {
+  padding: 20px;
+  padding-top: 0;
+  flex-grow: 1;
+  position: relative;
+}
+
+.dlcBuyContainer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: #333;
+}
+
+.dlcPrice {
+  color: white;
+  display: inline-block;
+  padding: 5px;
+}
+
+.dlcBuyButton {
+  border: none;
+  padding: 10px;
+}
+
+.dlcDescription {
+  
+}
