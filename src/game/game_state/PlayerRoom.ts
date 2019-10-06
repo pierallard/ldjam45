@@ -16,6 +16,7 @@ import {Cursor} from "./Cursor";
 import {GAME_HEIGHT, GAME_WIDTH, SCALE} from "../../app";
 import MarioFigurine from "./Items/MarioFigurine";
 import {ItemToSell} from "./Items/ItemToSell";
+import Underpants from "./Items/Underpants";
 
 
 export default class PlayerRoom extends Phaser.State {
@@ -89,6 +90,9 @@ export default class PlayerRoom extends Phaser.State {
 
     const marioFigurine = new MarioFigurine(this.wallet, this, 130, 300);
     this.itemsToSell.add(marioFigurine);
+
+    const underpants = new Underpants(this.wallet, this, 180, 180);
+    this.itemsToSell.add(underpants);
   }
 
     private drawItems(game: Phaser.Game) {
