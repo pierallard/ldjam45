@@ -16,6 +16,7 @@ export class DungeonPlayer {
   private tilemap: TilemapLevel;
   private isForbidMove: boolean;
   public vessie: number = 0;
+  public hasPassword: boolean = false;
 
   constructor(point: Point) {
     this.position = point;
@@ -124,5 +125,10 @@ export class DungeonPlayer {
   public hasToPee(): boolean
   {
     return this.vessie == 4;
+  }
+
+  public obtainPassword(): void
+  {
+    this.hasPassword = true;
   }
 }

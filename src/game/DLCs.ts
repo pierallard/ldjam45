@@ -11,6 +11,7 @@ export interface DLC {
 export const DLC_BUSINESSPACK = 'Business Man Skin Pack (Cosmetic)';
 export const DLC_TRANSHUMANISM = 'Transhumanism, become an augmented human!';
 export const DLC_FLASHLIGHT = 'NEW! Flashlight Item - Light Pack Platinium';
+export const DLC_ANIMALS = 'Linguistic Pack: Animals (Limited Edition)';
 
 const dlcs: DLC[] = [
   {
@@ -32,6 +33,17 @@ const dlcs: DLC[] = [
       This new content will be available in-game once bought!`.split("\n"),
     image: 'dlc-flashlight.jpg',
     price: 3.99,
+    isAcheted: false,
+    isSelected: false,
+  },
+  {
+    name: DLC_ANIMALS,
+    code: 'animals',
+    description: `You'll never be able to speak to animals...
+      Except with this new pack! By installing this linguistic pack 
+      your character will be able to speak to animals. Cows, cats, birds... make some new friends!`.split("\n"),
+    image: 'dlc-animals.jpg',
+    price: 2.99,
     isAcheted: false,
     isSelected: false,
   },

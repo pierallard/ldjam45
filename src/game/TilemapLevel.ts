@@ -9,6 +9,7 @@ import {Secretary} from "./Secretary";
 import {Computer} from "./Computer";
 import {Water} from "./Water";
 import {CocaMachine} from "./CocaMachine";
+import { Iench } from "./Iench";
 
 export default class TilemapLevel {
   constructor(level: AbstractDungeonLevel, tilemapProperties: TilemapsProperties) {
@@ -113,6 +114,12 @@ export default class TilemapLevel {
             const door = new Door(this.level, new Point(tile.x, tile.y));
             door.create(game);
             this.activableObjects.push(door);
+            break;
+          }
+          case "iench": {
+            const iench = new Iench(this.level, new Point(tile.x, tile.y));
+            iench.create(game);
+            this.activableObjects.push(iench);
             break;
           }
           case "freedoor": {

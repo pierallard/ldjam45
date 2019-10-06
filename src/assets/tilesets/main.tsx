@@ -36,4 +36,14 @@
    <property name="name" value="computer"/>
   </properties>
  </tile>
+ <tile id="60">
+  <properties>
+   <property name="name" value="iench"/>
+  </properties>
+ </tile>
+ <tile id="61">
+  <properties>
+   <property name="name" value="vigil"/>
+  </properties>
+ </tile>
 </tileset>
