@@ -23,7 +23,7 @@ const dlcs: DLC[] = [
     description: `Unlock a new skin of Business man
       by buying this content! Your ennemies won't
       be able to recognize you! BUY NOW.`.split("\n"),
-    image: 'business_man.png',
+    image: 'dlc-business.jpg',
     price: 4.99,
     isAcheted: false,
     isSelected: false,
