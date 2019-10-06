@@ -2,7 +2,6 @@ import Tshirt from "./Items/Tshirt";
 import Lamp from "./Items/Lamp";
 import Chair from "./Items/Chair";
 import Basket from "./Items/Basket";
-import Office from "./Items/Office";
 import Wallet from "./Kapitalism/Wallet";
 import WalletGUI from "./Kapitalism/WalletGUI";
 import Playboy from "./Items/Playboy";
@@ -13,7 +12,7 @@ import {DLC} from "../DLCs";
 import GameBoy from "./Items/GameBoy";
 import PokemonCard from "./Items/PokemonCard";
 import {GAME_HEIGHT, GAME_WIDTH, SCALE} from "../../app";
-import MarioFigurine from "./Items/MarioFigurine";
+import Sock from "./Items/Sock";
 import {ItemToSell} from "./Items/ItemToSell";
 import Underpants from "./Items/Underpants";
 import PlayerMessageBox from "../PlayerMessageBox";
@@ -65,19 +64,16 @@ export default class PlayerRoom extends Phaser.State {
   }
 
   private initSellableItems() {
-    const tshirt = new Tshirt(this.wallet, this, 144, 404);
+    const tshirt = new Tshirt(this.wallet, this, 144, 340);
     this.itemsToSell.add(tshirt);
 
-    const britneyPoster = new BritneyPoster(this.wallet, this, 150, 15);
+    const britneyPoster = new BritneyPoster(this.wallet, this, 140, 15);
     this.itemsToSell.add(britneyPoster);
 
-    const playboy = new Playboy(this.wallet, this, 109, 621);
+    const playboy = new Playboy(this.wallet, this, 109, 601);
     this.itemsToSell.add(playboy);
 
-    const office = new Office(this.wallet, this, 1, 1);
-    this.itemsToSell.add(office);
-
-    const basket = new Basket(this.wallet, this, 731, 624);
+    const basket = new Basket(this.wallet, this, 780, 624);
     this.itemsToSell.add(basket);
 
     const lampLava = new Lamp(this.wallet, this, 701,139);
@@ -92,11 +88,11 @@ export default class PlayerRoom extends Phaser.State {
     const gameBoy = new GameBoy(this.wallet, this, 15, 457);
     this.itemsToSell.add(gameBoy);
 
-    const pokemonCard = new PokemonCard(this.wallet, this, 5, 120);
+    const pokemonCard = new PokemonCard(this.wallet, this, 5, 125);
     this.itemsToSell.add(pokemonCard);
 
-    const marioFigurine = new MarioFigurine(this.wallet, this, 130, 300);
-    this.itemsToSell.add(marioFigurine);
+    const sock = new Sock(this.wallet, this, 700, 488);
+    this.itemsToSell.add(sock);
 
     const underpants = new Underpants(this.wallet, this, 720, 330);
     this.itemsToSell.add(underpants);
