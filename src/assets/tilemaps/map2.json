@@ -90,12 +90,30 @@
                         }]
                 }, 
                 {
+                 "id":36,
+                 "properties":[
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"water"
+                        }]
+                },
+                {
                  "id":52,
                  "properties":[
                         {
                          "name":"name",
                          "type":"string",
                          "value":"door"
+                        }]
+                },
+                {
+                 "id":59,
+                 "properties":[
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"computer"
                         }]
                 }],
          "tilewidth":16
