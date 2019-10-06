@@ -73,18 +73,17 @@ export default class Preload extends Phaser.State {
     this.game.load.image('shadow', 'src/assets/images/shadow.png');
     this.game.load.image('logo', 'src/assets/images/logo1.png');
     this.game.load.spritesheet('tshirt', 'src/assets/images/tshirt.jpg', 679, 724);
-    this.game.load.spritesheet('lamp-lava', 'src/assets/images/lamp-lava.jpg', 600, 600);
-    this.game.load.spritesheet('lamp-lava', 'src/assets/images/lamp-lava.jpg', 600, 600);
+    this.game.load.spritesheet('lamp-lava', 'src/assets/images/lamp.png', 48, 121);
     this.game.load.spritesheet('office', 'src/assets/images/office.jpg', 680, 680);
-    this.game.load.spritesheet('chair', 'src/assets/images/chair.png', 500, 500);
-    this.game.load.spritesheet('basket', 'src/assets/images/basket.jpeg', 283, 178);
-    this.game.load.spritesheet('playboy_magazine', 'src/assets/images/playboy_magazine.jpg', 670, 978);
-    this.game.load.spritesheet('britney_poster', 'src/assets/images/britney_poster.jpg', 210, 230);
-    this.game.load.spritesheet('bed', 'src/assets/images/bed.jpg', 680, 680);
+    this.game.load.spritesheet('chair', 'src/assets/images/chair.png', 202, 343);
+    this.game.load.spritesheet('basket', 'src/assets/images/basket.png', 145, 103);
+    this.game.load.spritesheet('playboy_magazine', 'src/assets/images/playboy.png', 179, 180);
+    this.game.load.spritesheet('britney_poster', 'src/assets/images/poster.png', 108, 155);
+    this.game.load.spritesheet('bed', 'src/assets/images/bed.png', 325, 490);
     this.game.load.spritesheet('game_boy', 'src/assets/images/game_boy.jpeg', 225, 225);
-    this.game.load.spritesheet('pokemon_card', 'src/assets/images/pokemon_card.jpeg', 225, 225);
+    this.game.load.spritesheet('pokemon_card', 'src/assets/images/cards.png', 69, 70);
     this.game.load.spritesheet('mario_figurine', 'src/assets/images/mario_figurine.jpeg', 180, 280);
-    this.game.load.spritesheet('underpants', 'src/assets/images/underpants.jpeg', 225, 225);
+    this.game.load.spritesheet('underpants', 'src/assets/images/underpants.png', 112, 108);
 
     this.game.load.spritesheet('multiplayer-btn', 'src/assets/images/multiplayer-btn.png', 74, 13);
     this.game.load.spritesheet('hud-background', 'src/assets/images/hud-background.png', 300, 18);
