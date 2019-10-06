@@ -16,7 +16,7 @@ export class Logo extends Phaser.State {
 
   update(game: Phaser.Game) {
     if (this.enter.justDown) {
-      game.state.start('DungeonLevel3');
+      game.state.start('DungeonLevel2');
     }
   }
 }

@@ -33,7 +33,7 @@ export class Door implements Activable {
       this.position.x * TILE_SIZE + 2,
       this.position.y * TILE_SIZE + 2
     ), DEBUG ? Phaser.Timer.SECOND / 2 : Phaser.Timer.SECOND * 3, () => {
-        let message = 'Door unlocked at ' + this.crochetage + '%!';
+        let message = 'Door unlocked at ' + this.crochetage + '%! Let\'s try again!';
         if (this.crochetage > 2) {
             message += "\n\nFEEL FREE TO BUY SOME NEW DLCs!!!"
         }
