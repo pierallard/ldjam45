@@ -45,8 +45,45 @@
  "tileheight":16,
  "tilesets":[
         {
+         "columns":24,
          "firstgid":1,
-         "source":"..\/tilesets\/dungeon_sheet.tsx"
+         "image":"..\/tilesets\/dungeon_sheet.png",
+         "imageheight":160,
+         "imagewidth":384,
+         "margin":0,
+         "name":"dungeon_sheet",
+         "spacing":0,
+         "tilecount":240,
+         "tileheight":16,
+         "tiles":[
+                {
+                 "id":54,
+                 "properties":[
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"floor"
+                        }]
+                },
+                {
+                 "id":172,
+                 "properties":[
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"door"
+                        }]
+                },
+                {
+                 "id":182,
+                 "properties":[
+                        {
+                         "name":"is_chest",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }],
+         "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
