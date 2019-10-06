@@ -22,6 +22,7 @@ export default class TilemapLevel {
 
   public create(game: Phaser.Game, name: string) {
     this.activableObjects = [];
+
     this.map = game.add.tilemap(name, 16, 16);
     this.map.addTilesetImage('main', 'main');
 

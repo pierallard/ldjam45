@@ -48,7 +48,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
 
     this.tilemap.create(game, this.getLevelName());
-
     this.player.create(game, this.tilemap);
 
     this.menuDLC.create(game, this.showDLCButton, (dlc) => {
@@ -64,8 +63,10 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     this.blackScreen.alpha = 0;
     this.blackScreen.visible = false;
 
+    game.add.sprite(0, game.height - 18, 'hud-background');
+
     if (this.multiActived) {
-      game.add.sprite(140, 5, 'multiplayer-btn');
+      game.add.sprite(20, game.height - 16, 'multiplayer-btn');
     }
   }
 
