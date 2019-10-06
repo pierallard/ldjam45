@@ -71,9 +71,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     if (this.hasAchetedDlc('Business Man Skin Pack (Cosmetic)')) {
       this.player.switchToBusinessSuits();
     }
-    if (this.hasAchetedDlc(DLC_TRANSHUMANISM) || true) {
-      game.add.sprite(20, game.height - 16, 'bladder-indicator', 0); // change the level of liquid
-    }
 
   }
 
@@ -104,6 +101,10 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     this.game.physics.arcade.collide(this.player.sprite, this.tilemap.items);
 
     this.player.update(game);
+
+    if (this.hasAchetedDlc(DLC_TRANSHUMANISM)) {
+      game.add.sprite(20, game.height - 16, 'bladder-indicator', this.player.vessie); // change the level of liquid
+    }
 
     return true;
   }

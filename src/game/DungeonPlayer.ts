@@ -15,6 +15,7 @@ export class DungeonPlayer {
   private actionKey: Phaser.Key;
   private tilemap: TilemapLevel;
   private isForbidMove: boolean;
+  public vessie: number = 0;
 
   constructor(point: Point) {
     this.position = point;
@@ -111,5 +112,17 @@ export class DungeonPlayer {
 
   public getPosition(): Point {
     return this.position;
+  }
+
+  public drink()
+  {
+    if (this.vessie < 4) {
+      this.vessie = this.vessie + 1;
+    }
+  }
+
+  public hasToPee(): boolean
+  {
+    return this.vessie == 4;
   }
 }
