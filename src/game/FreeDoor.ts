@@ -21,7 +21,7 @@ export class FreeDoor implements Activable {
 
   doAction(game: Phaser.Game) {
     if (this.crochetage >= 100) {
-      this.level.goToLevel3(game);
+      this.level.goToNextLevel(game);
       return;
     }
     if (this.level.hasAchetedDlc(DLC_CROCHETAGE)) {
