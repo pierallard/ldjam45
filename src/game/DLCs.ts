@@ -19,6 +19,16 @@ const dlcs: DLC[] = [
     isSelected: false,
   },
   {
+    name: 'NEW! Flashlight Item - Light Pack Platinium',
+    description: `Unlock up to one brand new item...
+      The flashlight! Useful for everything, especially to bring some light somewhere.
+      This new content will be available in-game once bought!`.split("\n"),
+    image: 'dlc-flashlight.jpg',
+    price: 3.99,
+    isAcheted: false,
+    isSelected: false,
+  },
+  {
     name: 'Business Man Skin Pack (Cosmetic)',
     description: `Unlock a new skin of Business man
       by buying this content! Your ennemies won't
@@ -33,7 +43,7 @@ const dlcs: DLC[] = [
     description: `You always dreamed to be a Hacker?
       With this new DLC, unlock new skills such as...
       Hacker stuff! Become a professional of IT stuff and.. HACKER!`.split("\n"),
-    image: 'business_man.png',
+    image: 'dlc-hacker.jpg',
     price: 3.99,
     isAcheted: false,
     isSelected: false,
