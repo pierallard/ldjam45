@@ -13,7 +13,7 @@ const dlcs: DLC[] = [
     description: `With this new DLC, your hero
       would be able to lock pick any classic door in the game!
       Buy now to add this incredible feature.`.split("\n"),
-    image: 'lock_picking.png',
+    image: 'dlc-lockpicking.jpeg',
     price: 2.99,
     isAcheted: false,
     isSelected: false,
@@ -44,6 +44,16 @@ const dlcs: DLC[] = [
       With this new DLC, unlock new skills such as...
       Hacker stuff! Become a professional of IT stuff and.. HACKER!`.split("\n"),
     image: 'business_man.png',
+    price: 3.99,
+    isAcheted: false,
+    isSelected: false,
+  },
+  {
+    name: 'Multi-player mode',
+    description: `Want to compete against your friends?
+      With this new DLC, unlock the multi-player mode.
+      Play with your friends or compete to get the highest score!`.split("\n"),
+    image: 'dlc-multiplayer.jpeg',
     price: 3.99,
     isAcheted: false,
     isSelected: false,
