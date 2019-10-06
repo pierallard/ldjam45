@@ -6,17 +6,26 @@ import PlayerRoom from "./PlayerRoom";
 
 export default class DungeonLevel2 extends AbstractDungeonLevel {
   private helloDisplayed: boolean;
+  private showBeginningMessage: boolean;
   public LEVEL_NUMBER = 2;
 
   constructor() {
     super();
     this.tilemap = new TilemapLevel(this, this.tilemapProperties);
+    this.showBeginningMessage = true;
     this.helloDisplayed = false;
   }
 
   public create(game: Phaser.Game) {
     super.create(game);
     this.displayDLCButton();
+
+    if (this.showBeginningMessage) {
+      this.showBeginningMessage = false;
+      this.addMessageBox(game, "YOU: 'Hehehe... The DLC generator machine \n\nshould be in this building.'", () => {
+        this.player.stopPlayer();
+      });
+    }
   }
 
   public update(game: Phaser.Game):boolean {
@@ -24,7 +33,7 @@ export default class DungeonLevel2 extends AbstractDungeonLevel {
       if (this.hasAchetedDlc(DLC_BUSINESSPACK)) {
         if (!this.helloDisplayed) {
           this.player.stopPlayer();
-          this.addMessageBox(game, 'Bienvenue cher camarade', () => {
+          this.addMessageBox(game, "Secretary: 'Oh, welcome comrade!'", () => {
           });
         }
         this.helloDisplayed = true;
@@ -32,11 +41,11 @@ export default class DungeonLevel2 extends AbstractDungeonLevel {
         this.player.stopPlayer();
         this.player.sprite.position.x = 215;
         const messages = [
-          "Monsieur VOUS NE FAITES PAS\n\nPARTIE de l'ENTREPRISE MONSIEUR",
-          "SORTEZ OU J'APPELLE LA SECURITE",
-          "Qui etes vous ?",
-          "Cette partie est reservee aux \n\n'membres' du personnel!",
-          "Je peux vous renseigneeeeer?"
+          "Secretary: 'Sir you do not belong to\n\nthis company SIR'",
+          "Secretary: 'Get out or I call\n\nthe security'",
+          "Secretary: 'Who are you?'",
+          "Secretary: 'This part of the building\n\nis for company members only!'",
+          "Secretary: 'Maaaaaaayyyy I help you?'"
         ];
         this.addMessageBox(game, messages[Math.floor(Math.random() * messages.length)], () => {});
       }

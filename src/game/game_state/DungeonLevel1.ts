@@ -33,11 +33,11 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
 
     if (this.showBeginningMessage) {
       this.showBeginningMessage = false;
-      this.addMessageBox(game, 'je suis enfermay ! Je dois sortir!', () => {
+      this.addMessageBox(game, "YOU: 'Ahhh.. Lubrisoft. I must enter and \n\ndestroy their DLC generator!'", () => {
         this.player.stopPlayer();
         game.time.events.add(0.5 * Phaser.Timer.SECOND, () => {
           this.player.stopPlayer();
-          this.addMessageBox(game, 'Appuyez sur AZDS pour bougeay', () => {
+          this.addMessageBox(game, '*Use arrow keys to move*', () => {
           });
         });
       });
@@ -55,11 +55,6 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
     if (!this.paypalAlreadyMontred) {
       this.paypalAlreadyMontred = true;
       this.paypal.visible = true;
-      this.cursor.setEnabled(false);
-      game.add.tween(this.cursor).to({
-        x: 156,
-        y: 101
-      }, 2 * Phaser.Timer.SECOND, Phaser.Easing.Default, true);
       game.time.events.add(2 * Phaser.Timer.SECOND, () => {
         this.defaultDlcCallback(game, dlc);
       });
@@ -73,7 +68,7 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
       if (this.showDoorMessage && this.tilemap.getActivable(this.player.getPosition()) instanceof Door) {
         this.player.stopPlayer();
         this.showDoorMessage = false;
-        this.addMessageBox(game, 'Appuyay sur Entray pour crochtay la porte', () => {
+        this.addMessageBox(game, "*Use ENTER key to interact with objects*", () => {
         });
       }
     }

@@ -12,7 +12,6 @@ import Bed from "./Items/Bed";
 import {DLC} from "../DLCs";
 import GameBoy from "./Items/GameBoy";
 import PokemonCard from "./Items/PokemonCard";
-import {Cursor} from "./Cursor";
 import {GAME_HEIGHT, GAME_WIDTH, SCALE} from "../../app";
 import MarioFigurine from "./Items/MarioFigurine";
 import {ItemToSell} from "./Items/ItemToSell";
@@ -24,7 +23,6 @@ export default class PlayerRoom extends Phaser.State {
   private wallet: Wallet;
   private walletGUI: WalletGUI;
   public dlc: DLC;
-  private cursor: Cursor;
   private levelName: string;
   private background: Phaser.Image;
 
@@ -51,9 +49,6 @@ export default class PlayerRoom extends Phaser.State {
     this.game.add.button(250, 50, 'button', () => {
       game.state.start('DungeonLevel1');
     }, this, 2, 1, 0);
-
-    this.cursor = new Cursor(game, true);
-    this.game.add.existing(this.cursor);
   }
 
   private initSellableItems() {
@@ -103,7 +98,6 @@ export default class PlayerRoom extends Phaser.State {
 
   public update(game: Phaser.Game) {
     this.walletGUI.update(game);
-    this.cursor.update2(game);
   }
 
   public setdlcItem(dlc: DLC) {
