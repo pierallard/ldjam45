@@ -44,7 +44,7 @@ export default class PlayerRoom extends Phaser.State {
     this.game.renderer.renderSession.roundPixels = false;
     this.game.width = GAME_WIDTH;
     this.game.height = GAME_HEIGHT;
-    this.game.renderer.resize(1200, 900);
+    this.game.renderer.resize(GAME_WIDTH, GAME_HEIGHT);
 
     this.background = game.add.image(0, 0, 'backgroundplayerroom');
 
@@ -109,6 +109,10 @@ export default class PlayerRoom extends Phaser.State {
 
   public update(game: Phaser.Game) {
     this.walletGUI.update(game);
+
+    this.itemsToSell.items.forEach((itemToSell) => {
+      itemToSell.update(game);
+    });
   }
 
   public setdlcItem(dlc: DLC) {
