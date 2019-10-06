@@ -8,8 +8,6 @@ import {Pie} from "../Pie";
 import {Cursor} from "./Cursor";
 import {SCALE} from "../../app";
 import {DLCItem} from "../DLCList";
-import PlayerRoom from "./PlayerRoom";
-import {Door} from "../Door";
 
 export abstract class AbstractDungeonLevel extends Phaser.State {
   protected player: DungeonPlayer;
@@ -88,5 +86,10 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   }
 
   abstract getDlcCallback(game: Phaser.Game, dlcItem: DLCItem);
+
+  public render()
+  {
+    this.game.debug.body(this.player.sprite);
+  }
 }
 

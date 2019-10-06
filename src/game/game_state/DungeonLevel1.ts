@@ -71,11 +71,6 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
     }
   }
 
-  public render()
-  {
-      this.game.debug.body(this.player.sprite);
-  }
-
   public update(game: Phaser.Game) {
     if (super.update(game)) {
       if (this.showDoorMessage && this.tilemap.getActivable(this.player.getPosition()) instanceof Door) {
