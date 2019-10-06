@@ -2,7 +2,6 @@ import {Door} from "../Door";
 import Point from "../Point";
 import TilemapLevel from "../TilemapLevel";
 import {DLC} from "../DLCs";
-import PlayerRoom from "./PlayerRoom";
 import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
 
 export default class DungeonLevel1 extends AbstractDungeonLevel {
@@ -17,7 +16,7 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
     this.showDoorMessage = true;
     this.showBeginningMessage = true;
     this.paypalAlreadyMontred = false;
-    this.showDLCButton = false;
+    this.showDLCButton = true;
   }
 
   getLevelName(): string {
