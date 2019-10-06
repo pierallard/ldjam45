@@ -49,7 +49,7 @@ const dlcs: DLC[] = [
     isSelected: false,
   },
   {
-    name: 'Multi-player mode',
+    name: 'Multi-player Mode',
     description: `Want to compete against your friends?
       With this new DLC, unlock the multi-player mode.
       Play with your friends or compete to get the highest score!`.split("\n"),
