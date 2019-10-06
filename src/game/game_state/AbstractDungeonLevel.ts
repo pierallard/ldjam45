@@ -10,7 +10,7 @@ import {SCALE, TILE_SIZE} from "../../app";
 import DLCs, { isAcheted, achete } from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
 import {Door} from "../Door";
-import { DLC } from "../DLCs";
+import { DLC, DLC_TRANSHUMANISM } from "../DLCs";
 import DLCactivator from "../DLCactivator";
 
 export abstract class AbstractDungeonLevel extends Phaser.State {
@@ -68,10 +68,13 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     game.add.sprite(0, game.height - 18, 'hud-background');
 
     if (this.hasAchetedDlc('Multi-player Mode')) {
-      game.add.sprite(20, game.height - 16, 'multiplayer-btn');
+      game.add.sprite(60, game.height - 16, 'multiplayer-btn');
     }
     if (this.hasAchetedDlc('Business Man Skin Pack (Cosmetic)')) {
       this.player.switchToBusinessSuits();
+    }
+    if (this.hasAchetedDlc(DLC_TRANSHUMANISM)) {
+      game.add.sprite(20, game.height - 16, 'bladder-indicator', 0); // change the level of liquid
     }
 
     this.cursor = new Cursor(game);

@@ -17,6 +17,10 @@ export default class DLCactivator {
       case 'Multi-player Mode':
         console.log('ACTIVATED = ', dlc);
         break;
+      case 'Transhumanism, become an augmented human!':
+        console.log('ACTIVATED = ', dlc);
+        break;
+
     }
 
   }
