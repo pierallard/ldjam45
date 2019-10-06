@@ -25,33 +25,33 @@
    <tile gid="55"/>
    <tile gid="55"/>
    <tile gid="55"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
    <tile gid="55"/>
    <tile gid="55"/>
    <tile gid="55"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
    <tile gid="55"/>
    <tile gid="55"/>
    <tile gid="55"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
+   <tile gid="55"/>
    <tile gid="55"/>
    <tile gid="55"/>
    <tile gid="55"/>
@@ -105,7 +105,7 @@
    <tile gid="55"/>
   </data>
  </layer>
- <layer id="6" name="walls" width="10" height="10">
+ <layer id="6" name="walls" width="10" height="10" locked="1">
   <data>
    <tile gid="6"/>
    <tile gid="7"/>
