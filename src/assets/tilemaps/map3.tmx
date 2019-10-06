@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="18" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="1">
- <tileset firstgid="1" name="map3" tilewidth="16" tileheight="16" tilecount="48" columns="24">
+ <tileset firstgid="1" name="main" tilewidth="16" tileheight="16" tilecount="48" columns="24">
   <image source="../tilesets/interior.png" width="384" height="32"/>
  </tileset>
  <layer id="1" name="floor" width="18" height="8">

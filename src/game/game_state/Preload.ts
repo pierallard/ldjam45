@@ -44,6 +44,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('menu_dlc_background', 'src/assets/images/menu_dlc_background.png');
     this.game.load.image('menu_dlc_header', 'src/assets/images/menu_dlc_header.png');
     this.game.load.image('dlcbuy', 'src/assets/images/dlcbuy.png');
+    this.game.load.image('messagebox', 'src/assets/messagebox.png');
 
     this.game.load.image('dlc_thumb_1', 'src/assets/images/dlc_thumb_1.png');
 
@@ -53,10 +54,10 @@ export default class Preload extends Phaser.State {
     this.game.load.image('player_business_front', 'src/assets/images/player_business_front.png');
     this.game.load.image('player_business_back', 'src/assets/images/player_business_back.png');
 
-    this.game.load.image('level1', 'src/assets/tilesets/dungeon_sheet.png');
-    this.game.load.image('level2', 'src/assets/tilesets/interior.png');
+    this.game.load.image('main', 'src/assets/tilesets/interior.png');
     this.game.load.tilemap('level1', 'src/assets/tilemaps/map1.json', null, Phaser.Tilemap.TILED_JSON);
     this.game.load.tilemap('level2', 'src/assets/tilemaps/map2.json', null, Phaser.Tilemap.TILED_JSON);
+    this.game.load.tilemap('level3', 'src/assets/tilemaps/map3.json', null, Phaser.Tilemap.TILED_JSON);
 
     this.game.load.spritesheet('chips', 'src/assets/images/chips.png', 12, 12);
     this.game.load.image('shadow', 'src/assets/images/shadow.png');
