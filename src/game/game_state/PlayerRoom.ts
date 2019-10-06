@@ -16,6 +16,7 @@ import {GAME_HEIGHT, GAME_WIDTH, SCALE} from "../../app";
 import MarioFigurine from "./Items/MarioFigurine";
 import {ItemToSell} from "./Items/ItemToSell";
 import Underpants from "./Items/Underpants";
+import PlayerMessageBox from "../PlayerMessageBox";
 
 
 export default class PlayerRoom extends Phaser.State {
@@ -25,6 +26,7 @@ export default class PlayerRoom extends Phaser.State {
   public dlc: DLC;
   private levelName: string;
   private background: Phaser.Image;
+  private playerMessageBox: PlayerMessageBox;
 
   constructor() {
     super();
@@ -32,6 +34,7 @@ export default class PlayerRoom extends Phaser.State {
     this.wallet = new Wallet();
     this.walletGUI = new WalletGUI(this.wallet);
     this.initSellableItems();
+    this.playerMessageBox = new PlayerMessageBox();
   }
 
   public create(game: Phaser.Game) {
@@ -49,6 +52,8 @@ export default class PlayerRoom extends Phaser.State {
     this.game.add.button(250, 50, 'button', () => {
       game.state.start('DungeonLevel1');
     }, this, 2, 1, 0);
+
+    this.playerMessageBox.create(game);
   }
 
   private initSellableItems() {
