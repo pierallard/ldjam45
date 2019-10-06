@@ -3,6 +3,7 @@ import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
 import TilemapsProperties from "./TilemapsProperties";
 import Point from "./Point";
 import {Door} from "./Door";
+import {FreeDoor} from "./FreeDoor";
 import {DigicodableDoor} from "./DigicodableDoor";
 import {Secretary} from "./Secretary";
 
@@ -105,6 +106,10 @@ export default class TilemapLevel {
         switch (properties.name) {
           case "door": {
             this.activableObjects.push(new Door(this.level, new Point(tile.x, tile.y)));
+            break;
+          }
+          case "freedoor": {
+            this.activableObjects.push(new FreeDoor(this.level, new Point(tile.x, tile.y)));
             break;
           }
           case "secretary": {

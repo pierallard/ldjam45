@@ -3,7 +3,7 @@
  <image source="interior.png" width="384" height="48"/>
  <tile id="9">
   <properties>
-   <property name="name" value="door"/>
+   <property name="name" value="freedoor"/>
   </properties>
  </tile>
  <tile id="22">
