@@ -25,8 +25,10 @@ export class DigicodableDoor implements Activable {
 
   doAction(game: Phaser.Game) {
     if (this.level.hasAchetedDlc('Hacker DLC Pack Premium')) {
-      this.level.addMessageBox(game, 'YOU HACKER', () => {
-      });
+      this.level.goToLevel3(game);
+      return;
     }
+    this.level.addMessageBox(game, 'NOOB', () => {
+    });
   }
 }
