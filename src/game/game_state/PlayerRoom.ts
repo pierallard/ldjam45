@@ -50,7 +50,7 @@ export default class PlayerRoom extends Phaser.State {
       game.state.start('DungeonLevel1');
     }, this, 2, 1, 0);
 
-    this.sprite = game.add.sprite(50, 50, 'normal_hero');
+    this.sprite = game.add.sprite(50, 50, 'player_front');
 
     this.cursor = new Cursor(game);
     this.cursor.scale.set(4,4);

@@ -21,7 +21,7 @@ export class DungeonPlayer {
   }
 
   public create(game: Phaser.Game, tilemap: TilemapLevel) {
-    this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, 'normal_hero');
+    this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, 'player_front');
     this.tilemap = tilemap;
 
     this.sprite.anchor.setTo(.5,.5);
@@ -46,8 +46,10 @@ export class DungeonPlayer {
     } else if (this.rightKey.isDown) {
       this.sprite.body.velocity.x = +velocityDeFrite;
     } else if (this.upKey.isDown) {
+      this.sprite.loadTexture('player_back');
       this.sprite.body.velocity.y = -velocityDeFrite;
     } else if (this.downKey.isDown) {
+      this.sprite.loadTexture('player_front');
       this.sprite.body.velocity.y = +velocityDeFrite;
     } else if (this.actionKey.isDown) {
       this.doAction(game);
