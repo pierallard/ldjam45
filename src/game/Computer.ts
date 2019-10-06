@@ -17,10 +17,12 @@ export class Computer implements Activable {
   }
 
   doAction(game: Phaser.Game) {
-      let player = game.state.states['DungeonLevel4'].player;
+      let level4 = game.state.states['DungeonLevel4'];
+      let player = level4.player;
       if (this.level.hasAchetedDlc('hacker')) {
           if (player.hasPassword) {
             this.level.addMessageBox(game, `You: Let's recompile the wifi firmware\n\n and rebind the printer \n\non the VGA keyboard!`, () => {
+                level4.explose();
                 this.level.addPie(game, new Point(this.position.x * TILE_SIZE + 2, this.position.y * TILE_SIZE + 2),
                 DEBUG ? Phaser.Timer.SECOND / 2 : Phaser.Timer.SECOND * 8, () => {
                     this.level.goToNextLevel(game);
@@ -32,6 +34,7 @@ export class Computer implements Activable {
       if (this.level.hasAchetedDlc('businessman')) {
           if (this.level.hasAchetedDlc('vessie') && player.hasToPee()) {
             this.level.addMessageBox(game, `You: HAHA Take This! -- *unzips pants*`, () => {
+                level4.explose();
                 this.level.addPie(game, new Point(this.position.x * TILE_SIZE + 2, this.position.y * TILE_SIZE + 2),
                 DEBUG ? Phaser.Timer.SECOND / 2 : Phaser.Timer.SECOND * 8, () => {
                     this.level.goToNextLevel(game);
@@ -44,5 +47,6 @@ export class Computer implements Activable {
             return;
           }
       }
+      this.level.addMessageBox(game, `There must be a way to destroy it\n\nusing something in this room!`, () => {});
   }
 }
