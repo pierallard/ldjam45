@@ -1,6 +1,7 @@
 import * as level1 from "../assets/tilemaps/map1.json";
 import * as level2 from "../assets/tilemaps/map2.json";
 import * as level3 from "../assets/tilemaps/map3.json";
+import * as level4 from "../assets/tilemaps/map4.json";
 
 export default class TilemapsProperties {
   private properties = {};
@@ -8,6 +9,7 @@ export default class TilemapsProperties {
     level1,
     level2,
     level3,
+    level4,
   ];
 
   constructor() {

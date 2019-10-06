@@ -6,6 +6,8 @@ import {Door} from "./Door";
 import {FreeDoor} from "./FreeDoor";
 import {DigicodableDoor} from "./DigicodableDoor";
 import {Secretary} from "./Secretary";
+import {Computer} from "./Computer";
+import {Water} from "./Water";
 
 export default class TilemapLevel {
   constructor(level: AbstractDungeonLevel, tilemapProperties: TilemapsProperties) {
@@ -46,7 +48,7 @@ export default class TilemapLevel {
     this.items.resizeWorld();
     this.floor.resizeWorld();
 
-    this.populateActivables();
+    this.populateActivables(game);
   }
 
   public canGoTo(position: Point) {
@@ -90,7 +92,7 @@ export default class TilemapLevel {
     return null;
   }
 
-  private populateActivables() {
+  private populateActivables(game: Phaser.Game) {
     for (let x = 0; x < this.map.width; x++) {
       for (let y = 0; y < this.map.height; y++) {
         const tile = this.map.getTile(x, y, "items");
@@ -105,7 +107,9 @@ export default class TilemapLevel {
 
         switch (properties.name) {
           case "door": {
-            this.activableObjects.push(new Door(this.level, new Point(tile.x, tile.y)));
+            const door = new Door(this.level, new Point(tile.x, tile.y));
+            door.create(game);
+            this.activableObjects.push(door);
             break;
           }
           case "freedoor": {
@@ -119,6 +123,14 @@ export default class TilemapLevel {
           case "digicode": {
               this.activableObjects.push(new DigicodableDoor(this.level, new Point(tile.x, tile.y)));
               break;
+          }
+          case "computer": {
+              this.activableObjects.push(new Computer(this.level, new Point(tile.x, tile.y)));
+              break;
+          }
+          case "water": {
+            this.activableObjects.push(new Water(this.level, new Point(tile.x, tile.y)));
+            break;
           }
         }
       }

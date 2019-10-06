@@ -8,6 +8,7 @@ import DungeonLevel1 from "./game/game_state/DungeonLevel1";
 import PlayerRoom from "./game/game_state/PlayerRoom";
 import DungeonLevel2 from "./game/game_state/DungeonLevel2";
 import DungeonLevel3 from "./game/game_state/DungenLevel3";
+import DungeonLevel4 from "./game/game_state/DungeonLevel4";
 
 export const DEBUG = true;
 
@@ -35,6 +36,7 @@ class SimpleGame extends Phaser.Game {
         this.state.add('DungeonLevel1', DungeonLevel1);
         this.state.add('DungeonLevel2', DungeonLevel2);
         this.state.add('DungeonLevel3', DungeonLevel3);
+        this.state.add('DungeonLevel4', DungeonLevel4);
         this.state.add('PlayerRoom', PlayerRoom);
         this.state.add('Credits', Credits);
         this.state.add('Logo', Logo);

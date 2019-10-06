@@ -16,9 +16,24 @@
    <property name="name" value="digicode"/>
   </properties>
  </tile>
+ <tile id="36">
+  <properties>
+   <property name="name" value="water"/>
+  </properties>
+ </tile>
+ <tile id="37">
+  <properties>
+   <property name="name" value="coca"/>
+  </properties>
+ </tile>
  <tile id="52">
   <properties>
    <property name="name" value="door"/>
+  </properties>
+ </tile>
+ <tile id="59">
+  <properties>
+   <property name="name" value="computer"/>
   </properties>
  </tile>
 </tileset>
