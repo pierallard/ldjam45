@@ -39,16 +39,6 @@ const dlcs: DLC[] = [
     isSelected: false,
   },
   {
-    name: 'Hacker DLC Pack Premium',
-    description: `You always dreamed to be a Hacker?
-      With this new DLC, unlock new skills such as...
-      Hacker stuff! Become a professional of IT stuff and.. HACKER!`.split("\n"),
-    image: 'business_man.png',
-    price: 3.99,
-    isAcheted: false,
-    isSelected: false,
-  },
-  {
     name: 'Multi-player mode',
     description: `Want to compete against your friends?
       With this new DLC, unlock the multi-player mode.
