@@ -6,6 +6,7 @@ import PlayerRoom from "./PlayerRoom";
 
 export default class DungeonLevel2 extends AbstractDungeonLevel {
   private helloDisplayed: boolean;
+  public LEVEL_NUMBER = 2;
 
   constructor() {
     super();

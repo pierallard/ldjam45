@@ -5,6 +5,7 @@ import {DLC} from "../DLCs";
 import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
 
 export default class DungeonLevel1 extends AbstractDungeonLevel {
+  public LEVEL_NUMBER = 1;
   private showDoorMessage: boolean;
   private showBeginningMessage: boolean;
   private paypal: Phaser.Image;
