@@ -3,13 +3,23 @@ import DLCs, { DLC } from "../game/DLCs";
 const getId = (id: string) => document.querySelector('#' + id) as HTMLElement;
 const dlcTemplate = getId('dlcItemTemplate');
 const createDlcItemTemplate = (i: number) => {
+  const dlcItemContainer = document.createElement('div');
+  dlcItemContainer.className = 'dlcItemContainer';
+
+  const dlcItemBackground = document.createElement('div');
+  dlcItemBackground.className = 'dlcItemBackground';
+
   const dlcItem = document.createElement('div');
   dlcItem.innerHTML = dlcTemplate.innerHTML;
   dlcItem.className = 'dlcItem';
   setTimeout(() => {
     dlcItem.className = 'dlcItem dlcItemEntering';
   }, 50 * (i+1));
-  return dlcItem;
+
+  dlcItemContainer.appendChild(dlcItemBackground);
+  dlcItemContainer.appendChild(dlcItem);
+
+  return dlcItemContainer;
 }
 const getClass = (clas: string, element: HTMLElement | HTMLDocument = document) => element.querySelector('.' + clas) as HTMLElement;
 
@@ -26,8 +36,6 @@ const createDLCItem = (dlc: DLC, index: number, onBuy: (dlc: DLC) => void) => {
   } else {
     image.src = '/src/assets/images/'+dlc.image;
   }
-
-
 
   if (dlc.isAcheted) {
     const price = getClass('dlcPrice', dlcItem);
