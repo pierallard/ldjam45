@@ -17,7 +17,7 @@ export default class MenuDLC {
     const displayButton = () => {
       const hudGroup = game.add.group(null, 'HUD');
       game.add.existing(hudGroup);
-      game.add.button(game.width - 29, 5, 'dlcbuy', () => {
+      game.add.button(game.width - 59, 5, 'dlcbuy', () => {
         (window as any).openDLCMenu(DLCs, (dlc) => this.onBuy(dlc));
       }, 2, 1, 0);
     }
