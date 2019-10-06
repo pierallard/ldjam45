@@ -28,7 +28,7 @@ export class DigicodableDoor implements Activable {
       return;
     }
     this.level.addMessageBox(game, `You: 'Ah.. this door needs a digicode... \
-\n\nI have no idea nor the skills to open it.`, () => {
+\n\nI have no idea nor the skills to open it.'`, () => {
     });
   }
 }

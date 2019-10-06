@@ -6,11 +6,13 @@ import PlayerRoom from "./PlayerRoom";
 
 export default class DungeonLevel2 extends AbstractDungeonLevel {
   private helloDisplayed: boolean;
+  private showBeginningMessage: boolean;
   public LEVEL_NUMBER = 2;
 
   constructor() {
     super();
     this.tilemap = new TilemapLevel(this, this.tilemapProperties);
+    this.showBeginningMessage = true;
     this.helloDisplayed = false;
   }
 
@@ -18,9 +20,12 @@ export default class DungeonLevel2 extends AbstractDungeonLevel {
     super.create(game);
     this.displayDLCButton();
 
-    this.addMessageBox(game, "YOU: 'Hehehe... The DLC generator machine \n\nshould be in this building.'", () => {
-      this.player.stopPlayer();
-    });
+    if (this.showBeginningMessage) {
+      this.showBeginningMessage = false;
+      this.addMessageBox(game, "YOU: 'Hehehe... The DLC generator machine \n\nshould be in this building.'", () => {
+        this.player.stopPlayer();
+      });
+    }
   }
 
   public update(game: Phaser.Game):boolean {
@@ -28,7 +33,7 @@ export default class DungeonLevel2 extends AbstractDungeonLevel {
       if (this.hasAchetedDlc(DLC_BUSINESSPACK)) {
         if (!this.helloDisplayed) {
           this.player.stopPlayer();
-          this.addMessageBox(game, 'Oh, welcome comrade!', () => {
+          this.addMessageBox(game, "Secretary: 'Oh, welcome comrade!'", () => {
           });
         }
         this.helloDisplayed = true;
@@ -36,11 +41,11 @@ export default class DungeonLevel2 extends AbstractDungeonLevel {
         this.player.stopPlayer();
         this.player.sprite.position.x = 215;
         const messages = [
-          "Sir you do not belong to this company SIR",
-          "Get out or I call the security",
-          "Who are you?",
-          "This part of the building is for\n\ncompany members only!",
-          "Maaaaaaayyyy I help you?"
+          "Secretary: 'Sir you do not belong to\n\nthis company SIR'",
+          "Secretary: 'Get out or I call\n\nthe security'",
+          "Secretary: 'Who are you?'",
+          "Secretary: 'This part of the building\n\nis for company members only!'",
+          "Secretary: 'Maaaaaaayyyy I help you?'"
         ];
         this.addMessageBox(game, messages[Math.floor(Math.random() * messages.length)], () => {});
       }

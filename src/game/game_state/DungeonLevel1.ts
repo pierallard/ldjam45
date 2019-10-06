@@ -37,7 +37,7 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
         this.player.stopPlayer();
         game.time.events.add(0.5 * Phaser.Timer.SECOND, () => {
           this.player.stopPlayer();
-          this.addMessageBox(game, 'Use arrow keys to move', () => {
+          this.addMessageBox(game, '*Use arrow keys to move*', () => {
           });
         });
       });
@@ -68,7 +68,7 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
       if (this.showDoorMessage && this.tilemap.getActivable(this.player.getPosition()) instanceof Door) {
         this.player.stopPlayer();
         this.showDoorMessage = false;
-        this.addMessageBox(game, "Use ENTER key to interact with objects", () => {
+        this.addMessageBox(game, "*Use ENTER key to interact with objects*", () => {
         });
       }
     }
