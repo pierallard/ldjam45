@@ -17,7 +17,14 @@ const createDLCItem = (dlc: DLC, onBuy: (dlc: DLC) => void) => {
   title.onclick = () => onBuy(dlc);
 
   const image = getClass('dlcImage', dlcItem) as HTMLImageElement;
-  image.src = 'https://via.placeholder.com/250x150';
+
+  if (dlc.image == 'business_man.png') {
+    image.src = 'https://via.placeholder.com/250x150';
+  } else {
+    image.src = '/src/assets/images/'+dlc.image;
+  }
+
+
 
   if (dlc.isAcheted) {
     const price = getClass('dlcPrice', dlcItem);

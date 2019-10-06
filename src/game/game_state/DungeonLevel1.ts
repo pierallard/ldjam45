@@ -16,7 +16,7 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
     this.showDoorMessage = true;
     this.showBeginningMessage = true;
     this.paypalAlreadyMontred = false;
-    this.showDLCButton = false;
+    this.showDLCButton = true;
   }
 
   getLevelName(): string {
