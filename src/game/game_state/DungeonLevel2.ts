@@ -17,6 +17,10 @@ export default class DungeonLevel2 extends AbstractDungeonLevel {
   public create(game: Phaser.Game) {
     super.create(game);
     this.displayDLCButton();
+
+    this.addMessageBox(game, "YOU: 'Hehehe... The DLC generator machine \n\nshould be in this building.'", () => {
+      this.player.stopPlayer();
+    });
   }
 
   public update(game: Phaser.Game):boolean {
@@ -24,7 +28,7 @@ export default class DungeonLevel2 extends AbstractDungeonLevel {
       if (this.hasAchetedDlc(DLC_BUSINESSPACK)) {
         if (!this.helloDisplayed) {
           this.player.stopPlayer();
-          this.addMessageBox(game, 'Bienvenue cher camarade', () => {
+          this.addMessageBox(game, 'Oh, welcome comrade!', () => {
           });
         }
         this.helloDisplayed = true;
@@ -32,11 +36,11 @@ export default class DungeonLevel2 extends AbstractDungeonLevel {
         this.player.stopPlayer();
         this.player.sprite.position.x = 215;
         const messages = [
-          "Monsieur VOUS NE FAITES PAS\n\nPARTIE de l'ENTREPRISE MONSIEUR",
-          "SORTEZ OU J'APPELLE LA SECURITE",
-          "Qui etes vous ?",
-          "Cette partie est reservee aux \n\n'membres' du personnel!",
-          "Je peux vous renseigneeeeer?"
+          "Sir you do not belong to this company SIR",
+          "Get out or I call the security",
+          "Who are you?",
+          "This part of the building is for\n\ncompany members only!",
+          "Maaaaaaayyyy I help you?"
         ];
         this.addMessageBox(game, messages[Math.floor(Math.random() * messages.length)], () => {});
       }
