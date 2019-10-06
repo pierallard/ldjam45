@@ -26,6 +26,8 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   private dlcActivator: DLCactivator;
   private exclamationPoint: Phaser.Image;
 
+  public LEVEL_NUMBER = null;
+
   constructor() {
     super();
     this.player = new DungeonPlayer(this.getStartPosition());
@@ -57,9 +59,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
       this.dlcActivator.onActivation(game, dlc);
     });
 
-    this.cursor = new Cursor(game);
-    this.cursor.z = 10000;
-    this.game.add.existing(this.cursor);
+
     this.blackScreen = this.game.add.graphics(0, 0);
     this.blackScreen.beginFill(0x000000);
     this.blackScreen.drawRect(0, 0, 2000,2000);
@@ -70,6 +70,11 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     if (this.hasAchetedDlc('Multi-player Mode')) {
       game.add.sprite(20, game.height - 16, 'multiplayer-btn');
     }
+
+    this.cursor = new Cursor(game);
+    this.cursor.z = 10000;
+    this.game.add.existing(this.cursor);
+
   }
 
   public update(game: Phaser.Game) {
@@ -136,23 +141,12 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     // this.game.debug.body(this.player.sprite);
   }
 
-  public goToLevel2(game: Phaser.Game) {
+  public goToNextLevel(game: Phaser.Game) {
     const timingBlind = 1.5 * Phaser.Timer.SECOND;
     this.blackScreen.visible = true;
     game.add.tween(this.blackScreen).to({alpha: 1}, timingBlind, Phaser.Easing.Default, true);
     game.time.events.add(timingBlind, () => {
-      game.state.start('DungeonLevel2');
-      this.blackScreen.visible = false;
-      this.blackScreen.alpha = 0;
-    });
-  }
-
-  public goToLevel3(game: Phaser.Game) {
-    const timingBlind = 1.5 * Phaser.Timer.SECOND;
-    this.blackScreen.visible = true;
-    game.add.tween(this.blackScreen).to({alpha: 1}, timingBlind, Phaser.Easing.Default, true);
-    game.time.events.add(timingBlind, () => {
-      game.state.start('DungeonLevel3');
+      game.state.start(`DungeonLevel${this.LEVEL_NUMBER + 1}`);
       this.blackScreen.visible = false;
       this.blackScreen.alpha = 0;
     });

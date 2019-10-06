@@ -21,7 +21,7 @@ export class Door implements Activable {
 
   doAction(game: Phaser.Game) {
     if (this.crochetage >= 100) {
-      this.level.goToLevel2(game);
+      this.level.goToNextLevel(game);
       return;
     }
     if (this.level.hasAchetedDlc(DLC_CROCHETAGE)) {

@@ -44,11 +44,11 @@ export class DungeonPlayer {
 
   public update(game: Phaser.Game) {
     this.stopPlayer();
-    const velocityDeFrite = 50;
     if (this.isForbidMove) {
       return;
     }
 
+    const velocityDeFrite = window['velocityDeFrite'] || 50;
     if (this.leftKey.isDown) {
       this.sprite.body.velocity.x = -velocityDeFrite;
     } else if (this.rightKey.isDown) {

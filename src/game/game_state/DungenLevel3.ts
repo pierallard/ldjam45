@@ -5,6 +5,7 @@ import TilemapLevel from "../TilemapLevel";
 import PlayerRoom from "./PlayerRoom";
 
 export default class DungeonLevel3 extends AbstractDungeonLevel {
+  public LEVEL_NUMBER = 3;
   constructor() {
     super();
     this.tilemap = new TilemapLevel(this, this.tilemapProperties);
