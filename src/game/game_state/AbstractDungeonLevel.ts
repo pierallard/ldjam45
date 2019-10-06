@@ -70,6 +70,9 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     if (this.hasAchetedDlc('Multi-player Mode')) {
       game.add.sprite(20, game.height - 16, 'multiplayer-btn');
     }
+    if (this.hasAchetedDlc('Business Man Skin Pack (Cosmetic)')) {
+      this.player.switchToBusinessSuits();
+    }
 
     this.cursor = new Cursor(game);
     this.cursor.z = 10000;

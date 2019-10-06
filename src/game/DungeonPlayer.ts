@@ -1,6 +1,7 @@
 import Point from "./Point";
 import {TILE_SIZE} from "../app";
 import TilemapLevel from "./TilemapLevel";
+import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
 
 export const MOVE_TIME = Phaser.Timer.SECOND * 0.3;
 
@@ -13,7 +14,6 @@ export class DungeonPlayer {
   private downKey: Phaser.Key;
   private actionKey: Phaser.Key;
   private tilemap: TilemapLevel;
-  private isBusinessMan = false;
   private isForbidMove: boolean;
 
   constructor(point: Point) {
@@ -26,7 +26,7 @@ export class DungeonPlayer {
   }
 
   public create(game: Phaser.Game, tilemap: TilemapLevel) {
-    const spriteName = this.isBusinessMan ? 'player_business_front' : 'player_front';
+    const spriteName = this.isBusinessMan(game) ? 'player_business_front' : 'player_front';
     this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, spriteName);
     this.tilemap = tilemap;
 
@@ -55,13 +55,13 @@ export class DungeonPlayer {
       this.sprite.body.velocity.x = +velocityDeFrite;
     } else if (this.upKey.isDown) {
 
-      if (this.isBusinessMan) { this.sprite.loadTexture('player_business_back'); }
+      if (this.isBusinessMan(game)) { this.sprite.loadTexture('player_business_back'); }
       else { this.sprite.loadTexture('player_back'); }
 
       this.sprite.body.velocity.y = -velocityDeFrite;
     } else if (this.downKey.isDown) {
 
-      if (this.isBusinessMan) { this.sprite.loadTexture('player_business_front'); }
+      if (this.isBusinessMan(game)) { this.sprite.loadTexture('player_business_front'); }
       else { this.sprite.loadTexture('player_front'); }
 
       this.sprite.body.velocity.y = +velocityDeFrite;
@@ -73,15 +73,19 @@ export class DungeonPlayer {
     this.setFakePosition();
   }
 
+  public isBusinessMan(game: Phaser.Game)
+  {
+    return (game.state.getCurrentState() as AbstractDungeonLevel).hasAchetedDlc('Business Man Skin Pack (Cosmetic)');
+  }
+
   public stopPlayer() {
     this.sprite.body.velocity.y = 0;
     this.sprite.body.velocity.x = 0;
     this.setFakePosition();
   }
 
-  public activateBusiness(game)
+  public switchToBusinessSuits()
   {
-    this.isBusinessMan = true;
     this.sprite.loadTexture('player_business_front');
   }
 

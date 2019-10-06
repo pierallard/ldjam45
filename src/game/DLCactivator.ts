@@ -9,7 +9,6 @@ export default class DLCactivator {
         console.log('ACTIVATED = ', dlc);
         break;
       case 'Business Man Skin Pack (Cosmetic)':
-        (game.state.getCurrentState() as AbstractDungeonLevel).player.activateBusiness(game);
         console.log('ACTIVATED = ', dlc);
         break;
       case 'Hacker DLC Pack Premium':
