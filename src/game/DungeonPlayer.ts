@@ -14,6 +14,7 @@ export class DungeonPlayer {
   private actionKey: Phaser.Key;
   private isMoving: boolean;
   private tilemap: TilemapLevel;
+  private isBusinessMan = false;
 
   constructor(point: Point) {
     this.isMoving = false;
@@ -46,10 +47,16 @@ export class DungeonPlayer {
     } else if (this.rightKey.isDown) {
       this.sprite.body.velocity.x = +velocityDeFrite;
     } else if (this.upKey.isDown) {
-      this.sprite.loadTexture('player_back');
+
+      if (this.isBusinessMan) { this.sprite.loadTexture('player_business_back'); }
+      else { this.sprite.loadTexture('player_back'); }
+
       this.sprite.body.velocity.y = -velocityDeFrite;
     } else if (this.downKey.isDown) {
-      this.sprite.loadTexture('player_front');
+
+      if (this.isBusinessMan) { this.sprite.loadTexture('player_business_front'); }
+      else { this.sprite.loadTexture('player_front'); }
+
       this.sprite.body.velocity.y = +velocityDeFrite;
     } else if (this.actionKey.isDown) {
       this.doAction(game);
@@ -59,11 +66,21 @@ export class DungeonPlayer {
     this.setFakePosition();
   }
 
-  public stopPlayer()
-  {
+  public stopPlayer() {
     this.sprite.body.velocity.y = 0;
     this.sprite.body.velocity.x = 0;
     this.setFakePosition();
+  }
+
+  public activateBusiness(game)
+  {
+    this.isBusinessMan = true;
+    // this.sprite.texture.destroy(true);
+    // this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, 'player_business_front');
+    this.sprite.loadTexture('player_business_front');
+    // this.sprite.y += 1;
+    // this.sprite.y -= 1;
+    // this.update(game);
   }
 
   private doAction(game: Phaser.Game) {

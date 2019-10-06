@@ -11,9 +11,10 @@ import DLCs, { isAcheted, achete } from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
 import {Door} from "../Door";
 import { DLC } from "../DLCs";
+import DLCactivator from "../DLCactivator";
 
 export abstract class AbstractDungeonLevel extends Phaser.State {
-  protected player: DungeonPlayer;
+  public player: DungeonPlayer;
   protected messageBox: MessageBox;
   protected tilemap: TilemapLevel;
   protected tilemapProperties: TilemapsProperties;
@@ -22,6 +23,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   protected cursor: Cursor;
   protected showDLCButton: boolean;
   private blackScreen: Phaser.Graphics;
+  private dlcActivator: DLCactivator;
 
   constructor() {
     super();
@@ -30,6 +32,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     this.messageBox = null;
     this.pie = null;
     this.menuDLC = new MenuDLC();
+    this.dlcActivator = new DLCactivator();
   }
 
   abstract getStartPosition(): Point;
@@ -49,6 +52,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
     this.menuDLC.create(game, this.showDLCButton, (dlc) => {
       this.getDlcCallback(game, dlc);
+      this.dlcActivator.onActivation(game, dlc);
     });
 
     this.cursor = new Cursor(game);
