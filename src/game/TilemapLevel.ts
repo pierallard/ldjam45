@@ -10,16 +10,16 @@ export default class TilemapLevel {
     this.tilemapProperties = tilemapProperties;
   }
 
-  private map: Phaser.Tilemap;
+  public map: Phaser.Tilemap;
   private activableObjects: Activable[];
   private level: AbstractDungeonLevel;
   private walls;
   private items;
   private tilemapProperties: TilemapsProperties;
 
-  public create(game: Phaser.Game) {
+  public create(game: Phaser.Game, name: string) {
     this.activableObjects = [];
-    this.map = game.add.tilemap('prison', 16, 16);
+    this.map = game.add.tilemap(name, 16, 16);
     this.map.addTilesetImage("dungeon_sheet", "tiles");
     this.map.setCollision(
       [

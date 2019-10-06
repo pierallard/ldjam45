@@ -19,6 +19,10 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
     this.paypalAlreadyMontred = false;
   }
 
+  getLevelName(): string {
+    return 'level1';
+  }
+
   public getStartPosition(): Point {
     return new Point(1, 2);
   }
