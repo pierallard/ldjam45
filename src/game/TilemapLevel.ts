@@ -3,6 +3,7 @@ import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
 import TilemapsProperties from "./TilemapsProperties";
 import Point from "./Point";
 import {Door} from "./Door";
+import {Secretary} from "./Secretary";
 
 export default class TilemapLevel {
   constructor(level: AbstractDungeonLevel, tilemapProperties: TilemapsProperties) {
@@ -10,36 +11,40 @@ export default class TilemapLevel {
     this.tilemapProperties = tilemapProperties;
   }
 
-  private map: Phaser.Tilemap;
+  public map: Phaser.Tilemap;
   private activableObjects: Activable[];
   private level: AbstractDungeonLevel;
-  private walls;
-  private items;
+  public walls;
+  public items;
+  public floor;
   private tilemapProperties: TilemapsProperties;
 
-  public create(game: Phaser.Game) {
+  public create(game: Phaser.Game, name: string) {
     this.activableObjects = [];
-    this.map = game.add.tilemap('prison', 16, 16);
+    this.map = game.add.tilemap(name, 16, 16);
     this.map.addTilesetImage("dungeon_sheet", "tiles");
-    this.map.setCollision(
-      [
-        1, 2, 3, 4, 5, 6, 7, 8
-      ]
-    );
+
     this.map.enableDebug = true;
-    const floor = this.map.createLayer("floor");
+    this.floor = this.map.createLayer("floor");
     this.walls = this.map.createLayer("walls");
     this.items = this.map.createLayer("items");
 
-    //this.items.debug = true;
-    //this.walls.debug = true;
+    this.map.setCollisionBetween(1, 1000, true, this.walls);
+    this.map.setCollision(
+        [
+          181, 182, 183 // la caisse
+        ], true, this.items
+    );
+    console.log(this.map);
+    
+    this.items.debug = true;
+    this.walls.debug = true;
+
     this.walls.resizeWorld();
     this.items.resizeWorld();
-
+    this.floor.resizeWorld();
 
     this.populateActivables();
-
-    // layer.resizeWorld();
   }
 
   public canGoTo(position: Point) {
@@ -90,14 +95,23 @@ export default class TilemapLevel {
         if (!tile) { continue; }
 
         const properties = this.tilemapProperties.getTileProperties(tile);
+        console.log(this.map);
 
         if (properties === undefined || properties.name === undefined) {
           continue;
         }
+        console.log(properties);
 
         switch (properties.name) {
           case "door": {
             this.activableObjects.push(new Door(this.level, new Point(tile.x, tile.y)));
+          }
+          case "pnj": {
+            switch (properties.value) {
+              case "secretary": {
+                this.activableObjects.push(new Secretary(this.level, new Point(tile.x, tile.y)));
+              }
+            }
           }
         }
       }

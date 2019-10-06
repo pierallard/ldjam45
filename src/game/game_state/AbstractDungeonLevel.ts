@@ -8,6 +8,7 @@ import {Pie} from "../Pie";
 import {Cursor} from "./Cursor";
 import {SCALE} from "../../app";
 import {DLCItem} from "../DLCList";
+import PlayerRoom from "./PlayerRoom";
 
 export abstract class AbstractDungeonLevel extends Phaser.State {
   protected player: DungeonPlayer;
@@ -17,6 +18,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   protected menuDLC: MenuDLC;
   protected pie: Pie;
   protected cursor: Cursor;
+  private blackScreen: Phaser.Graphics;
 
   constructor() {
     super();
@@ -29,6 +31,8 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
   abstract getStartPosition(): Point;
 
+  abstract getLevelName(): string;
+
   public create(game: Phaser.Game) {
     this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
     this.game.scale.setUserScale(SCALE, SCALE);
@@ -36,7 +40,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     this.game.renderer.renderSession.roundPixels = true;
     Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
 
-    this.tilemap.create(game);
+    this.tilemap.create(game, this.getLevelName());
 
     this.player.create(game, this.tilemap);
 
@@ -46,6 +50,11 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
     this.cursor = new Cursor(game);
     this.game.add.existing(this.cursor);
+    this.blackScreen = this.game.add.graphics(0, 0);
+    this.blackScreen.beginFill(0x000000);
+    this.blackScreen.drawRect(0, 0, 2000,2000);
+    this.blackScreen.alpha = 0;
+    this.blackScreen.visible = false;
   }
 
 
@@ -63,6 +72,11 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
       }
       return false;
     }
+
+
+    this.game.physics.arcade.collide(this.player.sprite, this.tilemap.walls);
+    this.game.physics.arcade.collide(this.player.sprite, this.tilemap.items);
+
     this.player.update(game);
 
     return true;
@@ -91,6 +105,27 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   public render()
   {
     this.game.debug.body(this.player.sprite);
+  }
+
+  public goToLevel2(game: Phaser.Game) {
+    const timingBlind = 1.5 * Phaser.Timer.SECOND;
+    this.blackScreen.visible = true;
+    game.add.tween(this.blackScreen).to({alpha: 1}, timingBlind, Phaser.Easing.Default, true);
+    game.time.events.add(timingBlind, () => {
+      game.state.start('DungeonLevel2');
+      this.blackScreen.visible = false;
+      this.blackScreen.alpha = 0;
+    });
+  }
+
+  public defaultDlcCallback(game: Phaser.Game, dlcItem: DLCItem) {
+    game.state.start('PlayerRoom');
+    this.cursor.setEnabled(true);
+
+    const playerRoom = game.state.states['PlayerRoom'];
+    (<PlayerRoom>playerRoom).setdlcItem(dlcItem);
+    (<PlayerRoom>playerRoom).setCurrentLevelName(this.getLevelName());
+    dlcItem.achete();
   }
 }
 

@@ -24,6 +24,7 @@ export default class PlayerRoom extends Phaser.State {
   private walletGUI: WalletGUI;
   public dlcItem: DLCItem;
   private cursor: Cursor;
+  private levelName: string;
 
   constructor() {
     super();
@@ -106,10 +107,16 @@ export default class PlayerRoom extends Phaser.State {
 
   public setdlcItem(dlcItem: DLCItem) {
     this.dlcItem = dlcItem;
+    console.log(dlcItem);
+  }
+
+  public setCurrentLevelName(str: string) {
+    this.levelName = str;
+    console.log('Set current level name to ' + str);
   }
 
   public backToTheGame()
   {
-    this.game.state.start('DungeonLevel1');
+    this.game.state.start('DungeonL' + this.levelName.substr(1));
   }
 }

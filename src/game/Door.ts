@@ -1,6 +1,5 @@
 import Point from "./Point";
 import {Activable} from "./Activable";
-import DungeonLevel1 from "./game_state/DungeonLevel1";
 import {DEBUG, TILE_SIZE} from "../app";
 import {DLC_CROCHETAGE} from "./MenuDLC";
 import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
@@ -16,17 +15,15 @@ export class Door implements Activable {
     this.crochetage = 0;
   }
 
-  create(game: Phaser.Game) {
-  }
-
   getPosition(): Point {
     return this.position;
   }
 
-  update(game: Phaser.Game) {
-  }
-
   doAction(game: Phaser.Game) {
+    if (this.crochetage >= 100) {
+      this.level.goToLevel2(game);
+      return;
+    }
     if (this.level.hasAchetedDlc(DLC_CROCHETAGE)) {
       this.crochetage = 100;
     } else {

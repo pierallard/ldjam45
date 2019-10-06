@@ -27,7 +27,7 @@ export class DungeonPlayer {
     this.sprite.anchor.setTo(.5,.5);
     game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     this.sprite.body.collideWorldBounds = true;
-    this.sprite.body.setCircle(8, 0, 0);
+    this.sprite.body.setCircle(3, 5, 12);
 
     this.leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     this.rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);

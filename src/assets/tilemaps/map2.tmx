@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" source="../tilesets/dungeon_sheet.tsx"/>
- <layer id="5" name="floor" width="10" height="10">
+ <layer id="5" name="floor" width="10" height="10" visible="0" locked="1">
   <data>
    <tile/>
    <tile/>
@@ -158,7 +158,7 @@
    <tile/>
    <tile gid="56"/>
    <tile gid="54"/>
-   <tile gid="189"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile gid="103"/>
@@ -209,7 +209,7 @@
    <tile gid="80"/>
   </data>
  </layer>
- <layer id="7" name="items" width="10" height="10" locked="1">
+ <layer id="7" name="items" width="10" height="10">
   <data>
    <tile/>
    <tile/>
@@ -262,7 +262,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="189"/>
    <tile/>
    <tile/>
    <tile/>

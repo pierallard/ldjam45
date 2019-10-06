@@ -30,7 +30,7 @@ const dlcs: DLC[] = [
     price: 3.99,
     isAcheted: false,
     isSelected: false
-  }
+  },
 ];
 
 export default dlcs;

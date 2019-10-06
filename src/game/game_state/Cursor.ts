@@ -18,7 +18,7 @@ export class Cursor extends Phaser.Sprite {
     }
   }
 
-  enablez(b: boolean) {
+  setEnabled(b: boolean) {
     this.enable = b;
   }
 }

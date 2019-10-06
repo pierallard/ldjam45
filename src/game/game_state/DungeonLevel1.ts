@@ -19,6 +19,10 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
     this.paypalAlreadyMontred = false;
   }
 
+  getLevelName(): string {
+    return 'level1';
+  }
+
   public getStartPosition(): Point {
     return new Point(1, 2);
   }
@@ -46,26 +50,16 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
     if (!this.paypalAlreadyMontred) {
       this.paypalAlreadyMontred = true;
       this.paypal.visible = true;
-      this.cursor.enablez(false);
+      this.cursor.setEnabled(false);
       game.add.tween(this.cursor).to({
         x: 156,
         y: 101
       }, 2 * Phaser.Timer.SECOND, Phaser.Easing.Default, true);
       game.time.events.add(2 * Phaser.Timer.SECOND, () => {
-        game.state.start('PlayerRoom');
-        this.cursor.enablez(true);
-
-        const playerRoom = game.state.states['PlayerRoom'];
-        (<PlayerRoom>playerRoom).setdlcItem(dlcItem);
-        dlcItem.achete();
+        this.defaultDlcCallback(game, dlcItem);
       });
     } else {
-      game.state.start('PlayerRoom');
-      this.cursor.enablez(true);
-
-      const playerRoom = game.state.states['PlayerRoom'];
-      (<PlayerRoom>playerRoom).setdlcItem(dlcItem);
-      dlcItem.achete();
+      this.defaultDlcCallback(game, dlcItem);
     }
   }
 
