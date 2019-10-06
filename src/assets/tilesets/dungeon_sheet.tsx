@@ -16,4 +16,9 @@
    <property name="is_chest" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="188">
+  <properties>
+   <property name="pnj" value="secretary"/>
+  </properties>
+ </tile>
 </tileset>

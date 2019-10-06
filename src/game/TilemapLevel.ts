@@ -3,6 +3,7 @@ import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
 import TilemapsProperties from "./TilemapsProperties";
 import Point from "./Point";
 import {Door} from "./Door";
+import {Secretary} from "./Secretary";
 
 export default class TilemapLevel {
   constructor(level: AbstractDungeonLevel, tilemapProperties: TilemapsProperties) {
@@ -94,14 +95,23 @@ export default class TilemapLevel {
         if (!tile) { continue; }
 
         const properties = this.tilemapProperties.getTileProperties(tile);
+        console.log(this.map);
 
         if (properties === undefined || properties.name === undefined) {
           continue;
         }
+        console.log(properties);
 
         switch (properties.name) {
           case "door": {
             this.activableObjects.push(new Door(this.level, new Point(tile.x, tile.y)));
+          }
+          case "pnj": {
+            switch (properties.value) {
+              case "secretary": {
+                this.activableObjects.push(new Secretary(this.level, new Point(tile.x, tile.y)));
+              }
+            }
           }
         }
       }
