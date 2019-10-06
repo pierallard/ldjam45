@@ -51,7 +51,8 @@ export default class PlayerRoom extends Phaser.State {
 
     this.drawItems(game);
     this.walletGUI.create(game);
-    //game.add.image(0, 0, 'playerroombackground');
+    game.add.image(1060, 196, 'laptop');
+    //
     /*this.game.add.button(250, 50, 'button', () => {
       game.state.start('DungeonLevel1');
     }, this, 2, 1, 0);*/
@@ -118,6 +119,7 @@ export default class PlayerRoom extends Phaser.State {
 
   public setdlcItem(dlc: DLC) {
     this.dlc = dlc;
+    this.walletGUI.setDLC(dlc);
   }
 
   public setCurrentLevelName(str: string) {
