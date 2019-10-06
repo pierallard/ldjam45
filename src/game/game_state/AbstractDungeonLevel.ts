@@ -65,7 +65,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
     game.add.sprite(0, game.height - 18, 'hud-background');
 
-    if (this.player.multiActived) {
+    if (this.hasAchetedDlc('Multi-player Mode')) {
       game.add.sprite(20, game.height - 16, 'multiplayer-btn');
     }
   }

@@ -16,7 +16,6 @@ export default class DLCactivator {
         console.log('ACTIVATED = ', dlc);
         break;
       case 'Multi-player Mode':
-        (game.state.getCurrentState() as AbstractDungeonLevel).player.activateMultiplayer();
         console.log('ACTIVATED = ', dlc);
         break;
     }

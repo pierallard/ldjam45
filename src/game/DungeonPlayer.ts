@@ -14,7 +14,6 @@ export class DungeonPlayer {
   private actionKey: Phaser.Key;
   private tilemap: TilemapLevel;
   private isBusinessMan = false;
-  public multiActived: boolean = false;
   private isForbidMove: boolean;
 
   constructor(point: Point) {
@@ -84,11 +83,6 @@ export class DungeonPlayer {
   {
     this.isBusinessMan = true;
     this.sprite.loadTexture('player_business_front');
-  }
-
-  public activateMultiplayer()
-  {
-    this.multiActived = true;
   }
 
   private doAction(game: Phaser.Game) {
