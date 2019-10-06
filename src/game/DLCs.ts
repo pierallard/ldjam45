@@ -8,6 +8,7 @@ export interface DLC {
 }
 
 export const DLC_BUSINESSPACK = 'Business Man Skin Pack (Cosmetic)';
+export const DLC_TRANSHUMANISM = 'Transhumanism, become an augmented human!';
 export const DLC_FLASHLIGHT = 'NEW! Flashlight Item - Light Pack Platinium';
 
 const dlcs: DLC[] = [
@@ -62,11 +63,11 @@ const dlcs: DLC[] = [
     isSelected: false,
   },
   {
-    name: 'Transhumanism, become an augmented human!',
+    name: DLC_TRANSHUMANISM,
     description: `Want to better know your physical functions to perform in any condition?
       With this new DLC, monitor your body and get access to new capabilities.`.split("\n"),
     image: 'dlc-vessie.jpg',
-    price: 3.99,
+    price: 6.99,
     isAcheted: false,
     isSelected: false,
   }
