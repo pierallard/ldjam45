@@ -48,7 +48,7 @@ export default class TilemapLevel {
     this.items.resizeWorld();
     this.floor.resizeWorld();
 
-    this.populateActivables();
+    this.populateActivables(game);
   }
 
   public canGoTo(position: Point) {
@@ -92,7 +92,7 @@ export default class TilemapLevel {
     return null;
   }
 
-  private populateActivables() {
+  private populateActivables(game: Phaser.Game) {
     for (let x = 0; x < this.map.width; x++) {
       for (let y = 0; y < this.map.height; y++) {
         const tile = this.map.getTile(x, y, "items");
@@ -107,7 +107,9 @@ export default class TilemapLevel {
 
         switch (properties.name) {
           case "door": {
-            this.activableObjects.push(new Door(this.level, new Point(tile.x, tile.y)));
+            const door = new Door(this.level, new Point(tile.x, tile.y));
+            door.create(game);
+            this.activableObjects.push(door);
             break;
           }
           case "freedoor": {

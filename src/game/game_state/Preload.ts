@@ -60,6 +60,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('vigil', 'src/assets/images/vigil_front.png');
 
     this.game.load.image('main', 'src/assets/tilesets/interior.png');
+    this.game.load.spritesheet('main_spritesheet', 'src/assets/tilesets/interior.png', 16, 16);
     this.game.load.tilemap('level1', 'src/assets/tilemaps/map1.json', null, Phaser.Tilemap.TILED_JSON);
     this.game.load.tilemap('level2', 'src/assets/tilemaps/map2.json', null, Phaser.Tilemap.TILED_JSON);
     this.game.load.tilemap('level3', 'src/assets/tilemaps/map3.json', null, Phaser.Tilemap.TILED_JSON);
