@@ -170,3 +170,18 @@
   font-size: 13px;
   margin-top: 15px;
 }
+
+#dlcClose {
+  position: absolute;
+  right: 40px;
+  background: rgba(0, 0, 0, 0.69);
+  border: 0;
+  padding: 10px 20px;
+  color: #eee;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#dlcClose:hover {
+  background: #000;
+}

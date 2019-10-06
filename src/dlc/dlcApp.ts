@@ -72,6 +72,10 @@ const closeDLCMenu = () => {
   getId('dlcList').innerHTML = '';
 };
 
+const close = getId('dlcClose');
+close.onclick = () => {
+  closeDLCMenu();
+};
 
 window['openDLCMenu'] = openDLCMenu;
 window['closeDLCMenu'] = closeDLCMenu;
