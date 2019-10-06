@@ -1,8 +1,11 @@
 module.exports = {
-    entry: './src/app.ts',
+    entry: {
+      dlc: './src/dlc/dlcApp.ts',
+      bundle: './src/app.ts',
+    },
     mode: 'development',
     output: {
-        filename: 'build/bundle.js'
+        filename: 'build/[name].js'
     },
     resolve: {
         extensions: ['.webpack.js', '.web.js', '.ts', '.js']

@@ -1,7 +1,7 @@
 import {Door} from "../Door";
 import Point from "../Point";
 import TilemapLevel from "../TilemapLevel";
-import {DLCItem} from "../DLCList";
+import {DLC} from "../DLCList";
 import PlayerRoom from "./PlayerRoom";
 import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
 
@@ -17,6 +17,7 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
     this.showDoorMessage = true;
     this.showBeginningMessage = true;
     this.paypalAlreadyMontred = false;
+    this.showDLCButton = false;
   }
 
   getLevelName(): string {
@@ -46,7 +47,8 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
     this.paypal.visible = false;
   }
 
-  public getDlcCallback(game: Phaser.Game, dlcItem: DLCItem) {
+  public getDlcCallback(game: Phaser.Game, dlc: DLC) {
+    debugger;
     if (!this.paypalAlreadyMontred) {
       this.paypalAlreadyMontred = true;
       this.paypal.visible = true;
@@ -56,10 +58,10 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
         y: 101
       }, 2 * Phaser.Timer.SECOND, Phaser.Easing.Default, true);
       game.time.events.add(2 * Phaser.Timer.SECOND, () => {
-        this.defaultDlcCallback(game, dlcItem);
+        this.defaultDlcCallback(game, dlc);
       });
     } else {
-      this.defaultDlcCallback(game, dlcItem);
+      this.defaultDlcCallback(game, dlc);
     }
   }
 

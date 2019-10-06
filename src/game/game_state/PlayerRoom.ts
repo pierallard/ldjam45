@@ -9,7 +9,7 @@ import Playboy from "./Items/Playboy";
 import ItemsToSell from "./Items/ItemsToSell";
 import BritneyPoster from "./Items/BritneyPoster";
 import Bed from "./Items/Bed";
-import {DLCItem} from "../DLCList";
+import {DLC} from "../DLCList";
 import GameBoy from "./Items/GameBoy";
 import PokemonCard from "./Items/PokemonCard";
 import {Cursor} from "./Cursor";
@@ -23,7 +23,7 @@ export default class PlayerRoom extends Phaser.State {
   private sprite: Phaser.Sprite;
   private wallet: Wallet;
   private walletGUI: WalletGUI;
-  public dlcItem: DLCItem;
+  public dlc: DLC;
   private cursor: Cursor;
   private levelName: string;
 
@@ -103,9 +103,8 @@ export default class PlayerRoom extends Phaser.State {
     this.cursor.update2(game);
   }
 
-  public setdlcItem(dlcItem: DLCItem) {
-    this.dlcItem = dlcItem;
-    console.log(dlcItem);
+  public setdlcItem(dlc: DLC) {
+    this.dlc = dlc;
   }
 
   public setCurrentLevelName(str: string) {

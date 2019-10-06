@@ -17,6 +17,35 @@
         <div class="app">
             <div id="gameDiv"></div>
         </div>
+        <div id="DLCMenu">
+          <div id="container">
+            <div id="header">
+              <h1>Downloadable Content for DLC Game</h1>
+            </div>
+            <div id="dlcContainer">
+              <div id="dlcList"></div>
+            </div>
+          </div>
+        </div>
+        <div id="dlcItemTemplate" style="display: none;">
+          <div class="dlcImageContainer">
+            <div class="dlcBandeau"></div>
+            <div class="dlcBandeauText">DLC</div>
+            <img class="dlcImage" src="" alt="">
+          </div>
+          <div class="dlcContent">
+            <h3 class="dlcTitle"></h3>
+            <label class="dlcDate"></label>
+            <p class="dlcDescription"></p>
+            <div class="dlcBuyContainer">
+              <div class="dlcPrice"></div>
+              <button class="dlcBuyButton">Buy</button>
+            </div>
+          </div>
+        </div>
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="dist/assets/dlc/dlcApp.css">
+        <script type="text/javascript" src="build/dlc.js"></script>
         <script type="text/javascript" src="dist/lib/phaser.min.js"></script>
         <script type="text/javascript" src="build/bundle.js"></script>
     </body>

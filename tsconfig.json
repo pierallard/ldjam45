@@ -9,10 +9,18 @@
     "sourceMap": true,
     "resolveJsonModule": true
   },
+  "lib": [
+    "dom",
+    "dom.iterable",
+    "es2017",
+    "es2015",
+    "esnext.asynciterable",
+    "scripthost"
+  ],
   "exclude": [
     "node_modules",
     "lib",
     "dist",
-    "src/assets/tilesets",
+    "src/assets/tilesets"
   ]
 }

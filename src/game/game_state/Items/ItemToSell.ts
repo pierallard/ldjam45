@@ -25,7 +25,7 @@ export abstract class ItemToSell {
         this.wallet.add(this.price);
         this.sold = true;
         this.sprite.destroy();
-        if (this.wallet.total() >= this.playerRoom.dlcItem.dlc.price){
+        if (this.wallet.total() >= this.playerRoom.dlc.price){
             this.playerRoom.backToTheGame();
         }
     }
