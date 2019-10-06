@@ -40,7 +40,7 @@ export class DungeonPlayer {
 
   public update(game: Phaser.Game) {
     this.stopPlayer();
-    const velocityDeFrite = 300;
+    const velocityDeFrite = 50;
     if (this.isMoving) {
       // c'est une animation, ne fais rien Michel.
     } else if (this.leftKey.isDown) {
