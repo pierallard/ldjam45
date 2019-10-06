@@ -27,7 +27,7 @@ export class MessageBox {
   update(game: Phaser.Game): boolean {
     if (this.shouldRenderText) {
       this.shouldRenderText = false;
-      game.time.events.add(0.07 * Phaser.Timer.SECOND, () => {
+      game.time.events.add(0.03 * Phaser.Timer.SECOND, () => {
         const length = this.bitmapText.text.length;
         this.bitmapText.text = this.message.substr(0, length + 1);
         this.shouldRenderText = true;

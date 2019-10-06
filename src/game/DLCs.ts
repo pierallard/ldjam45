@@ -7,6 +7,8 @@ export interface DLC {
   isSelected: boolean;
 }
 
+export const DLC_BUSINESSPACK = 'Business Man Skin Pack (Cosmetic)';
+
 const dlcs: DLC[] = [
   {
     name: 'Lock Picking Capabilities',
@@ -29,7 +31,7 @@ const dlcs: DLC[] = [
     isSelected: false,
   },
   {
-    name: 'Business Man Skin Pack (Cosmetic)',
+    name: DLC_BUSINESSPACK,
     description: `Unlock a new skin of Business man
       by buying this content! Your ennemies won't
       be able to recognize you! BUY NOW.`.split("\n"),
