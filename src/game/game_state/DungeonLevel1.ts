@@ -32,13 +32,8 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
 
     if (this.showBeginningMessage) {
       this.showBeginningMessage = false;
-      this.addMessageBox(game, "YOU: 'Ahhh.. Lubrisoft. I must enter and \n\ndestroy their DLC generator!'", () => {
+      this.addMessageBox(game, "YOU: 'Ahhh.. Lubrisoft. I must enter and \n\ndestroy their DLC generator!\n\n*Use arrow keys to move*'", () => {
         this.player.stopPlayer();
-        game.time.events.add(0.5 * Phaser.Timer.SECOND, () => {
-          this.player.stopPlayer();
-          this.addMessageBox(game, '*Use arrow keys to move*', () => {
-          });
-        });
       });
     }
 

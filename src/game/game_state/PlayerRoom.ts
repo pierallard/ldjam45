@@ -66,37 +66,37 @@ export default class PlayerRoom extends Phaser.State {
     const tshirt = new Tshirt(this.wallet, this, 35, 70);
     this.itemsToSell.add(tshirt);
 
-    const britneyPoster = new BritneyPoster(this.wallet, this, 70, 150);
+    const britneyPoster = new BritneyPoster(this.wallet, this, 840, 15);
     this.itemsToSell.add(britneyPoster);
 
-    const playboy = new Playboy(this.wallet, this, 1, 70);
+    const playboy = new Playboy(this.wallet, this, 109, 621);
     this.itemsToSell.add(playboy);
 
     const office = new Office(this.wallet, this, 1, 1);
     this.itemsToSell.add(office);
 
-    const basket = new Basket(this.wallet, this, 70, 1);
+    const basket = new Basket(this.wallet, this, 731, 624);
     this.itemsToSell.add(basket);
 
-    const lampLava = new Lamp(this.wallet, this, 1,120);
+    const lampLava = new Lamp(this.wallet, this, 701,139);
     this.itemsToSell.add(lampLava);
 
-    const chair = new Chair(this.wallet, this, 70, 90);
+    const chair = new Chair(this.wallet, this, 820, 188);
     this.itemsToSell.add(chair);
 
-    const bed = new Bed(this.wallet, this, 1, 300);
+    const bed = new Bed(this.wallet, this, 363 , 169);
     this.itemsToSell.add(bed);
 
     const gameBoy = new GameBoy(this.wallet, this, 130, 70);
     this.itemsToSell.add(gameBoy);
 
-    const pokemonCard = new PokemonCard(this.wallet, this, 130, 100);
+    const pokemonCard = new PokemonCard(this.wallet, this, 1, 116);
     this.itemsToSell.add(pokemonCard);
 
     const marioFigurine = new MarioFigurine(this.wallet, this, 130, 300);
     this.itemsToSell.add(marioFigurine);
 
-    const underpants = new Underpants(this.wallet, this, 180, 180);
+    const underpants = new Underpants(this.wallet, this, 720, 330);
     this.itemsToSell.add(underpants);
   }
 

@@ -7,7 +7,6 @@ export default class Playboy extends ItemToSell{
         this.price = 3;
         if (!this.sold) {
             this.sprite = game.add.sprite(this.x, this.y, 'playboy_magazine');
-            this.sprite.scale.setTo(0.05, 0.05);
             this.sprite.inputEnabled = true;
             this.sprite.events.onInputDown.add(this.sell, this);
         }
