@@ -57,6 +57,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     });
 
     this.cursor = new Cursor(game);
+    this.cursor.z = 10000; 
     this.game.add.existing(this.cursor);
     this.blackScreen = this.game.add.graphics(0, 0);
     this.blackScreen.beginFill(0x000000);
