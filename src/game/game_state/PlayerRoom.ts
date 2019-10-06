@@ -21,12 +21,12 @@ import Underpants from "./Items/Underpants";
 
 export default class PlayerRoom extends Phaser.State {
   private itemsToSell: ItemsToSell;
-  private sprite: Phaser.Sprite;
   private wallet: Wallet;
   private walletGUI: WalletGUI;
   public dlc: DLC;
   private cursor: Cursor;
   private levelName: string;
+  private background: Phaser.Image;
 
   constructor() {
     super();
@@ -43,6 +43,8 @@ export default class PlayerRoom extends Phaser.State {
     this.game.height = GAME_HEIGHT;
     this.game.renderer.resize(1200, 900);
 
+    this.background = game.add.image(0, 0, 'backgroundplayerroom');
+
     this.drawItems(game);
     this.walletGUI.create(game);
     //game.add.image(0, 0, 'playerroombackground');
@@ -50,10 +52,7 @@ export default class PlayerRoom extends Phaser.State {
       game.state.start('DungeonLevel1');
     }, this, 2, 1, 0);
 
-    this.sprite = game.add.sprite(50, 50, 'player_front');
-
-    this.cursor = new Cursor(game);
-    this.cursor.scale.set(4,4);
+    this.cursor = new Cursor(game, true);
     this.game.add.existing(this.cursor);
   }
 

@@ -1,13 +1,12 @@
 export class Cursor extends Phaser.Sprite {
   private enable: boolean;
 
-  constructor(game: Phaser.Game) {
-    super(game, 0, 0, 'cursor');
+  constructor(game: Phaser.Game, isDefault: boolean = false) {
+    super(game, 0, 0, isDefault ? 'cursordefault' : 'cursor');
     this.enable = true;
   }
 
   create(game: Phaser.Game) {
-    game.add.sprite(game.world.centerX, game.world.centerY, 'cursor');
     this.anchor.set(0.5, 0.5);
   }
 
