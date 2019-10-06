@@ -46,6 +46,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('messagebox', 'src/assets/messagebox.png');
     this.game.load.image('backgroundplayerroom', 'src/assets/images/backgroundplayerroom.png');
     this.game.load.image('pointdesclamasion', 'src/assets/images/pointdesclamasion.png');
+    this.game.load.image('backgroundlamp', 'src/assets/images/backgroundlamp.png');
 
     this.game.load.image('dlc_thumb_1', 'src/assets/images/dlc_thumb_1.png');
 

@@ -8,6 +8,7 @@ export interface DLC {
 }
 
 export const DLC_BUSINESSPACK = 'Business Man Skin Pack (Cosmetic)';
+export const DLC_FLASHLIGHT = 'NEW! Flashlight Item - Light Pack Platinium';
 
 const dlcs: DLC[] = [
   {
@@ -21,7 +22,7 @@ const dlcs: DLC[] = [
     isSelected: false,
   },
   {
-    name: 'NEW! Flashlight Item - Light Pack Platinium',
+    name: DLC_FLASHLIGHT,
     description: `Unlock up to one brand new item...
       The flashlight! Useful for everything, especially to bring some light somewhere.
       This new content will be available in-game once bought!`.split("\n"),

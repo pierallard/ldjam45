@@ -1,10 +1,13 @@
 import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
-import {DLC} from "../DLCs";
+import {DLC, DLC_FLASHLIGHT} from "../DLCs";
 import Point from "../Point";
 import TilemapLevel from "../TilemapLevel";
-import PlayerRoom from "./PlayerRoom";
+import {DEBUG} from "../../app";
 
 export default class DungeonLevel3 extends AbstractDungeonLevel {
+  private noLampScreen: Phaser.Graphics;
+  private lampScreen: Phaser.Image;
+
   public LEVEL_NUMBER = 3;
   constructor() {
     super();
@@ -14,6 +17,24 @@ export default class DungeonLevel3 extends AbstractDungeonLevel {
   public create(game: Phaser.Game) {
     super.create(game);
     this.displayDLCButton();
+
+    this.lampScreen = game.add.image(this.player.sprite.x, this.player.sprite.y, 'backgroundlamp');
+    this.lampScreen.anchor.set(0.5, 0.5);
+
+    this.noLampScreen = game.add.graphics(0, 0);
+    this.noLampScreen.beginFill(0x000000);
+    this.noLampScreen.drawRect(0, 0, 300, 120);
+    this.noLampScreen.alpha = DEBUG ? 0.5 : 0.99;
+
+    this.updateNoLampScreen();
+  }
+
+  public update(game: Phaser.Game): boolean {
+    this.lampScreen.x = this.player.sprite.x;
+    this.lampScreen.y = this.player.sprite.y;
+
+    this.updateNoLampScreen();
+    return super.update(game);
   }
 
   getDlcCallback(game: Phaser.Game, dlc: DLC) {
@@ -26,5 +47,15 @@ export default class DungeonLevel3 extends AbstractDungeonLevel {
 
   getStartPosition(): Point {
     return new Point(7, 6);
+  }
+
+  private updateNoLampScreen() {
+    if (this.hasAchetedDlc(DLC_FLASHLIGHT)) {
+      this.noLampScreen.visible = false;
+      this.lampScreen.visible = true;
+    } else {
+      this.noLampScreen.visible = true;
+      this.lampScreen.visible = false;
+    }
   }
 }

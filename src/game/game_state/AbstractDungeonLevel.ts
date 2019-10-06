@@ -97,7 +97,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
       return false;
     }
 
-
     this.game.physics.arcade.collide(this.player.sprite, this.tilemap.walls);
     this.game.physics.arcade.collide(this.player.sprite, this.tilemap.items);
 
