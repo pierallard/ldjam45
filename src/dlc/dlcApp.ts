@@ -31,7 +31,7 @@ const createDLCItem = (dlc: DLC, index: number, onBuy: (dlc: DLC) => void) => {
 
   const image = getClass('dlcImage', dlcItem) as HTMLImageElement;
 
-  if (dlc.image == 'business_man.png') {
+  if (dlc.image == null) {
     image.src = 'https://via.placeholder.com/250x150';
   } else {
     image.src = '/src/assets/images/'+dlc.image;
