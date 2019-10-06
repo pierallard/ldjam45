@@ -1,4 +1,4 @@
-import {DLC} from "./DLCs";
+import {DLC, DLC_MULTIPLAYER} from "./DLCs";
 import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
 
 export default class DLCactivator {
@@ -14,7 +14,7 @@ export default class DLCactivator {
       case 'Hacker DLC Pack Premium':
         console.log('ACTIVATED = ', dlc);
         break;
-      case 'Multi-player Mode':
+      case DLC_MULTIPLAYER:
         console.log('ACTIVATED = ', dlc);
         break;
       case 'Transhumanism, become an augmented human!':

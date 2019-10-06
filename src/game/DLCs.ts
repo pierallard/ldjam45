@@ -12,6 +12,7 @@ export const DLC_BUSINESSPACK = 'Business Man Skin Pack (Cosmetic)';
 export const DLC_TRANSHUMANISM = 'Transhumanism, become an augmented human!';
 export const DLC_FLASHLIGHT = 'NEW! Flashlight Item - Light Pack Platinium';
 export const DLC_ANIMALS = 'Linguistic Pack: Animals (Limited Edition)';
+export const DLC_MULTIPLAYER = 'Multi-player Mode (Special offer: 50% discount)';
 export const DLC_FAST = 'Speed run: so fast, so furious!';
 
 const dlcs: DLC[] = [
@@ -71,7 +72,7 @@ const dlcs: DLC[] = [
     isSelected: false,
   },
   {
-    name: 'Multi-player Mode',
+    name: DLC_MULTIPLAYER,
     code: 'multiplayer',
     description: `Want to compete against your friends?
       With this new DLC, unlock the multi-player mode.
