@@ -1,7 +1,7 @@
 import {Door} from "../Door";
 import Point from "../Point";
 import TilemapLevel from "../TilemapLevel";
-import {DLC} from "../DLCList";
+import {DLC} from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
 import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
 

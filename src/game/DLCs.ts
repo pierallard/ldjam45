@@ -1,4 +1,11 @@
-import {DLC} from "./DLCList";
+export interface DLC {
+  name: string;
+  description: string[];
+  image: string;
+  price: number;
+  isAcheted: boolean;
+  isSelected: boolean;
+}
 
 const dlcs: DLC[] = [
   {

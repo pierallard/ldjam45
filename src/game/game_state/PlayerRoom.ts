@@ -9,7 +9,7 @@ import Playboy from "./Items/Playboy";
 import ItemsToSell from "./Items/ItemsToSell";
 import BritneyPoster from "./Items/BritneyPoster";
 import Bed from "./Items/Bed";
-import {DLC} from "../DLCList";
+import {DLC} from "../DLCs";
 import GameBoy from "./Items/GameBoy";
 import PokemonCard from "./Items/PokemonCard";
 import {Cursor} from "./Cursor";

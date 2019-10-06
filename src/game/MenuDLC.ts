@@ -1,4 +1,4 @@
-import { DLC } from "./DLCList";
+import { DLC } from "./DLCs";
 import { dlcPreview, header, slider, sliderArrow, maxDlcItemsInList } from './DLCConstants' ;
 import DLCs from './DLCs';
 

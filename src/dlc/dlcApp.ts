@@ -1,5 +1,4 @@
-import { DLC } from "../game/DLCList";
-import DLCs from "../game/DLCs";
+import DLCs, { DLC } from "../game/DLCs";
 
 const getId = (id: string) => document.querySelector('#' + id) as HTMLElement;
 const dlcTemplate = getId('dlcItemTemplate');

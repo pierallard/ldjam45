@@ -10,7 +10,7 @@ import {SCALE} from "../../app";
 import DLCs, { isAcheted, achete } from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
 import {Door} from "../Door";
-import { DLC } from "../DLCList";
+import { DLC } from "../DLCs";
 
 export abstract class AbstractDungeonLevel extends Phaser.State {
   protected player: DungeonPlayer;
@@ -96,6 +96,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
   public displayDLCButton() {
     this.menuDLC.displayButton();
+    this.showDLCButton = true;
   }
 
   public hasAchetedDlc(name): boolean {
