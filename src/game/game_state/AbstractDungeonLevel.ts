@@ -6,7 +6,7 @@ import TilemapLevel from "../TilemapLevel";
 import MenuDLC from "../MenuDLC";
 import {Pie} from "../Pie";
 import {Cursor} from "./Cursor";
-import {SCALE} from "../../app";
+import {SCALE, TILE_SIZE} from "../../app";
 import DLCs, { isAcheted, achete } from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
 import {Door} from "../Door";
@@ -24,6 +24,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   protected showDLCButton: boolean;
   private blackScreen: Phaser.Graphics;
   private dlcActivator: DLCactivator;
+  private exclamationPoint: Phaser.Image;
 
   constructor() {
     super();
@@ -47,6 +48,8 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
 
     this.tilemap.create(game, this.getLevelName());
+    this.exclamationPoint = this.game.add.image(-100, -100, 'pointdesclamasion');
+
     this.player.create(game, this.tilemap);
 
     this.menuDLC.create(game, this.showDLCButton, (dlc) => {
@@ -62,7 +65,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     this.blackScreen.drawRect(0, 0, 2000,2000);
     this.blackScreen.alpha = 0;
     this.blackScreen.visible = false;
-
     game.add.sprite(0, game.height - 18, 'hud-background');
 
     if (this.hasAchetedDlc('Multi-player Mode')) {
@@ -71,6 +73,15 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   }
 
   public update(game: Phaser.Game) {
+    const activable = this.tilemap.getActivable(this.player.getPosition());
+    if (null !== activable) {
+      this.exclamationPoint.position.x = activable.getPosition().x * TILE_SIZE;
+      this.exclamationPoint.position.y = activable.getPosition().y * TILE_SIZE;
+    } else {
+      this.exclamationPoint.position.x = -100;
+      this.exclamationPoint.position.y = -100;
+    }
+
     this.cursor.update2(game);
     if (null !== this.messageBox) {
       if (this.messageBox.update(game)) {
