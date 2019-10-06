@@ -19,17 +19,24 @@ const createDLCItem = (dlc: DLC, onBuy: (dlc: DLC) => void) => {
   const image = getClass('dlcImage', dlcItem) as HTMLImageElement;
   image.src = 'https://via.placeholder.com/250x150';
 
-  const price = getClass('dlcPrice', dlcItem);
-  price.innerText = `$ ${dlc.price} USD`;
+  if (dlc.isAcheted) {
+    const price = getClass('dlcPrice', dlcItem);
+    price.innerText = `Already acheted`;
+    const buy = getClass('dlcBuyButton', dlcItem);
+    buy.remove();
+  } else {
+    const price = getClass('dlcPrice', dlcItem);
+    price.innerText = `$ ${dlc.price} USD`;
+
+    const buy = getClass('dlcBuyButton', dlcItem);
+    buy.onclick = () => {
+      closeDLCMenu();
+      onBuy(dlc);
+    };
+  }
 
   const description = getClass('dlcDescription', dlcItem);
   description.innerText = dlc.description.join('\n');
-
-  const buy = getClass('dlcBuyButton', dlcItem);
-  buy.onclick = () => {
-    closeDLCMenu();
-    onBuy(dlc);
-  };
 
   return dlcItem;
 }
