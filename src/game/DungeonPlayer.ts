@@ -12,13 +12,17 @@ export class DungeonPlayer {
   private upKey: Phaser.Key;
   private downKey: Phaser.Key;
   private actionKey: Phaser.Key;
-  private isMoving: boolean;
   private tilemap: TilemapLevel;
   private isBusinessMan = false;
+  private isForbidMove: boolean;
 
   constructor(point: Point) {
-    this.isMoving = false;
     this.position = point;
+    this.isForbidMove = false;
+  }
+
+  public forbidMove(b: boolean) {
+    this.isForbidMove = b;
   }
 
   public create(game: Phaser.Game, tilemap: TilemapLevel) {
@@ -41,9 +45,11 @@ export class DungeonPlayer {
   public update(game: Phaser.Game) {
     this.stopPlayer();
     const velocityDeFrite = 50;
-    if (this.isMoving) {
-      // c'est une animation, ne fais rien Michel.
-    } else if (this.leftKey.isDown) {
+    if (this.isForbidMove) {
+      return;
+    }
+
+    if (this.leftKey.isDown) {
       this.sprite.body.velocity.x = -velocityDeFrite;
     } else if (this.rightKey.isDown) {
       this.sprite.body.velocity.x = +velocityDeFrite;

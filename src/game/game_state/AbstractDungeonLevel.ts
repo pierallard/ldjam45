@@ -57,7 +57,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     });
 
     this.cursor = new Cursor(game);
-    this.cursor.z = 10000; 
+    this.cursor.z = 10000;
     this.game.add.existing(this.cursor);
     this.blackScreen = this.game.add.graphics(0, 0);
     this.blackScreen.beginFill(0x000000);
@@ -95,7 +95,12 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   }
 
   public addMessageBox(game: Phaser.Game, message: string, callback) {
-    this.messageBox = new MessageBox(message, callback);
+    this.player.forbidMove(true);
+    const newCollback = () => {
+      callback();
+      this.player.forbidMove(false);
+    }
+    this.messageBox = new MessageBox(message, newCollback);
     this.messageBox.create(game);
   }
 
