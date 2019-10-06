@@ -2,9 +2,6 @@
 
 import Boot from "./game/game_state/Boot";
 import Preload from "./game/game_state/Preload";
-import Stage1 from "./game/game_state/Stage1";
-import Stage2 from "./game/game_state/Stage2";
-import Stage3 from "./game/game_state/Stage3";
 import {Credits} from "./game/game_state/Credits";
 import {Logo} from "./game/game_state/Logo";
 import DungeonLevel1 from "./game/game_state/DungeonLevel1";
@@ -35,9 +32,6 @@ class SimpleGame extends Phaser.Game {
         this.state.add('Preload', Preload);
         this.state.add('DungeonLevel1', DungeonLevel1);
         this.state.add('PlayerRoom', PlayerRoom);
-        this.state.add('Stage1', Stage1);
-        this.state.add('Stage2', Stage2);
-        this.state.add('Stage3', Stage3);
         this.state.add('Credits', Credits);
         this.state.add('Logo', Logo);
         this.state.start('Boot');
