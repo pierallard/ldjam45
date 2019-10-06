@@ -1,91 +1,83 @@
-import {DungeonPlayer} from "../DungeonPlayer";
 import {Door} from "../Door";
 import Point from "../Point";
-import {MessageBox} from "../MessageBox";
-import Prison from "../Prison";
-import MenuDLC from '../MenuDLC';
-import {Pie} from "../Pie";
+import TilemapLevel from "../TilemapLevel";
 import {DLCItem} from "../DLCList";
 import PlayerRoom from "./PlayerRoom";
-import TilemapsProperties from "../TilemapsProperties";
+import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
 
-export default class DungeonLevel1 extends Phaser.State {
-  private player: DungeonPlayer;
-  private messageBox: MessageBox;
-  private tilemap: Prison;
-  private tilemapProperties: TilemapsProperties;
-  private menuDLC: MenuDLC;
+export default class DungeonLevel1 extends AbstractDungeonLevel {
   private showDoorMessage: boolean;
-  private pie: Pie;
   private showBeginningMessage: boolean;
+  private paypal: Phaser.Image;
+  private paypalAlreadyMontred: boolean;
 
-  constructor(sprite: Phaser.Sprite) {
+  constructor() {
     super();
-    this.tilemapProperties = new TilemapsProperties();
-    this.player = new DungeonPlayer(new Point(1, 2));
-    this.messageBox = null;
-    this.tilemap = new Prison(this, this.tilemapProperties);
+    this.tilemap = new TilemapLevel(this, this.tilemapProperties);
     this.showDoorMessage = true;
     this.showBeginningMessage = true;
-    this.pie = null;
-    this.menuDLC = new MenuDLC(false);
+    this.paypalAlreadyMontred = false;
+  }
+
+  public getStartPosition(): Point {
+    return new Point(1, 2);
   }
 
   public create(game: Phaser.Game) {
-    this.tilemap.create(game);
+    super.create(game);
 
-    this.player.create(game, this.tilemap);
     if (this.showBeginningMessage) {
       this.showBeginningMessage = false;
-
       this.addMessageBox(game, 'je suis enfermay ! Je dois sortir!', () => {
+        this.player.stopPlayer();
         game.time.events.add(0.5 * Phaser.Timer.SECOND, () => {
+          this.player.stopPlayer();
           this.addMessageBox(game, 'Appuyez sur AZDS pour bougeay', () => {
           });
         });
       });
     }
 
-    this.menuDLC.create(game, (dlcItem: DLCItem) => {
-      // TODO Cinematic
+    this.paypal = game.add.image(0, 0, 'paypal');
+    this.paypal.visible = false;
+  }
+
+  public getDlcCallback(game: Phaser.Game, dlcItem: DLCItem) {
+    if (!this.paypalAlreadyMontred) {
+      this.paypalAlreadyMontred = true;
+      this.paypal.visible = true;
+      this.cursor.enablez(false);
+      game.add.tween(this.cursor).to({
+        x: 156,
+        y: 101
+      }, 2 * Phaser.Timer.SECOND, Phaser.Easing.Default, true);
+      game.time.events.add(2 * Phaser.Timer.SECOND, () => {
+        game.state.start('PlayerRoom');
+        this.cursor.enablez(true);
+
+        const playerRoom = game.state.states['PlayerRoom'];
+        (<PlayerRoom>playerRoom).setdlcItem(dlcItem);
+        dlcItem.achete();
+      });
+    } else {
       game.state.start('PlayerRoom');
+      this.cursor.enablez(true);
+
       const playerRoom = game.state.states['PlayerRoom'];
-      (<PlayerRoom> playerRoom).setdlcItem(dlcItem);
-    });
+      (<PlayerRoom>playerRoom).setdlcItem(dlcItem);
+      dlcItem.achete();
+    }
   }
 
   public update(game: Phaser.Game) {
-    if (null !== this.messageBox) {
-      if (this.messageBox.update(game)) {
-        this.messageBox = null;
+    if (super.update(game)) {
+      if (this.showDoorMessage && this.tilemap.getActivable(this.player.getPosition()) instanceof Door) {
+        this.player.stopPlayer();
+        this.showDoorMessage = false;
+        this.addMessageBox(game, 'Appuyay sur Entray pour crochtay la porte', () => {
+        });
       }
-      return;
     }
-    if (null !== this.pie) {
-      if (this.pie.update(game)) {
-        this.pie = null;
-      }
-      return;
-    }
-    this.player.update(game);
-    if (this.showDoorMessage && this.tilemap.getActivable(this.player.getPosition()) instanceof Door) {
-      this.showDoorMessage = false;
-      this.addMessageBox(game, 'Appuyay sur Entray pour crochtay la porte', () => {
-      });
-    }
-  }
-
-  public addMessageBox(game: Phaser.Game, message: string, callback) {
-    this.messageBox = new MessageBox(message, callback);
-    this.messageBox.create(game);
-  }
-
-  public addPie(game: Phaser.Game, position: Point, duration: number, callback: any) {
-    this.pie = new Pie(position, duration, callback);
-    this.pie.create(game);
-  }
-
-  public displayDLCButton() {
-    this.menuDLC.displayButton();
+    return true;
   }
 }

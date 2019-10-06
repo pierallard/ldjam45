@@ -2,7 +2,7 @@ import {ItemToSell} from "./ItemToSell";
 
 export default class ItemsToSell {
 
-    private items: ItemToSell[];
+    public items: ItemToSell[];
 
     constructor() {
         this.items = [];

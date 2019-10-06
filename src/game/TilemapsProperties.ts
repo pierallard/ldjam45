@@ -1,9 +1,11 @@
 import * as level1 from "../assets/tilemaps/map1.json";
+import * as level2 from "../assets/tilemaps/map2.json";
 
 export default class TilemapsProperties {
   private properties = {};
   private maps = [
-    level1
+    level1,
+    level2,
   ];
 
   constructor() {

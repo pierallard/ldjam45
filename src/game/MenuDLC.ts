@@ -1,5 +1,7 @@
-import DLCList, { DLCItem } from "./DLCList";
-import { dlcPreview } from './DLCConstants' ;
+import DLCList, { DLCItem, DLC } from "./DLCList";
+import { dlcPreview, header, slider, sliderArrow, maxDlcItemsInList } from './DLCConstants' ;
+
+export const DLC_CROCHETAGE = 'Crochetage';
 
 /**
  * MenuDLC AKA Herve45 est la dialog box pour afficher les dlcs et le menu
@@ -11,9 +13,39 @@ export default class MenuDLC {
   private hudGroup: Phaser.Group;
   private onBuy: (dlcItem: DLCItem) => void;
   private shouldShowOpenMenuDLCButton: boolean;
+  private dlcs: DLC[];
+
+  dlcIsAcheted(name: string) {
+    return this.dlcs.find((dlc) => {
+      return dlc.name === name;
+    }).isAcheted;
+  }
 
   constructor(shouldShowOpenMenuDLCButton: boolean) {
     this.shouldShowOpenMenuDLCButton = shouldShowOpenMenuDLCButton;
+    this.dlcs = [];
+    this.dlcs.push({
+      description: [''],
+      name: DLC_CROCHETAGE,
+      image: 'dlc_0',
+      price: 200,
+      isAcheted: false,
+      isSelected: true,
+    });
+    this.dlcs = this.dlcs.concat(Array.from(Array(15).keys()).map((_, i) => ({
+      description: [
+        i + 'Lorem ipsum dolor sit',
+        i + 'consectetur adipisicing.',
+        i + 'Beatae doloribus obcaec',
+        i + 'aperiam provident.',
+        i + 'quas asperiores quos,',
+      ],
+      name: 'Wololoh' + i,
+      image: 'dlc_1',
+      price: i + 0.99,
+      isAcheted: false,
+      isSelected: false,
+    })));
   }
 
   create = (game: Phaser.Game, onBuy: (dlcItem: DLCItem) => void) => {
@@ -31,6 +63,13 @@ export default class MenuDLC {
       return sprite;
     }
 
+    const buttonify = (img: string, x = 0, y = 0, cb: Function) => {
+      const button = game.add.button(x, y, img, cb, 2, 1, 0);
+      this.menuGroup.add(button);
+
+      return button;
+    };
+
     const textify = (text: string, x = 0, y = 0) => {
       const textEntity = game.add.bitmapText(x, y, 'Carrier Command', text, 5);
       this.menuGroup.add(textEntity);
@@ -46,55 +85,33 @@ export default class MenuDLC {
     this.menu = spritify('menu_dlc_background');
     textify('Menu DLC', 0, 0);
 
-    const dlcList = new DLCList([
-      {
-        description: [
-          '1Lorem ipsum dolor sit',
-          '1consectetur adipisicing.',
-          '1Beatae doloribus obcaec',
-          '1aperiam provident.',
-          '1quas asperiores quos,',
-        ],
-        name: 'Wololoh',
-        image: 'dlc_1',
-      },
-      {
-        description: [
-          '2Lorem ipsum dolor sit',
-          '2consectetur adipisicing.',
-          '2Beatae doloribus obcaec',
-          '2aperiam provident.',
-          '2quas asperiores quos,',
-        ],
-        name: 'Wololoh2',
-        image: 'dlc_1',
-      },
-      {
-        description: [
-          '3Lorem ipsum dolor sit',
-          '3consectetur adipisicing.',
-          '3Beatae doloribus obcaec',
-          '3aperiam provident.',
-          '3quas asperiores quos,',
-        ],
-        name: 'Wololoh3',
-        image: 'dlc_1',
-      },
-      {
-        description: [
-          '4Lorem ipsum dolor sit',
-          '4consectetur adipisicing.',
-          '4Beatae doloribus obcaec',
-          '4aperiam provident.',
-          '4quas asperiores quos,',
-        ],
-        name: 'Wololoh4',
-        image: 'dlc_1',
-      }
-    ]);
+    const dlcList = new DLCList(this.dlcs);
 
     dlcList.create(game, this.menuGroup, (dlcItem) => {
       this.showDLCPreview(game, dlcItem)
+    });
+
+    let scrollPosition = 0;
+    const sliderHandleSteps = this.dlcs.length - maxDlcItemsInList +1;
+    const sliderHandle = buttonify('menu_dlc_slider_handle', slider.x, slider.y + sliderArrow.height, () => {});
+    buttonify('menu_dlc_header', header.x, header.y, () => {});
+    buttonify('menu_dlc_arrow_down', slider.x, slider.height + slider.y - sliderArrow.height, () => {
+      if (scrollPosition === sliderHandleSteps) {
+        return;
+      }
+
+      scrollPosition++;
+      dlcList.scroll(scrollPosition);
+      sliderHandle.y = slider.y + sliderArrow.height + (Math.round(slider.height/(sliderHandleSteps+1)) * (scrollPosition));
+    });
+    buttonify('menu_dlc_arrow_up', slider.x, slider.y, () => {
+      if (scrollPosition === 0) {
+        return;
+      } 
+
+      scrollPosition--;
+      dlcList.scroll(scrollPosition);
+      sliderHandle.y = slider.y + sliderArrow.height + (Math.round(slider.height/(sliderHandleSteps+1)) * (scrollPosition));
     });
   }
 
@@ -102,14 +119,13 @@ export default class MenuDLC {
     const preview = game.add.image(dlcPreview.x, dlcPreview.y, 'dlc_item_preview');
     this.menuGroup.add(preview);
 
-    const textEntity = game.add.bitmapText(dlcPreview.x + 50  , dlcPreview.y + 15, 'Carrier Command', dlcItem.name, 8);
+    const textEntity = game.add.bitmapText(dlcPreview.x + 50  , dlcPreview.y + 15, 'Carrier Command', dlcItem.dlc.name, 8);
     this.menuGroup.add(textEntity);
 
-    dlcItem.description.forEach((desc, i) => {
+    dlcItem.dlc.description.forEach((desc, i) => {
       const textEntity = game.add.bitmapText(dlcPreview.x + 8, dlcPreview.y + 50 + (i*10), 'Carrier Command', desc, 4);
       this.menuGroup.add(textEntity);
     });
-
 
     const button = game.add.button(dlcPreview.x + 20, 160, 'buy_dlc_button', () => {
       this.onBuy(dlcItem);
