@@ -10,7 +10,7 @@ import DungeonLevel2 from "./game/game_state/DungeonLevel2";
 import DungeonLevel3 from "./game/game_state/DungenLevel3";
 import DungeonLevel4 from "./game/game_state/DungeonLevel4";
 
-export const DEBUG = true;
+export const DEBUG = false;
 
 export const SCALE = 4;
 export const GAME_WIDTH = 1200;

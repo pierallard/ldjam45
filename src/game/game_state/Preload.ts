@@ -87,6 +87,7 @@ export default class Preload extends Phaser.State {
     this.game.load.spritesheet('mario_figurine', 'src/assets/images/mario_figurine.jpeg', 180, 280);
     this.game.load.spritesheet('underpants', 'src/assets/images/underpants.png', 112, 108);
 
+    this.game.load.spritesheet('laptop', 'src/assets/images/playerroom/laptop.png', 106, 117);
     this.game.load.spritesheet('multiplayer-btn', 'src/assets/images/multiplayer-btn.png', 74, 13);
     this.game.load.spritesheet('hud-background', 'src/assets/images/hud-background.png', 300, 18);
     this.game.load.spritesheet('bladder-indicator', 'src/assets/images/bladder.png', 34, 13);

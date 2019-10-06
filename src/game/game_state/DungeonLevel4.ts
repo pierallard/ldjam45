@@ -25,7 +25,7 @@ export default class DungeonLevel4 extends AbstractDungeonLevel {
 
     if (this.showBeginningMessage) {
       this.showBeginningMessage = false;
-      this.addMessageBox(game, "YOU: 'I finally reach my final\n\ndestination! I have to switch off this\n\ndevil machine!'", () => {
+      this.addMessageBox(game, "YOU: 'I finally reached my final\n\ndestination! I have to switch off this\n\nevil DLC machine!'", () => {
         this.player.stopPlayer();
       });
     }
