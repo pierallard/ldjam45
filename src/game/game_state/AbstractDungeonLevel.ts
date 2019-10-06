@@ -8,6 +8,7 @@ import {Pie} from "../Pie";
 import {Cursor} from "./Cursor";
 import {SCALE} from "../../app";
 import {DLCItem} from "../DLCList";
+import PlayerRoom from "./PlayerRoom";
 
 export abstract class AbstractDungeonLevel extends Phaser.State {
   protected player: DungeonPlayer;
@@ -115,6 +116,16 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
       this.blackScreen.visible = false;
       this.blackScreen.alpha = 0;
     });
+  }
+
+  public defaultDlcCallback(game: Phaser.Game, dlcItem: DLCItem) {
+    game.state.start('PlayerRoom');
+    this.cursor.setEnabled(true);
+
+    const playerRoom = game.state.states['PlayerRoom'];
+    (<PlayerRoom>playerRoom).setdlcItem(dlcItem);
+    (<PlayerRoom>playerRoom).setCurrentLevelName(this.getLevelName());
+    dlcItem.achete();
   }
 }
 
