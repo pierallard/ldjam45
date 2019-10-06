@@ -3,6 +3,7 @@ import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
 import TilemapsProperties from "./TilemapsProperties";
 import Point from "./Point";
 import {Door} from "./Door";
+import {DigicodableDoor} from "./DigicodableDoor";
 import {Secretary} from "./Secretary";
 
 export default class TilemapLevel {
@@ -35,7 +36,6 @@ export default class TilemapLevel {
           181, 182, 183 // la caisse
         ], true, this.items
     );
-    console.log(this.map);
     
     // this.items.debug = true;
     // this.walls.debug = true;
@@ -95,7 +95,6 @@ export default class TilemapLevel {
         if (!tile) { continue; }
 
         const properties = this.tilemapProperties.getTileProperties(tile);
-        console.log(this.map);
 
         if (properties === undefined || properties.name === undefined) {
           continue;
@@ -109,6 +108,10 @@ export default class TilemapLevel {
           }
           case "secretary": {
               this.activableObjects.push(new Secretary(this.level, new Point(tile.x, tile.y)));
+              break;
+          }
+          case "digicode": {
+              this.activableObjects.push(new DigicodableDoor(this.level, new Point(tile.x, tile.y)));
               break;
           }
         }

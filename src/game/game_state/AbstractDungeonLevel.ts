@@ -130,6 +130,17 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     });
   }
 
+  public goToLevel3(game: Phaser.Game) {
+    const timingBlind = 1.5 * Phaser.Timer.SECOND;
+    this.blackScreen.visible = true;
+    game.add.tween(this.blackScreen).to({alpha: 1}, timingBlind, Phaser.Easing.Default, true);
+    game.time.events.add(timingBlind, () => {
+      game.state.start('DungeonLevel3');
+      this.blackScreen.visible = false;
+      this.blackScreen.alpha = 0;
+    });
+  }
+
   public defaultDlcCallback(game: Phaser.Game, dlc: DLC) {
     game.state.start('PlayerRoom');
     this.cursor.setEnabled(true);
