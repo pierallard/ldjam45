@@ -18,7 +18,7 @@
  </tile>
  <tile id="188">
   <properties>
-   <property name="pnj" value="secretary"/>
+   <property name="name" value="secretary"/>
   </properties>
  </tile>
 </tileset>

@@ -24,7 +24,7 @@ export default class TilemapLevel {
     this.map = game.add.tilemap(name, 16, 16);
     this.map.addTilesetImage("dungeon_sheet", "tiles");
 
-    this.map.enableDebug = true;
+    // this.map.enableDebug = true;
     this.floor = this.map.createLayer("floor");
     this.walls = this.map.createLayer("walls");
     this.items = this.map.createLayer("items");
@@ -37,8 +37,8 @@ export default class TilemapLevel {
     );
     console.log(this.map);
     
-    this.items.debug = true;
-    this.walls.debug = true;
+    // this.items.debug = true;
+    // this.walls.debug = true;
 
     this.walls.resizeWorld();
     this.items.resizeWorld();
@@ -105,13 +105,11 @@ export default class TilemapLevel {
         switch (properties.name) {
           case "door": {
             this.activableObjects.push(new Door(this.level, new Point(tile.x, tile.y)));
+            break;
           }
-          case "pnj": {
-            switch (properties.value) {
-              case "secretary": {
-                this.activableObjects.push(new Secretary(this.level, new Point(tile.x, tile.y)));
-              }
-            }
+          case "secretary": {
+              this.activableObjects.push(new Secretary(this.level, new Point(tile.x, tile.y)));
+              break;
           }
         }
       }
