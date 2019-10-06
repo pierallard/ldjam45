@@ -15,6 +15,10 @@ export default class DLCactivator {
       case 'Hacker DLC Pack Premium':
         console.log('ACTIVATED = ', dlc);
         break;
+      case 'Multi-player Mode':
+        (game.state.getCurrentState() as AbstractDungeonLevel).activateMultiplayer();
+        console.log('ACTIVATED = ', dlc);
+        break;
     }
 
   }

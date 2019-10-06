@@ -7,7 +7,7 @@
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Lato', sans-serif;
-  background: #222;
+  background: #212025;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -28,20 +28,25 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 20px 20px 0 20px;
-  background: #123c5c;
+  background: #18364F;
   box-sizing: border-box;
   animation: containerEntrance 0.2s;
 }
 
 #dlcContainer {
   overflow-y: auto;
+  position: initial;
 }
 
 #header {
   height: 104px;
   width: 100%;
   color: white;
+  padding: 20px 20px 0 20px;
+}
+
+#dlcList {
+  padding: 20px 20px 0 20px;
 }
 
 @keyframes dlcItemEntrance {
@@ -56,12 +61,39 @@
   }
 }
 
+.dlcItemContainer {
+  position: relative;
+  transition: all 0.2s ease-out;
+  transform: translate3d(0, 0, 0); /* acceleration */
+}
+
+.dlcItemContainer:hover {
+  transform: scale(1.02) translate3d(0, 0, 0);
+}
+.dlcItemContainer:hover .dlcItemBackground {
+  opacity: 0.3;
+}
+
+.dlcItemBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.1;
+  transition: all 0.2s ease-out;
+}
+
 .dlcItem {
-  background: #353c5c;
+  background: transparent;
   padding: 20px;
   margin-bottom: 10px;
   display: flex;
   opacity: 0;
+  color: white;
+}
+
+.dlcItem * {
+  cursor: default;
 }
 
 .dlcItemEntering {
@@ -123,8 +155,10 @@
 .dlcBuyButton {
   border: none;
   padding: 10px;
+  cursor: pointer;
 }
 
 .dlcDescription {
-  
+  font-size: 13px;
+  margin-top: 15px;
 }

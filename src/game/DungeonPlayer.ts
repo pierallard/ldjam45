@@ -22,7 +22,8 @@ export class DungeonPlayer {
   }
 
   public create(game: Phaser.Game, tilemap: TilemapLevel) {
-    this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, 'player_front');
+    const spriteName = this.isBusinessMan ? 'player_business_front' : 'player_front';
+    this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, spriteName);
     this.tilemap = tilemap;
 
     this.sprite.anchor.setTo(.5,.5);
@@ -75,12 +76,7 @@ export class DungeonPlayer {
   public activateBusiness(game)
   {
     this.isBusinessMan = true;
-    // this.sprite.texture.destroy(true);
-    // this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, 'player_business_front');
     this.sprite.loadTexture('player_business_front');
-    // this.sprite.y += 1;
-    // this.sprite.y -= 1;
-    // this.update(game);
   }
 
   private doAction(game: Phaser.Game) {
