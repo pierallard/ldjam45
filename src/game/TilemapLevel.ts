@@ -22,7 +22,7 @@ export default class TilemapLevel {
   public create(game: Phaser.Game, name: string) {
     this.activableObjects = [];
     this.map = game.add.tilemap(name, 16, 16);
-    this.map.addTilesetImage(name, name);
+    this.map.addTilesetImage('main', 'main');
 
     // this.map.enableDebug = true;
     this.floor = this.map.createLayer("floor");
