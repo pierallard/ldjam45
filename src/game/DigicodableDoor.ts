@@ -1,7 +1,6 @@
 import Point from "./Point";
 import {Activable} from "./Activable";
 import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
-import {TILE_SIZE} from "../app";
 
 export class DigicodableDoor implements Activable {
   private position: Point;
@@ -28,8 +27,8 @@ export class DigicodableDoor implements Activable {
       this.level.goToNextLevel(game);
       return;
     }
-    this.level.addMessageBox(game, `NOOB! You don't have \
-\n\nthe hacking skills to open this door.`, () => {
+    this.level.addMessageBox(game, `You: 'Ah.. this door needs a digicode... \
+\n\nI have no idea nor the skills to open it.`, () => {
     });
   }
 }

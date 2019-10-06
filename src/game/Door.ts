@@ -33,12 +33,12 @@ export class Door implements Activable {
       this.position.x * TILE_SIZE + 2,
       this.position.y * TILE_SIZE + 2
     ), DEBUG ? Phaser.Timer.SECOND / 2 : Phaser.Timer.SECOND * 3, () => {
-        let message = 'Congrats, tu as deverouillay ' + this.crochetage + '% de la porte!';
-        if (this.crochetage > 1) {
-            message += "\n\nUn petit DLCay ? ;)"
+        let message = 'Door unlocked at ' + this.crochetage + '%!';
+        if (this.crochetage > 2) {
+            message += "\n\nFEEL FREE TO BUY SOME NEW DLCs!!!"
         }
         if (this.crochetage >= 100) {
-          message = 'You opened the door!';
+          message = 'Door is now opened!';
         }
       this.level.addMessageBox(game, message, () => {
         if (this.crochetage > 1) {
