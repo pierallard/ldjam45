@@ -1,49 +1,30 @@
-import Point from "./Point";
-import Tilemap = Phaser.Tilemap;
-import {Door} from "./Door";
 import {Activable} from "./Activable";
-import DungeonLevel1 from "./game_state/DungeonLevel1";
+import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
+import TilemapsProperties from "./TilemapsProperties";
+import Point from "./Point";
+import {Door} from "./Door";
 
-import TilemapsProperties from "./TilemapsProperties"
-
-
-import * as data from '../assets/tilemaps/map1.json';
-import {DungeonPlayer} from "./DungeonPlayer";
-
-const PROPERTIES = {};
-for (let i = 0; i < data.tilesets[0].tiles.length; i++) {
-  const tile = data.tilesets[0].tiles[i];
-  const properties = {};
-  for (let j = 0; j < tile.properties.length; j++) {
-    properties[tile.properties[j].name] = tile.properties[j].value;
-  }
-  PROPERTIES[tile.id] = properties;
-}
-
-
-export default class Prison extends Phaser.State {
-  private map: Tilemap;
-  private activableObjects: Activable[];
-  private level: DungeonLevel1;
-  private player;
-  private walls;
-  private items;
-  private tilemapProperties: TilemapsProperties;
-
-  constructor(level: DungeonLevel1, tilemapProperties: TilemapsProperties, player: DungeonPlayer) {
-    super();
+export default class TilemapLevel {
+  constructor(level: AbstractDungeonLevel, tilemapProperties: TilemapsProperties) {
     this.level = level;
     this.tilemapProperties = tilemapProperties;
   }
+
+  private map: Phaser.Tilemap;
+  private activableObjects: Activable[];
+  private level: AbstractDungeonLevel;
+  private walls;
+  private items;
+  private tilemapProperties: TilemapsProperties;
 
   public create(game: Phaser.Game) {
     this.activableObjects = [];
     this.map = game.add.tilemap('prison', 16, 16);
     this.map.addTilesetImage("dungeon_sheet", "tiles");
     this.map.setCollision(
-        [
-          1, 2, 3, 4, 5, 6, 7, 8
-        ]
+      [
+        1, 2, 3, 4, 5, 6, 7, 8
+      ]
     );
     this.map.enableDebug = true;
     const floor = this.map.createLayer("floor");
@@ -59,11 +40,6 @@ export default class Prison extends Phaser.State {
     this.populateActivables();
 
     // layer.resizeWorld();
-  }
-
-  public update(game: Phaser.Game) {
-      this.game.physics.arcade.collide(this.player, this.walls);
-    this.game.physics.arcade.collide(this.player, this.items);
   }
 
   public canGoTo(position: Point) {

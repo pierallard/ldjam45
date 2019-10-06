@@ -1,9 +1,8 @@
 import {Door} from "../Door";
 import Point from "../Point";
-import Prison from "../Prison";
+import TilemapLevel from "../TilemapLevel";
 import {DLCItem} from "../DLCList";
 import PlayerRoom from "./PlayerRoom";
-import TilemapsProperties from "../TilemapsProperties";
 import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
 
 export default class DungeonLevel1 extends AbstractDungeonLevel {
@@ -14,8 +13,7 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
 
   constructor() {
     super();
-    this.tilemapProperties = new TilemapsProperties();
-    this.tilemap = new Prison(this, this.tilemapProperties, this.player);
+    this.tilemap = new TilemapLevel(this, this.tilemapProperties);
     this.showDoorMessage = true;
     this.showBeginningMessage = true;
     this.paypalAlreadyMontred = false;

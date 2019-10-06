@@ -1,6 +1,6 @@
 import Point from "./Point";
 import {TILE_SIZE} from "../app";
-import Prison from "./Prison";
+import TilemapLevel from "./TilemapLevel";
 
 export const MOVE_TIME = Phaser.Timer.SECOND * 0.3;
 
@@ -13,14 +13,14 @@ export class DungeonPlayer {
   private downKey: Phaser.Key;
   private actionKey: Phaser.Key;
   private isMoving: boolean;
-  private tilemap: Prison;
+  private tilemap: TilemapLevel;
 
   constructor(point: Point) {
     this.isMoving = false;
     this.position = point;
   }
 
-  public create(game: Phaser.Game, tilemap: Prison) {
+  public create(game: Phaser.Game, tilemap: TilemapLevel) {
     this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, 'normal_hero');
     this.tilemap = tilemap;
 

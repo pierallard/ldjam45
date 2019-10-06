@@ -2,7 +2,7 @@ import {DungeonPlayer} from "../DungeonPlayer";
 import {MessageBox} from "../MessageBox";
 import TilemapsProperties from "../TilemapsProperties";
 import Point from "../Point";
-import Prison from "../Prison";
+import TilemapLevel from "../TilemapLevel";
 import MenuDLC from "../MenuDLC";
 import {Pie} from "../Pie";
 import {Cursor} from "./Cursor";
@@ -12,7 +12,7 @@ import {DLCItem} from "../DLCList";
 export abstract class AbstractDungeonLevel extends Phaser.State {
   protected player: DungeonPlayer;
   protected messageBox: MessageBox;
-  protected tilemap: Prison;
+  protected tilemap: TilemapLevel;
   protected tilemapProperties: TilemapsProperties;
   protected menuDLC: MenuDLC;
   protected pie: Pie;
@@ -21,6 +21,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   constructor() {
     super();
     this.player = new DungeonPlayer(this.getStartPosition());
+    this.tilemapProperties = new TilemapsProperties();
     this.messageBox = null;
     this.pie = null;
     this.menuDLC = new MenuDLC(true);

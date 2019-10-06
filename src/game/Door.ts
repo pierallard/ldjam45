@@ -3,13 +3,14 @@ import {Activable} from "./Activable";
 import DungeonLevel1 from "./game_state/DungeonLevel1";
 import {DEBUG, TILE_SIZE} from "../app";
 import {DLC_CROCHETAGE} from "./MenuDLC";
+import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
 
 export class Door implements Activable {
   private position: Point;
   private crochetage: number;
-  private level: DungeonLevel1;
+  private level: AbstractDungeonLevel;
 
-  constructor(level: DungeonLevel1, point: Point) {
+  constructor(level: AbstractDungeonLevel, point: Point) {
     this.level = level;
     this.position = point;
     this.crochetage = 0;
