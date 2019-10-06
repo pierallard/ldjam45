@@ -8,11 +8,18 @@ export class Door implements Activable {
   private position: Point;
   private crochetage: number;
   private level: AbstractDungeonLevel;
+  private openSprite: Phaser.Sprite;
 
   constructor(level: AbstractDungeonLevel, point: Point) {
     this.level = level;
     this.position = point;
     this.crochetage = 0;
+  }
+
+  create(game: Phaser.Game)
+  {
+    this.openSprite = game.add.sprite(this.position.x * TILE_SIZE, this.position.y * TILE_SIZE, "main_spritesheet", 53);
+    this.openSprite.visible = false;
   }
 
   getPosition(): Point {
@@ -39,6 +46,7 @@ export class Door implements Activable {
         }
         if (this.crochetage >= 100) {
           message = 'Door is now opened!';
+          this.openSprite.visible = true;
         }
       this.level.addMessageBox(game, message, () => {
         if (this.crochetage > 1) {
