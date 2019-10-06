@@ -13,6 +13,7 @@ export const DLC_TRANSHUMANISM = 'Transhumanism, become an augmented human!';
 export const DLC_FLASHLIGHT = 'NEW! Flashlight Item - Light Pack Platinium';
 export const DLC_ANIMALS = 'Linguistic Pack: Animals (Limited Edition)';
 export const DLC_MULTIPLAYER = 'Multi-player Mode (Special offer: 50% discount)';
+export const DLC_FAST = 'Speed run: so fast, so furious!';
 
 const dlcs: DLC[] = [
   {
@@ -88,6 +89,16 @@ const dlcs: DLC[] = [
       With this new DLC, monitor your body and get access to new capabilities.`.split("\n"),
     image: 'dlc-vessie.jpg',
     price: 6.99,
+    isAcheted: false,
+    isSelected: false,
+  },
+  {
+    name: DLC_FAST,
+    code: 'fast',
+    description: `Want to beat speed run record?
+      With this new DLC, move faster, surround your enemies, be fast, be furious.`.split("\n"),
+    image: 'dlc-speed.jpg',
+    price: 2.99,
     isAcheted: false,
     isSelected: false,
   }

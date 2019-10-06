@@ -2,6 +2,7 @@ import Point from "./Point";
 import {TILE_SIZE} from "../app";
 import TilemapLevel from "./TilemapLevel";
 import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
+import DLCs, { DLC_FAST } from "../game/DLCs";
 
 export const MOVE_TIME = Phaser.Timer.SECOND * 0.3;
 
@@ -50,7 +51,11 @@ export class DungeonPlayer {
       return;
     }
 
-    const velocityDeFrite = window['velocityDeFrite'] || 50;
+    let velocityDeFrite = window['velocityDeFrite'] || 50;
+    if (this.isSpeedRun(game)) {
+      velocityDeFrite = 150;
+    }
+
     if (this.leftKey.isDown) {
       this.sprite.body.velocity.x = -velocityDeFrite;
     } else if (this.rightKey.isDown) {
@@ -78,6 +83,10 @@ export class DungeonPlayer {
   public isBusinessMan(game: Phaser.Game)
   {
     return (game.state.getCurrentState() as AbstractDungeonLevel).hasAchetedDlc('Business Man Skin Pack (Cosmetic)');
+  }
+
+  public isSpeedRun(game: Phaser.Game) {
+    return (game.state.getCurrentState() as AbstractDungeonLevel).hasAchetedDlc(DLC_FAST);
   }
 
   public stopPlayer() {
