@@ -24,7 +24,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   protected showDLCButton: boolean;
   private blackScreen: Phaser.Graphics;
   private dlcActivator: DLCactivator;
-  private multiActived: boolean = false;
 
   constructor() {
     super();
@@ -65,7 +64,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
     game.add.sprite(0, game.height - 18, 'hud-background');
 
-    if (this.multiActived) {
+    if (this.player.multiActived) {
       game.add.sprite(20, game.height - 16, 'multiplayer-btn');
     }
   }
@@ -152,8 +151,5 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     achete(dlc.name);
   }
 
-  public activateMultiplayer()
-  {
-    this.multiActived = true;
-  }
+
 }
