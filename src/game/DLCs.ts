@@ -59,6 +59,15 @@ const dlcs: DLC[] = [
     price: 3.99,
     isAcheted: false,
     isSelected: false,
+  },
+  {
+    name: 'Transhumanism, become an augmented human!',
+    description: `Want to better know your physical functions to perform in any condition?
+      With this new DLC, monitor your body and get access to new capabilities.`.split("\n"),
+    image: 'dlc-vessie.jpg',
+    price: 3.99,
+    isAcheted: false,
+    isSelected: false,
   }
 ];
 
