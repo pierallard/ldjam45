@@ -19,6 +19,6 @@ export default class DungeonLevel2 extends AbstractDungeonLevel {
   }
 
   getStartPosition(): Point {
-    return new Point(7, 8);
+    return new Point(7, 6);
   }
 }
