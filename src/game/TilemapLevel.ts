@@ -28,26 +28,14 @@ export default class TilemapLevel {
     this.walls = this.map.createLayer("walls");
     this.items = this.map.createLayer("items");
 
-
-    this.map.setCollision(
-        [
-          /*1, 2, 3, 4, 5, 6, 7, 8,*/ 30 /*, 31, 32*/
-        ], true, this.walls
-    );
+    this.map.setCollisionBetween(1, 1000, true, this.walls);
     this.map.setCollision(
         [
           181, 182, 183 // la caisse
         ], true, this.items
     );
-
-    //this.map.setCollisionBetween(1, 100);
-
-
-
-
     console.log(this.map);
-
-
+    
     this.items.debug = true;
     this.walls.debug = true;
 
