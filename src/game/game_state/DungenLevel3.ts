@@ -24,9 +24,13 @@ export default class DungeonLevel3 extends AbstractDungeonLevel {
     this.noLampScreen = game.add.graphics(0, 0);
     this.noLampScreen.beginFill(0x000000);
     this.noLampScreen.drawRect(0, 0, 300, 120);
-    this.noLampScreen.alpha = DEBUG ? 0.5 : 0.99;
+    this.noLampScreen.alpha = DEBUG ? 0.9 : 0.99;
 
     this.updateNoLampScreen();
+
+    this.addMessageBox(game, "YOU: 'I can't see anything!\n\nWhere am I?\n\nWhat's this sound?'", () => {
+      this.player.stopPlayer();
+    });
   }
 
   public update(game: Phaser.Game): boolean {

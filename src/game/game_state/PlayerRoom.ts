@@ -27,6 +27,7 @@ export default class PlayerRoom extends Phaser.State {
   private levelName: string;
   private background: Phaser.Image;
   private playerMessageBox: PlayerMessageBox;
+  private haveDisplayedFirstMessage: boolean;
 
   constructor() {
     super();
@@ -35,6 +36,7 @@ export default class PlayerRoom extends Phaser.State {
     this.walletGUI = new WalletGUI(this.wallet);
     this.initSellableItems();
     this.playerMessageBox = new PlayerMessageBox();
+    this.haveDisplayedFirstMessage = false;
   }
 
   public create(game: Phaser.Game) {
@@ -42,18 +44,22 @@ export default class PlayerRoom extends Phaser.State {
     this.game.renderer.renderSession.roundPixels = false;
     this.game.width = GAME_WIDTH;
     this.game.height = GAME_HEIGHT;
-    this.game.renderer.resize(1200, 900);
+    this.game.renderer.resize(GAME_WIDTH, GAME_HEIGHT);
 
     this.background = game.add.image(0, 0, 'backgroundplayerroom');
 
     this.drawItems(game);
     this.walletGUI.create(game);
     //game.add.image(0, 0, 'playerroombackground');
-    this.game.add.button(250, 50, 'button', () => {
+    /*this.game.add.button(250, 50, 'button', () => {
       game.state.start('DungeonLevel1');
-    }, this, 2, 1, 0);
+    }, this, 2, 1, 0);*/
 
     this.playerMessageBox.create(game);
+    if (!this.haveDisplayedFirstMessage) {
+      this.playerMessageBox.addMessageBox(game, "Oh, I don't have money to buy\nthis DLC...\nI have to sell one of my stuff...");
+      this.haveDisplayedFirstMessage = true;
+    }
   }
 
   private initSellableItems() {
@@ -103,6 +109,10 @@ export default class PlayerRoom extends Phaser.State {
 
   public update(game: Phaser.Game) {
     this.walletGUI.update(game);
+
+    this.itemsToSell.items.forEach((itemToSell) => {
+      itemToSell.update(game);
+    });
   }
 
   public setdlcItem(dlc: DLC) {

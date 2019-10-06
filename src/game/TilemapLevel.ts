@@ -8,6 +8,8 @@ import {DigicodableDoor} from "./DigicodableDoor";
 import {Secretary} from "./Secretary";
 import {Computer} from "./Computer";
 import {Water} from "./Water";
+import {CocaMachine} from "./CocaMachine";
+import { Iench } from "./Iench";
 
 export default class TilemapLevel {
   constructor(level: AbstractDungeonLevel, tilemapProperties: TilemapsProperties) {
@@ -37,7 +39,9 @@ export default class TilemapLevel {
     this.map.setCollisionBetween(1, 1000, true, this.walls);
     this.map.setCollision(
         [
-          181, 182, 183 // la caisse
+          37, // water
+          38, // coca
+          181, 182, 183 // la caisse,
         ], true, this.items
     );
     
@@ -112,6 +116,12 @@ export default class TilemapLevel {
             this.activableObjects.push(door);
             break;
           }
+          case "iench": {
+            const iench = new Iench(this.level, new Point(tile.x, tile.y));
+            iench.create(game);
+            this.activableObjects.push(iench);
+            break;
+          }
           case "freedoor": {
             this.activableObjects.push(new FreeDoor(this.level, new Point(tile.x, tile.y)));
             break;
@@ -130,6 +140,10 @@ export default class TilemapLevel {
           }
           case "water": {
             this.activableObjects.push(new Water(this.level, new Point(tile.x, tile.y)));
+            break;
+          }
+          case "coca": {
+            this.activableObjects.push(new CocaMachine(this.level, new Point(tile.x, tile.y)));
             break;
           }
         }

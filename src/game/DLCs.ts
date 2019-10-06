@@ -11,6 +11,9 @@ export interface DLC {
 export const DLC_BUSINESSPACK = 'Business Man Skin Pack (Cosmetic)';
 export const DLC_TRANSHUMANISM = 'Transhumanism, become an augmented human!';
 export const DLC_FLASHLIGHT = 'NEW! Flashlight Item - Light Pack Platinium';
+export const DLC_ANIMALS = 'Linguistic Pack: Animals (Limited Edition)';
+export const DLC_MULTIPLAYER = 'Multi-player Mode (Special offer: 50% discount)';
+export const DLC_FAST = 'Speed run: so fast, so furious!';
 
 const dlcs: DLC[] = [
   {
@@ -32,6 +35,17 @@ const dlcs: DLC[] = [
       This new content will be available in-game once bought!`.split("\n"),
     image: 'dlc-flashlight.jpg',
     price: 3.99,
+    isAcheted: false,
+    isSelected: false,
+  },
+  {
+    name: DLC_ANIMALS,
+    code: 'animals',
+    description: `You'll never be able to speak to animals...
+      Except with this new pack! By installing this linguistic pack 
+      your character will be able to speak to animals. Cows, cats, birds... make some new friends!`.split("\n"),
+    image: 'dlc-animals.jpg',
+    price: 2.99,
     isAcheted: false,
     isSelected: false,
   },
@@ -58,7 +72,7 @@ const dlcs: DLC[] = [
     isSelected: false,
   },
   {
-    name: 'Multi-player Mode',
+    name: DLC_MULTIPLAYER,
     code: 'multiplayer',
     description: `Want to compete against your friends?
       With this new DLC, unlock the multi-player mode.
@@ -75,6 +89,16 @@ const dlcs: DLC[] = [
       With this new DLC, monitor your body and get access to new capabilities.`.split("\n"),
     image: 'dlc-vessie.jpg',
     price: 6.99,
+    isAcheted: false,
+    isSelected: false,
+  },
+  {
+    name: DLC_FAST,
+    code: 'fast',
+    description: `Want to beat speed run record?
+      With this new DLC, move faster, surround your enemies, be fast, be furious.`.split("\n"),
+    image: 'dlc-speed.jpg',
+    price: 2.99,
     isAcheted: false,
     isSelected: false,
   }

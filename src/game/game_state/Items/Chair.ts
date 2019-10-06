@@ -10,5 +10,6 @@ export default class Chair extends ItemToSell{
             this.sprite.inputEnabled = true;
             this.sprite.events.onInputDown.add(this.sell, this);
         }
+        super.create(game);
     }
 }

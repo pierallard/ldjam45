@@ -8,7 +8,6 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
   public LEVEL_NUMBER = 1;
   private showDoorMessage: boolean;
   private showBeginningMessage: boolean;
-  private paypal: Phaser.Image;
   private paypalAlreadyMontred: boolean;
 
   constructor() {
@@ -33,18 +32,10 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
 
     if (this.showBeginningMessage) {
       this.showBeginningMessage = false;
-      this.addMessageBox(game, "YOU: 'Ahhh.. Lubrisoft. I must enter and \n\ndestroy their DLC generator!'", () => {
+      this.addMessageBox(game, "YOU: 'Ahhh.. Lubrisoft. I must enter and \n\ndestroy their DLC generator!\n\n*Use arrow keys to move*'", () => {
         this.player.stopPlayer();
-        game.time.events.add(0.5 * Phaser.Timer.SECOND, () => {
-          this.player.stopPlayer();
-          this.addMessageBox(game, '*Use arrow keys to move*', () => {
-          });
-        });
       });
     }
-
-    this.paypal = game.add.image(0, 0, 'paypal');
-    this.paypal.visible = false;
 
     if (this.paypalAlreadyMontred) {
       this.displayDLCButton();
@@ -54,10 +45,9 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
   public getDlcCallback(game: Phaser.Game, dlc: DLC) {
     if (!this.paypalAlreadyMontred) {
       this.paypalAlreadyMontred = true;
-      this.paypal.visible = true;
-      game.time.events.add(2 * Phaser.Timer.SECOND, () => {
+      // game.time.events.add(2 * Phaser.Timer.SECOND, () => {
         this.defaultDlcCallback(game, dlc);
-      });
+      // });
     } else {
       this.defaultDlcCallback(game, dlc);
     }
