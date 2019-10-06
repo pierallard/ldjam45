@@ -13,33 +13,41 @@ export default class TilemapLevel {
   public map: Phaser.Tilemap;
   private activableObjects: Activable[];
   private level: AbstractDungeonLevel;
-  private walls;
-  private items;
+  public walls;
+  public items;
+  public floor;
   private tilemapProperties: TilemapsProperties;
 
   public create(game: Phaser.Game, name: string) {
     this.activableObjects = [];
     this.map = game.add.tilemap(name, 16, 16);
     this.map.addTilesetImage("dungeon_sheet", "tiles");
-    this.map.setCollision(
-      [
-        1, 2, 3, 4, 5, 6, 7, 8
-      ]
-    );
+
     this.map.enableDebug = true;
-    const floor = this.map.createLayer("floor");
+    this.floor = this.map.createLayer("floor");
     this.walls = this.map.createLayer("walls");
     this.items = this.map.createLayer("items");
 
+
+    this.map.setCollision(
+        [
+          /*1, 2, 3, 4, 5, 6, 7, 8,*/ 30 /*, 31, 32*/
+        ], true, this.walls
+    );
+    //this.map.setCollisionBetween(1, 100);
+
+
+    console.log(this.map);
+
+
     //this.items.debug = true;
-    //this.walls.debug = true;
+    this.walls.debug = true;
+
     this.walls.resizeWorld();
     this.items.resizeWorld();
-
+    this.floor.resizeWorld();
 
     this.populateActivables();
-
-    // layer.resizeWorld();
   }
 
   public canGoTo(position: Point) {
