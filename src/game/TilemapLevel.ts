@@ -6,6 +6,7 @@ import {Door} from "./Door";
 import {FreeDoor} from "./FreeDoor";
 import {DigicodableDoor} from "./DigicodableDoor";
 import {Secretary} from "./Secretary";
+import {Computer} from "./Computer";
 
 export default class TilemapLevel {
   constructor(level: AbstractDungeonLevel, tilemapProperties: TilemapsProperties) {
@@ -118,6 +119,10 @@ export default class TilemapLevel {
           }
           case "digicode": {
               this.activableObjects.push(new DigicodableDoor(this.level, new Point(tile.x, tile.y)));
+              break;
+          }
+          case "computer": {
+              this.activableObjects.push(new Computer(this.level, new Point(tile.x, tile.y)));
               break;
           }
         }
