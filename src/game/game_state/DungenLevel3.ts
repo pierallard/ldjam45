@@ -11,6 +11,11 @@ export default class DungeonLevel3 extends AbstractDungeonLevel {
     this.tilemap = new TilemapLevel(this, this.tilemapProperties);
   }
 
+  public create(game: Phaser.Game) {
+    super.create(game);
+    this.displayDLCButton();
+  }
+
   getDlcCallback(game: Phaser.Game, dlc: DLC) {
     this.defaultDlcCallback(game, dlc);
   }

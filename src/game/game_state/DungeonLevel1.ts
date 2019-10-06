@@ -45,6 +45,10 @@ export default class DungeonLevel1 extends AbstractDungeonLevel {
 
     this.paypal = game.add.image(0, 0, 'paypal');
     this.paypal.visible = false;
+
+    if (this.paypalAlreadyMontred) {
+      this.displayDLCButton();
+    }
   }
 
   public getDlcCallback(game: Phaser.Game, dlc: DLC) {
