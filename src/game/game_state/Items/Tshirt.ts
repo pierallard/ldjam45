@@ -8,7 +8,6 @@ export default class Tshirt extends ItemToSell {
         this.price = 12;
         if (!this.sold) {
             this.sprite = game.add.sprite(this.x, this.y, 'tshirt');
-            this.sprite.scale.setTo(0.05, 0.05);
             this.sprite.inputEnabled = true;
             this.sprite.events.onInputDown.add(this.sell, this);
         }

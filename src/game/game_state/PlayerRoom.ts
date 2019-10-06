@@ -63,10 +63,10 @@ export default class PlayerRoom extends Phaser.State {
   }
 
   private initSellableItems() {
-    const tshirt = new Tshirt(this.wallet, this, 35, 70);
+    const tshirt = new Tshirt(this.wallet, this, 144, 404);
     this.itemsToSell.add(tshirt);
 
-    const britneyPoster = new BritneyPoster(this.wallet, this, 840, 15);
+    const britneyPoster = new BritneyPoster(this.wallet, this, 150, 15);
     this.itemsToSell.add(britneyPoster);
 
     const playboy = new Playboy(this.wallet, this, 109, 621);
@@ -87,10 +87,10 @@ export default class PlayerRoom extends Phaser.State {
     const bed = new Bed(this.wallet, this, 363 , 169);
     this.itemsToSell.add(bed);
 
-    const gameBoy = new GameBoy(this.wallet, this, 130, 70);
+    const gameBoy = new GameBoy(this.wallet, this, 15, 457);
     this.itemsToSell.add(gameBoy);
 
-    const pokemonCard = new PokemonCard(this.wallet, this, 1, 116);
+    const pokemonCard = new PokemonCard(this.wallet, this, 5, 120);
     this.itemsToSell.add(pokemonCard);
 
     const marioFigurine = new MarioFigurine(this.wallet, this, 130, 300);

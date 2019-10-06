@@ -74,7 +74,7 @@ export default class Preload extends Phaser.State {
     this.game.load.spritesheet('chips', 'src/assets/images/chips.png', 12, 12);
     this.game.load.image('shadow', 'src/assets/images/shadow.png');
     this.game.load.image('logo', 'src/assets/images/logo1.png');
-    this.game.load.spritesheet('tshirt', 'src/assets/images/tshirt.jpg', 679, 724);
+    this.game.load.spritesheet('tshirt', 'src/assets/images/tshirt.png', 181, 181);
     this.game.load.spritesheet('lamp-lava', 'src/assets/images/lamp.png', 48, 121);
     this.game.load.spritesheet('office', 'src/assets/images/office.jpg', 680, 680);
     this.game.load.spritesheet('chair', 'src/assets/images/chair.png', 202, 343);
@@ -82,7 +82,7 @@ export default class Preload extends Phaser.State {
     this.game.load.spritesheet('playboy_magazine', 'src/assets/images/playboy.png', 179, 180);
     this.game.load.spritesheet('britney_poster', 'src/assets/images/poster.png', 108, 155);
     this.game.load.spritesheet('bed', 'src/assets/images/bed.png', 325, 490);
-    this.game.load.spritesheet('game_boy', 'src/assets/images/game_boy.jpeg', 225, 225);
+    this.game.load.spritesheet('game_boy', 'src/assets/images/gameboy.png', 69, 74);
     this.game.load.spritesheet('pokemon_card', 'src/assets/images/cards.png', 69, 70);
     this.game.load.spritesheet('mario_figurine', 'src/assets/images/mario_figurine.jpeg', 180, 280);
     this.game.load.spritesheet('underpants', 'src/assets/images/underpants.png', 112, 108);
