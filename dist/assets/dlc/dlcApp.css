@@ -12,6 +12,18 @@
   box-sizing: border-box;
 }
 
+@keyframes containerEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 #container {
   display: flex;
   flex-direction: column;
@@ -19,6 +31,7 @@
   padding: 20px 20px 0 20px;
   background: #123c5c;
   box-sizing: border-box;
+  animation: containerEntrance 0.2s;
 }
 
 #dlcContainer {
@@ -31,11 +44,30 @@
   color: white;
 }
 
+@keyframes dlcItemEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .dlcItem {
   background: #353c5c;
   padding: 20px;
   margin-bottom: 10px;
   display: flex;
+  opacity: 0;
+}
+
+.dlcItemEntering {
+  animation: dlcItemEntrance 0.2s;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
 }
 
 .dlcImageContainer {
@@ -75,6 +107,11 @@
   right: 0;
   bottom: 0;
   background: #333;
+}
+
+.dlcImage {
+  width: 250px;
+  height: 150px;
 }
 
 .dlcPrice {

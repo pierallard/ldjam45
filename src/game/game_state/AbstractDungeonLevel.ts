@@ -107,7 +107,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
   public render()
   {
-    this.game.debug.body(this.player.sprite);
+    // this.game.debug.body(this.player.sprite);
   }
 
   public goToLevel2(game: Phaser.Game) {
