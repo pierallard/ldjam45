@@ -2,16 +2,19 @@ import DLCs, { DLC } from "../game/DLCs";
 
 const getId = (id: string) => document.querySelector('#' + id) as HTMLElement;
 const dlcTemplate = getId('dlcItemTemplate');
-const createDlcItemTemplate = () => {
+const createDlcItemTemplate = (i: number) => {
   const dlcItem = document.createElement('div');
   dlcItem.innerHTML = dlcTemplate.innerHTML;
   dlcItem.className = 'dlcItem';
+  setTimeout(() => {
+    dlcItem.className = 'dlcItem dlcItemEntering';
+  }, 50 * (i+1));
   return dlcItem;
 }
 const getClass = (clas: string, element: HTMLElement | HTMLDocument = document) => element.querySelector('.' + clas) as HTMLElement;
 
-const createDLCItem = (dlc: DLC, onBuy: (dlc: DLC) => void) => {
-  const dlcItem = createDlcItemTemplate();
+const createDLCItem = (dlc: DLC, index: number, onBuy: (dlc: DLC) => void) => {
+  const dlcItem = createDlcItemTemplate(index);
   const title = getClass('dlcTitle', dlcItem);
   title.textContent = dlc.name;
   title.onclick = () => onBuy(dlc);
@@ -46,7 +49,7 @@ const openDLCMenu = (dlcs, onBuy) => {
 
   const dlcsList = getId('dlcList');
 
-  dlcs.forEach(dlc => dlcsList.appendChild(createDLCItem(dlc, onBuy)));
+  dlcs.forEach((dlc, i) => dlcsList.appendChild(createDLCItem(dlc, i, onBuy)));
 };
 
 const closeDLCMenu = () => {
