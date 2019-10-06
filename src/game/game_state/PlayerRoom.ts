@@ -15,6 +15,7 @@ import PokemonCard from "./Items/PokemonCard";
 import {Cursor} from "./Cursor";
 import {GAME_HEIGHT, GAME_WIDTH, SCALE} from "../../app";
 import MarioFigurine from "./Items/MarioFigurine";
+import {ItemToSell} from "./Items/ItemToSell";
 
 
 export default class PlayerRoom extends Phaser.State {
@@ -31,6 +32,7 @@ export default class PlayerRoom extends Phaser.State {
     this.itemsToSell = new ItemsToSell();
     this.wallet = new Wallet();
     this.walletGUI = new WalletGUI(this.wallet);
+    this.initSellableItems();
   }
 
   public create(game: Phaser.Game) {
@@ -40,7 +42,7 @@ export default class PlayerRoom extends Phaser.State {
     this.game.height = GAME_HEIGHT;
     this.game.renderer.resize(1200, 900);
 
-    this.setupItems(game);
+    this.drawItems(game);
     this.walletGUI.create(game);
     //game.add.image(0, 0, 'playerroombackground');
     this.game.add.button(250, 50, 'button', () => {
@@ -54,51 +56,47 @@ export default class PlayerRoom extends Phaser.State {
     this.game.add.existing(this.cursor);
   }
 
-  private setupItems(game: Phaser.Game) {
-    const tshirt = new Tshirt(this.wallet, this);
-    tshirt.create(game, 35, 70);
+  private initSellableItems() {
+    const tshirt = new Tshirt(this.wallet, this, 35, 70);
     this.itemsToSell.add(tshirt);
 
-    const britneyPoster = new BritneyPoster(this.wallet, this);
-    britneyPoster.create(game, 70, 150);
+    const britneyPoster = new BritneyPoster(this.wallet, this, 70, 150);
     this.itemsToSell.add(britneyPoster);
 
-    const playboy = new Playboy(this.wallet, this);
-    playboy.create(game, 1, 70);
+    const playboy = new Playboy(this.wallet, this, 1, 70);
     this.itemsToSell.add(playboy);
 
-    const office = new Office(this.wallet, this);
-    office.create(game, 1, 1);
+    const office = new Office(this.wallet, this, 1, 1);
     this.itemsToSell.add(office);
 
-    const basket = new Basket(this.wallet, this);
-    basket.create(game, 70, 1);
+    const basket = new Basket(this.wallet, this, 70, 1);
     this.itemsToSell.add(basket);
 
-    const lampLava = new Lamp(this.wallet, this);
-    lampLava.create(game, 1, 120);
+    const lampLava = new Lamp(this.wallet, this, 1,120);
     this.itemsToSell.add(lampLava);
 
-    const chair = new Chair(this.wallet, this);
-    chair.create(game, 70, 90);
+    const chair = new Chair(this.wallet, this, 70, 90);
     this.itemsToSell.add(chair);
 
-    const bed = new Bed(this.wallet, this);
-    bed.create(game, 1, 300);
+    const bed = new Bed(this.wallet, this, 1, 300);
     this.itemsToSell.add(bed);
 
-    const gameBoy = new GameBoy(this.wallet, this);
-    gameBoy.create(game, 130, 70);
+    const gameBoy = new GameBoy(this.wallet, this, 130, 70);
     this.itemsToSell.add(gameBoy);
 
-    const pokemonCard = new PokemonCard(this.wallet, this);
-    pokemonCard.create(game, 130, 100);
+    const pokemonCard = new PokemonCard(this.wallet, this, 130, 100);
     this.itemsToSell.add(pokemonCard);
 
-    const marioFigurine = new MarioFigurine(this.wallet, this);
-    marioFigurine.create(game, 130, 300);
+    const marioFigurine = new MarioFigurine(this.wallet, this, 130, 300);
     this.itemsToSell.add(marioFigurine);
   }
+
+    private drawItems(game: Phaser.Game) {
+        this.itemsToSell.items.forEach((item: ItemToSell) => {
+            //console.log(item);
+            item.create(game);
+        });
+    }
 
   public update(game: Phaser.Game) {
     this.walletGUI.update(game);
