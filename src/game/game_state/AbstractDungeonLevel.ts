@@ -7,8 +7,10 @@ import MenuDLC from "../MenuDLC";
 import {Pie} from "../Pie";
 import {Cursor} from "./Cursor";
 import {SCALE} from "../../app";
-import {DLCItem} from "../DLCList";
+import DLCs, { isAcheted, achete } from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
+import {Door} from "../Door";
+import { DLC } from "../DLCs";
 
 export abstract class AbstractDungeonLevel extends Phaser.State {
   protected player: DungeonPlayer;
@@ -18,6 +20,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   protected menuDLC: MenuDLC;
   protected pie: Pie;
   protected cursor: Cursor;
+  protected showDLCButton: boolean;
   private blackScreen: Phaser.Graphics;
 
   constructor() {
@@ -26,7 +29,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     this.tilemapProperties = new TilemapsProperties();
     this.messageBox = null;
     this.pie = null;
-    this.menuDLC = new MenuDLC(true);
+    this.menuDLC = new MenuDLC();
   }
 
   abstract getStartPosition(): Point;
@@ -44,8 +47,8 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
     this.player.create(game, this.tilemap);
 
-    this.menuDLC.create(game, (dlcItem) => {
-      this.getDlcCallback(game, dlcItem);
+    this.menuDLC.create(game, this.showDLCButton, (dlc) => {
+      this.getDlcCallback(game, dlc);
     });
 
     this.cursor = new Cursor(game);
@@ -56,7 +59,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     this.blackScreen.alpha = 0;
     this.blackScreen.visible = false;
   }
-
 
   public update(game: Phaser.Game) {
     this.cursor.update2(game);
@@ -94,13 +96,14 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
   public displayDLCButton() {
     this.menuDLC.displayButton();
+    this.showDLCButton = true;
   }
 
   public hasAchetedDlc(name): boolean {
-    return this.menuDLC.dlcIsAcheted(name);
+    return isAcheted(name);
   }
 
-  abstract getDlcCallback(game: Phaser.Game, dlcItem: DLCItem);
+  abstract getDlcCallback(game: Phaser.Game, dlc: DLC);
 
   public render()
   {
@@ -118,14 +121,13 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     });
   }
 
-  public defaultDlcCallback(game: Phaser.Game, dlcItem: DLCItem) {
+  public defaultDlcCallback(game: Phaser.Game, dlc: DLC) {
     game.state.start('PlayerRoom');
     this.cursor.setEnabled(true);
 
     const playerRoom = game.state.states['PlayerRoom'];
-    (<PlayerRoom>playerRoom).setdlcItem(dlcItem);
+    (<PlayerRoom>playerRoom).setdlcItem(dlc);
     (<PlayerRoom>playerRoom).setCurrentLevelName(this.getLevelName());
-    dlcItem.achete();
+    achete(dlc.name);
   }
 }
-

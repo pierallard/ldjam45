@@ -10,7 +10,7 @@ export default class WalletGUI {
     }
 
     public create(game: Phaser.Game) {
-        this.text = game.add.bitmapText(260, 10, 'Carrier Command', this.wallet.total()+" CDTS", 5);
+        this.text = game.add.bitmapText(800, 10, 'Carrier Command', this.wallet.total()+" CDTS", 30);
         //this.text.tint = 0x111;
     }
 

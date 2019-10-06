@@ -1,13 +1,13 @@
 import {ItemToSell} from "./ItemToSell";
 
-export default class Playboy extends ItemToSell{
+export default class Underpants extends ItemToSell{
 
     public create(game: Phaser.Game) {
-        this.name = 'Playboy magazine Nabila <3';
+        this.name = 'Dirty boxer shorts';
         this.price = 3;
         if (!this.sold) {
-            this.sprite = game.add.sprite(this.x, this.y, 'playboy_magazine');
-            this.sprite.scale.setTo(0.05, 0.05);
+            this.sprite = game.add.sprite(this.x, this.y, 'underpants');
+            this.sprite.scale.setTo(0.3, 0.3);
             this.sprite.inputEnabled = true;
             this.sprite.events.onInputDown.add(this.sell, this);
         }

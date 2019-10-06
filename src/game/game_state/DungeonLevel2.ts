@@ -1,5 +1,5 @@
 import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
-import {DLCItem} from "../DLCList";
+import {DLC} from "../DLCs";
 import Point from "../Point";
 import TilemapLevel from "../TilemapLevel";
 import PlayerRoom from "./PlayerRoom";
@@ -10,8 +10,8 @@ export default class DungeonLevel2 extends AbstractDungeonLevel {
     this.tilemap = new TilemapLevel(this, this.tilemapProperties);
   }
 
-  getDlcCallback(game: Phaser.Game, dlcItem: DLCItem) {
-    this.defaultDlcCallback(game, dlcItem);
+  getDlcCallback(game: Phaser.Game, dlc: DLC) {
+    this.defaultDlcCallback(game, dlc);
   }
 
   getLevelName(): string {
