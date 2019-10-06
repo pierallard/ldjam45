@@ -68,6 +68,7 @@ export default class Preload extends Phaser.State {
     this.game.load.spritesheet('bed', 'src/assets/images/bed.jpg', 680, 680);
     this.game.load.spritesheet('game_boy', 'src/assets/images/game_boy.jpeg', 225, 225);
     this.game.load.spritesheet('pokemon_card', 'src/assets/images/pokemon_card.jpeg', 225, 225);
+    this.game.load.spritesheet('mario_figurine', 'src/assets/images/mario_figurine.jpeg', 180, 280);
   }
 
   private loadFonts() {

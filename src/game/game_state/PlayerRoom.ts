@@ -14,6 +14,7 @@ import GameBoy from "./Items/GameBoy";
 import PokemonCard from "./Items/PokemonCard";
 import {Cursor} from "./Cursor";
 import {GAME_HEIGHT, GAME_WIDTH, SCALE} from "../../app";
+import MarioFigurine from "./Items/MarioFigurine";
 
 
 export default class PlayerRoom extends Phaser.State {
@@ -58,7 +59,7 @@ export default class PlayerRoom extends Phaser.State {
     this.itemsToSell.add(tshirt);
 
     const britneyPoster = new BritneyPoster(this.wallet, this);
-    britneyPoster.create(game, 70, 40);
+    britneyPoster.create(game, 70, 150);
     this.itemsToSell.add(britneyPoster);
 
     const playboy = new Playboy(this.wallet, this);
@@ -82,7 +83,7 @@ export default class PlayerRoom extends Phaser.State {
     this.itemsToSell.add(chair);
 
     const bed = new Bed(this.wallet, this);
-    bed.create(game, 130, 1);
+    bed.create(game, 1, 300);
     this.itemsToSell.add(bed);
 
     const gameBoy = new GameBoy(this.wallet, this);
@@ -92,6 +93,10 @@ export default class PlayerRoom extends Phaser.State {
     const pokemonCard = new PokemonCard(this.wallet, this);
     pokemonCard.create(game, 130, 100);
     this.itemsToSell.add(pokemonCard);
+
+    const marioFigurine = new MarioFigurine(this.wallet, this);
+    marioFigurine.create(game, 130, 300);
+    this.itemsToSell.add(marioFigurine);
   }
 
   public update(game: Phaser.Game) {
