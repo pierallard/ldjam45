@@ -76,7 +76,7 @@ export default class MenuDLC {
       return text;
     } 
 
-    this.button = game.add.button(game.width - 29, 5, 'bloc_box', () => {
+    this.button = game.add.button(game.width - 32, 5, 'dlcbuy', () => {
       this.open();
     }, 2, 1, 0);
   

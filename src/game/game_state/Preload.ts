@@ -43,6 +43,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('menu_dlc_slider_handle', 'src/assets/images/menu_dlc_slider_handle.png');
     this.game.load.image('menu_dlc_background', 'src/assets/images/menu_dlc_background.png');
     this.game.load.image('menu_dlc_header', 'src/assets/images/menu_dlc_header.png');
+    this.game.load.image('dlcbuy', 'src/assets/images/dlcbuy.png');
 
 
     this.game.load.image('dlc_thumb_1', 'src/assets/images/dlc_thumb_1.png');
