@@ -10,7 +10,7 @@ export class MessageBox {
   private spaceBarDown: boolean;
 
   constructor(str: string, callback: any) {
-    this.message = str;
+    this.message = str +  "\n\n[space]";
     this.callback = callback;
     this.spaceBarDown = false;
   }
