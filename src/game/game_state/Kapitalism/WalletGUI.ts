@@ -19,8 +19,9 @@ export default class WalletGUI {
 
     public update(game: Phaser.Game) {
         this.text.text = 'Wallet: ' + this.wallet.total() + " USD";
-        this.dlcText.text = 'DLC price: ' + this.dlc.price + " USD";
-
+        if (this.dlc) {
+            this.dlcText.text = 'DLC price: ' + this.dlc.price + " USD";
+        }
     }
 
     public setDLC(dlc: DLC) {

@@ -27,7 +27,7 @@ export abstract class ItemToSell {
         this.wallet.add(this.price);
         this.sold = true;
         this.sprite.destroy();
-        if (this.wallet.total() >= this.playerRoom.dlc.price){
+        if (this.playerRoom.dlc && this.wallet.total() >= this.playerRoom.dlc.price) {
             this.playerRoom.backToTheGame();
         }
     }
@@ -46,6 +46,11 @@ export abstract class ItemToSell {
     }
 
     public update(game: Phaser.Game) {
+        if (this.sold) {
+            this.priceImage.alpha = 0;
+            this.priceText.alpha = 0;
+            return;
+        }
         if (game.input.mousePointer.x >= this.x &&
             game.input.mousePointer.y >= this.y &&
             game.input.mousePointer.x <= this.x + this.sprite.width &&
