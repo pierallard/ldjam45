@@ -125,6 +125,7 @@ export default class PlayerRoom extends Phaser.State {
 
   public backToTheGame()
   {
+    this.wallet.remove(this.dlc.price);
     const name = 'DungeonL' + this.levelName.substr(1);
     this.game.state.start(name);
     const dungeon = <AbstractDungeonLevel> this.game.state.states[name];

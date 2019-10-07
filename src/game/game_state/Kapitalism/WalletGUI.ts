@@ -13,12 +13,12 @@ export default class WalletGUI {
     }
 
     public create(game: Phaser.Game) {
-        this.text = game.add.text(850, 10, 'Wallet: ' + this.wallet.total() + " USD", { font: "35px Gloria Hallelujah", fill: "#333333" });
+        this.text = game.add.text(850, 10, 'Wallet: ' + this.wallet.total().toPrecision(3) + " USD", { font: "35px Gloria Hallelujah", fill: "#333333" });
         this.dlcText = game.add.text(850, 50, 'DLC price: ' + 0 + " USD", { font: "35px Gloria Hallelujah", fill: "#333333" });
     }
 
     public update(game: Phaser.Game) {
-        this.text.text = 'Wallet: ' + this.wallet.total() + " USD";
+        this.text.text = 'Wallet: ' + this.wallet.total().toPrecision(3) + " USD";
         if (this.dlc) {
             this.dlcText.text = 'DLC price: ' + this.dlc.price + " USD";
         }
