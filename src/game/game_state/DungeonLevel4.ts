@@ -1,8 +1,9 @@
 import {AbstractDungeonLevel, SECONDSBLIND} from "./AbstractDungeonLevel";
-import {DLC} from "../DLCs";
+import {DLC, DLC_BUSINESSPACK} from "../DLCs";
 import Point from "../Point";
 import TilemapLevel from "../TilemapLevel";
 import PlayerRoom from "./PlayerRoom";
+import {TILE_SIZE} from "../../app";
 
 export default class DungeonLevel4 extends AbstractDungeonLevel {
   public LEVEL_NUMBER = 4;
@@ -29,6 +30,19 @@ export default class DungeonLevel4 extends AbstractDungeonLevel {
         this.player.stopPlayer();
       });
     }
+  }
+
+  public update(game: Phaser.Game):boolean {
+    const xpos = 14 * TILE_SIZE;
+
+    if (this.player.sprite.position.x > xpos && this.player.sprite.position.y > 4 * TILE_SIZE) {
+      if (!this.hasAchetedDlc(DLC_BUSINESSPACK)) {
+        this.player.stopPlayer();
+        this.player.sprite.position.x = xpos - 1;
+        this.addMessageBox(game, "Guard: 'This water fountain is for\n\nemployees only sir.'", () => {});
+      }
+    }
+    return super.update(game);
   }
 
   goToNextLevel(game: Phaser.Game) {
