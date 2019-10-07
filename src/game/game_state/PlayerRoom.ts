@@ -28,6 +28,7 @@ export default class PlayerRoom extends Phaser.State {
   private background: Phaser.Image;
   private playerMessageBox: PlayerMessageBox;
   private haveDisplayedFirstMessage: boolean;
+  private blackScren: Phaser.Graphics;
 
   constructor() {
     super();
@@ -61,6 +62,12 @@ export default class PlayerRoom extends Phaser.State {
       this.playerMessageBox.addMessageBox(game, "Oh, I don't have money to buy\nthis DLC...\nI have to sell one of my stuff...");
       this.haveDisplayedFirstMessage = true;
     }
+
+    this.blackScren = this.game.add.graphics(0, 0);
+    this.blackScren.beginFill(0x000000);
+    this.blackScren.drawRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    game.add.tween(this.blackScren).to({alpha: 0}, Phaser.Timer.SECOND * 2, Phaser.Easing.Default, true);
+    game.time.events.add(Phaser.Timer.SECOND * 2, () => { this.blackScren.visible = false; });
   }
 
   private initSellableItems() {
@@ -125,11 +132,15 @@ export default class PlayerRoom extends Phaser.State {
 
   public backToTheGame()
   {
-    this.wallet.remove(this.dlc.price);
-    const name = 'DungeonL' + this.levelName.substr(1);
-    this.game.state.start(name);
-    const dungeon = <AbstractDungeonLevel> this.game.state.states[name];
-    dungeon.setDlcBuy(this.dlc);
+    this.blackScren.visible = true;
+    this.game.add.tween(this.blackScren).to({alpha: 1}, Phaser.Timer.SECOND * 2, Phaser.Easing.Default, true);
+    this.game.time.events.add(Phaser.Timer.SECOND * 2, () => {
+      this.wallet.remove(this.dlc.price);
+      const name = 'DungeonL' + this.levelName.substr(1);
+      this.game.state.start(name);
+      const dungeon = <AbstractDungeonLevel> this.game.state.states[name];
+      dungeon.setDlcBuy(this.dlc);
+    });
   }
 
   getWallet() {

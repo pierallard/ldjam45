@@ -5,7 +5,7 @@ import Point from "../Point";
 import TilemapLevel from "../TilemapLevel";
 import MenuDLC from "../MenuDLC";
 import {Pie} from "../Pie";
-import {SCALE, TILE_SIZE} from "../../app";
+import {DEBUG, SCALE, TILE_SIZE} from "../../app";
 import {isAcheted, achete, DLC_MULTIPLAYER} from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
 import { DLC, DLC_TRANSHUMANISM } from "../DLCs";
@@ -77,6 +77,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
       this.player.switchToBusinessSuits();
     }
 
+    if (DEBUG) { this.displayDLCButton(); }
   }
 
   public update(game: Phaser.Game) {
