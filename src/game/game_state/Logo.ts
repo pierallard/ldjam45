@@ -5,8 +5,8 @@ export class Logo extends Phaser.State {
   create(game: Phaser.Game) {
     game.add.image(30, 15, 'logo');
 
-    game.add.bitmapText(50, 180, 'Carrier Command', "Use arrow keys or wasd/zqsd to move", 5);
-    game.add.bitmapText(85, 188, 'Carrier Command', "Press enter to begin!", 5);
+    game.add.bitmapText(80, 90, 'Carrier Command', "Use arrow keys to move", 5);
+    game.add.bitmapText(85, 100, 'Carrier Command', "Press enter to begin!", 5);
 
     this.enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
