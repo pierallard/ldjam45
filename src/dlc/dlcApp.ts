@@ -34,7 +34,7 @@ const createDLCItem = (dlc: DLC, index: number, onBuy: (dlc: DLC) => void) => {
   if (dlc.image == null) {
     image.src = 'https://via.placeholder.com/250x150';
   } else {
-    image.src = 'src/assets/images/'+dlc.image;
+    image.src = '/dist/assets/images/'+dlc.image;
   }
 
   if (dlc.isAcheted) {
