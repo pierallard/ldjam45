@@ -73,7 +73,7 @@ export default class PlayerRoom extends Phaser.State {
       if (!this.gameEnded) {
         this.blackScren.visible = false;
       } else {
-        this.playerMessageBox.addMessageBox(game, "This game was cool! I started it\nwith nothing... but now my\nlife is empty!");
+        this.playerMessageBox.addMessageBox(game, "This game was cool! I started it\nwith nothing... and now...\nI end up with nothing!");
         game.time.events.add(timing, () => {
           game.add.tween(this.blackScren).to({alpha: 1}, timing, Phaser.Easing.Default, true);
           game.time.events.add(timing, () => {
