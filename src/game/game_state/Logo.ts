@@ -1,4 +1,3 @@
-import {SoundManager} from "../../SoundManager";
 
 export class Logo extends Phaser.State {
   private enter;
@@ -11,7 +10,6 @@ export class Logo extends Phaser.State {
 
     this.enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
-    SoundManager.create(game);
   }
 
   update(game: Phaser.Game) {

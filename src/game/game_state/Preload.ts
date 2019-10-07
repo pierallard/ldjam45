@@ -26,7 +26,11 @@ export default class Preload extends Phaser.State {
   };
 
   private loadAudio() {
-    // this.game.load.audio('evil_music', 'src/assets/musics/main_theme_rock.mp3');
+    this.game.load.audio('walk', 'src/assets/musics/walk.mp3');
+    this.game.load.audio('pee', 'src/assets/musics/pee.mp3');
+    this.game.load.audio('cocamachine', 'src/assets/musics/cocamachine.mp3');
+    this.game.load.audio('keyboard', 'src/assets/musics/keyboard.mp3');
+    this.game.load.audio('water', 'src/assets/musics/water.mp3');
   }
 
   private loadImages() {
