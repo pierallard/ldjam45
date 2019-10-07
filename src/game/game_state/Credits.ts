@@ -9,7 +9,7 @@ export class Credits extends State {
   constructor() {
     super();
     this.texts = [];
-    this.texts.push('TODO Nom de jeu');
+    this.texts.push('"Just One More"');
     this.texts.push('');
     this.texts.push('This game was created in honor of:');
     this.texts.push('Total War');
