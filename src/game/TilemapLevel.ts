@@ -41,6 +41,7 @@ export default class TilemapLevel {
         [
           37, // water
           38, // coca
+          60, // computer
           181, 182, 183 // la caisse,
         ], true, this.items
     );
