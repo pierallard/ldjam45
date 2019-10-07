@@ -16,6 +16,8 @@ export const DLC_ANIMALS = 'Linguistic Pack: Animals (Limited Edition)';
 export const DLC_MULTIPLAYER = 'Multi-player Mode (Special offer: 50% discount)';
 export const DLC_FAST = 'Speed run: so fast, so furious!';
 export const DLC_LIFEBAR = 'HUD Enhanced Edition - Lifebar';
+export const DLC_MUSIC = 'Music OST - Orchestral Edition Binaural';
+export const DLC_SOUND = 'Audio Sound FX PACK (SFX Edition)';
 
 const dlcs: DLC[] = [
   {
@@ -121,6 +123,17 @@ const dlcs: DLC[] = [
     splitName: 'HUD Enhanced Edition - Lifebar',
   },
   {
+    name: DLC_SOUND,
+    code: 'sound',
+    description: `We reworked (actually added) all the sounds in the game, with a team of Sound Designers.
+      Get this pack to immerse yourself with real recorded sounds and SFX with more than 48Go of new content!`.split("\n"),
+    image: 'dlc-sound.png',
+    price: 5.99,
+    isAcheted: false,
+    isSelected: false,
+    splitName: 'Audio Sound FX PACK',
+  },
+  {
     name: DLC_TRANSHUMANISM,
     code: 'vessie',
     description: `Want to better know your physical functions to perform in any condition?
@@ -141,6 +154,17 @@ const dlcs: DLC[] = [
     isAcheted: false,
     isSelected: false,
     splitName: 'Speed run',
+  },
+  {
+    name: DLC_MUSIC,
+    code: 'music',
+    description: `Unlock hours of music in this music OST pack.
+      Composed by Michael Musik, this Orchestral Edition Binaural soundtrack will fulfill your game and bring a new unseen atmosphere to it!`.split("\n"),
+    image: 'dlc-music.png',
+    price: 8.99,
+    isAcheted: false,
+    isSelected: false,
+    splitName: 'Music OST',
   }
 ];
 
