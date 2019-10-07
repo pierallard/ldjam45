@@ -131,4 +131,8 @@ export default class PlayerRoom extends Phaser.State {
     const dungeon = <AbstractDungeonLevel> this.game.state.states[name];
     dungeon.setDlcBuy(this.dlc);
   }
+
+  getWallet() {
+    return this.wallet;
+  }
 }

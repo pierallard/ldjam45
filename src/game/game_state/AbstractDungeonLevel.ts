@@ -61,7 +61,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     this.menuDLC.create(game, this.showDLCButton, (dlc) => {
       this.getDlcCallback(game, dlc);
       this.dlcActivator.onActivation(game, dlc);
-    });
+    }, (<PlayerRoom> game.state.states['PlayerRoom']).getWallet());
 
 
     this.blackScreen = this.game.add.graphics(0, 0);

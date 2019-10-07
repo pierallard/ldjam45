@@ -59,12 +59,14 @@ const createDLCItem = (dlc: DLC, index: number, onBuy: (dlc: DLC) => void) => {
   return dlcItem;
 }
 
-const openDLCMenu = (dlcs, onBuy) => {
+const openDLCMenu = (dlcs, onBuy, currentWallet: number) => {
   getId('DLCMenu').style.display = 'block';
 
   const dlcsList = getId('dlcList');
+  const currentWalletDom = getId('dlcCurrentWallet');
 
   dlcs.forEach((dlc, i) => dlcsList.appendChild(createDLCItem(dlc, i, onBuy)));
+  currentWalletDom.innerText = 'Your wallet: ' + currentWallet.toPrecision(3) + ' $';
 };
 
 const closeDLCMenu = () => {
