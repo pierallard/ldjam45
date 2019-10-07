@@ -1,4 +1,4 @@
-import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
+import {AbstractDungeonLevel, SECONDSBLIND} from "./AbstractDungeonLevel";
 import {DLC} from "../DLCs";
 import Point from "../Point";
 import TilemapLevel from "../TilemapLevel";
@@ -29,6 +29,12 @@ export default class DungeonLevel4 extends AbstractDungeonLevel {
         this.player.stopPlayer();
       });
     }
+  }
+
+  goToNextLevel(game: Phaser.Game) {
+    const timingBlind = SECONDSBLIND * Phaser.Timer.SECOND;
+    game.add.tween(this.server).to({alpha: 0}, timingBlind, Phaser.Easing.Default, true);
+    super.goToNextLevel(game);
   }
 
   getDlcCallback(game: Phaser.Game, dlc: DLC) {

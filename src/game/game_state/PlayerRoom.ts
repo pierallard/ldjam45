@@ -28,7 +28,8 @@ export default class PlayerRoom extends Phaser.State {
   private background: Phaser.Image;
   private playerMessageBox: PlayerMessageBox;
   private haveDisplayedFirstMessage: boolean;
-  private blackScren: Phaser.Graphics;
+  blackScren: Phaser.Graphics;
+  private gameEnded: boolean;
 
   constructor() {
     super();
@@ -38,6 +39,7 @@ export default class PlayerRoom extends Phaser.State {
     this.initSellableItems();
     this.playerMessageBox = new PlayerMessageBox();
     this.haveDisplayedFirstMessage = false;
+    this.gameEnded = false;
   }
 
   public create(game: Phaser.Game) {
@@ -52,10 +54,6 @@ export default class PlayerRoom extends Phaser.State {
     this.drawItems(game);
     this.walletGUI.create(game);
     game.add.image(1060, 196, 'laptop');
-    //
-    /*this.game.add.button(250, 50, 'button', () => {
-      game.state.start('DungeonLevel1');
-    }, this, 2, 1, 0);*/
 
     this.playerMessageBox.create(game);
     if (!this.haveDisplayedFirstMessage) {
@@ -66,8 +64,28 @@ export default class PlayerRoom extends Phaser.State {
     this.blackScren = this.game.add.graphics(0, 0);
     this.blackScren.beginFill(0x000000);
     this.blackScren.drawRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-    game.add.tween(this.blackScren).to({alpha: 0}, Phaser.Timer.SECOND * 2, Phaser.Easing.Default, true);
-    game.time.events.add(Phaser.Timer.SECOND * 2, () => { this.blackScren.visible = false; });
+    let timing = Phaser.Timer.SECOND * 2;
+    if (this.gameEnded) {
+      timing = Phaser.Timer.SECOND * 5;
+    }
+    game.add.tween(this.blackScren).to({alpha: 0}, timing, Phaser.Easing.Default, true);
+    game.time.events.add(timing, () => {
+      if (!this.gameEnded) {
+        this.blackScren.visible = false;
+      } else {
+        this.playerMessageBox.addMessageBox(game, "TROUVER UN TEXTE DE FIN");
+        game.time.events.add(timing, () => {
+          game.add.tween(this.blackScren).to({alpha: 1}, timing, Phaser.Easing.Default, true);
+          game.time.events.add(timing, () => {
+            this.goCredits(game);
+          });
+        });
+      }
+    });
+  }
+
+  public goCredits(game: Phaser.Game) {
+    game.state.start('Credits');
   }
 
   private initSellableItems() {
@@ -113,6 +131,10 @@ export default class PlayerRoom extends Phaser.State {
     }
 
   public update(game: Phaser.Game) {
+    if (this.gameEnded) {
+      return;
+    }
+
     this.walletGUI.update(game);
 
     this.itemsToSell.items.forEach((itemToSell) => {
@@ -145,5 +167,9 @@ export default class PlayerRoom extends Phaser.State {
 
   getWallet() {
     return this.wallet;
+  }
+
+  endGame() {
+    this.gameEnded = true;
   }
 }

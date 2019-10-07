@@ -11,6 +11,8 @@ import PlayerRoom from "./PlayerRoom";
 import { DLC, DLC_TRANSHUMANISM } from "../DLCs";
 import DLCactivator from "../DLCactivator";
 
+export const SECONDSBLIND = 1.5;
+
 export abstract class AbstractDungeonLevel extends Phaser.State {
   public player: DungeonPlayer;
   protected messageBox: MessageBox;
@@ -151,13 +153,17 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   }
 
   public goToNextLevel(game: Phaser.Game) {
-    const timingBlind = 1.5 * Phaser.Timer.SECOND;
+    const timingBlind = SECONDSBLIND * Phaser.Timer.SECOND;
     this.blackScreen.visible = true;
     game.add.tween(this.blackScreen).to({alpha: 1}, timingBlind, Phaser.Easing.Default, true);
     game.time.events.add(timingBlind, () => {
-      game.state.start(`DungeonLevel${this.LEVEL_NUMBER + 1}`);
-      this.blackScreen.visible = false;
-      this.blackScreen.alpha = 0;
+      if (this.LEVEL_NUMBER === 4) {
+        this.endGame(game);
+      } else {
+        game.state.start(`DungeonLevel${this.LEVEL_NUMBER + 1}`);
+        this.blackScreen.visible = false;
+        this.blackScreen.alpha = 0;
+      }
     });
   }
 
@@ -175,5 +181,27 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
       (<PlayerRoom>playerRoom).setCurrentLevelName(this.getLevelName());
       achete(dlc.name);
     }
+  }
+
+  private endGame(game: Phaser.Game) {
+    game.time.events.add(2 * Phaser.Timer.SECOND, () => {
+      this.addMessageBox(game, 'An error occured.', () => {
+        game.time.events.add(Phaser.Timer.SECOND, () => {
+          this.addMessageBox(game, 'Impossible to join DLC server', () => {
+            game.time.events.add(Phaser.Timer.SECOND, () => {
+              this.addMessageBox(game, 'This game can not be run.', () => {
+                game.time.events.add(Phaser.Timer.SECOND, () => {
+                  this.addMessageBox(game, "Closing in 3...                   \n\n2...                   \n\n1...             ", () => {
+                    game.state.start('PlayerRoom');
+                    const playerRoom = <PlayerRoom>game.state.states['PlayerRoom'];
+                    playerRoom.endGame();
+                  });
+                });
+              });
+            });
+          })
+        });
+      });
+    });
   }
 }

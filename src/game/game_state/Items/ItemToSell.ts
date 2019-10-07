@@ -2,7 +2,6 @@ import Wallet from "../Kapitalism/Wallet";
 import PlayerRoom from "../PlayerRoom";
 
 export abstract class ItemToSell {
-
     protected sprite: Phaser.Sprite;
     protected name: string;
     protected price: number;
@@ -24,6 +23,9 @@ export abstract class ItemToSell {
 
     public sell()
     {
+        if (this.playerRoom.blackScren.visible) {
+            return;
+        }
         this.wallet.add(this.price);
         this.sold = true;
         this.sprite.destroy();
@@ -46,6 +48,11 @@ export abstract class ItemToSell {
     }
 
     public update(game: Phaser.Game) {
+        if (this.playerRoom.blackScren.visible) {
+            this.priceImage.alpha = 0;
+            this.priceText.alpha = 0;
+            return;
+        }
         if (this.sold) {
             this.priceImage.alpha = 0;
             this.priceText.alpha = 0;
