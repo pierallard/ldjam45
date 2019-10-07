@@ -26,7 +26,7 @@ export default class DungeonLevel3 extends AbstractDungeonLevel {
     this.noLampScreen = game.add.graphics(0, 0);
     this.noLampScreen.beginFill(0x000000);
     this.noLampScreen.drawRect(0, 0, 300, 120);
-    this.noLampScreen.alpha = DEBUG ? 0.9 : 0.985;
+    this.noLampScreen.alpha = DEBUG ? 0.9 : 0.99;
 
     this.updateNoLampScreen();
 

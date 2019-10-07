@@ -24,7 +24,7 @@ const dlcs: DLC[] = [
       would be able to lock pick any classic door in the game!
       Buy now to add this incredible feature.`.split("\n"),
     image: 'dlc-lockpicking.jpeg',
-    price: 2.99,
+    price: 15.99,
     isAcheted: false,
     isSelected: false,
     splitName: 'Lock Picking Capabilities',
@@ -36,7 +36,7 @@ const dlcs: DLC[] = [
       The flashlight! Useful for everything, especially to bring some light somewhere.
       This new content will be available in-game once bought!`.split("\n"),
     image: 'dlc-flashlight.jpg',
-    price: 3.99,
+    price: 19.99,
     isAcheted: false,
     isSelected: false,
     splitName: 'Flashlight Item - Light Pack Platinium'
@@ -48,7 +48,7 @@ const dlcs: DLC[] = [
       Except with this new pack! By installing this linguistic pack 
       your character will be able to speak to animals. Cows, cats, birds... make some new friends!`.split("\n"),
     image: 'dlc-animals.jpg',
-    price: 2.99,
+    price: 25.99,
     isAcheted: false,
     isSelected: false,
     splitName: 'Linguistic Pack: Animals',
@@ -60,7 +60,7 @@ const dlcs: DLC[] = [
       by buying this content! Your ennemies won't
       be able to recognize you! BUY NOW.`.split("\n"),
     image: 'dlc-business.jpg',
-    price: 4.99,
+    price: 29.99,
     isAcheted: false,
     isSelected: false,
     splitName: 'Business Man Skin Pack',
@@ -72,7 +72,7 @@ const dlcs: DLC[] = [
       With this new DLC, unlock new skills such as...
       Hacker stuff! Become a professional of IT stuff and.. HACKER!`.split("\n"),
     image: 'dlc-hacker.jpg',
-    price: 3.99,
+    price: 39.99,
     isAcheted: false,
     isSelected: false,
     splitName: 'Hacker DLC Pack Premium'
@@ -84,7 +84,7 @@ const dlcs: DLC[] = [
       With this new DLC, unlock the multi-player mode.
       Play with your friends or compete to get the highest score!`.split("\n"),
     image: 'dlc-multiplayer.jpeg',
-    price: 3.99,
+    price: 2.99,
     isAcheted: false,
     isSelected: false,
     splitName: 'Multi-player Mode',
@@ -95,7 +95,7 @@ const dlcs: DLC[] = [
     description: `Want to better know your physical functions to perform in any condition?
       With this new DLC, monitor your body and get access to new capabilities.`.split("\n"),
     image: 'dlc-vessie.jpg',
-    price: 6.99,
+    price: 19.99,
     isAcheted: false,
     isSelected: false,
     splitName: 'Transhumanism',
@@ -106,7 +106,7 @@ const dlcs: DLC[] = [
     description: `Want to beat speed run record?
       With this new DLC, move faster, surround your enemies, be fast, be furious.`.split("\n"),
     image: 'dlc-speed.jpg',
-    price: 2.99,
+    price: 4.99,
     isAcheted: false,
     isSelected: false,
     splitName: 'Speed run',

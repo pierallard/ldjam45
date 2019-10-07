@@ -4,7 +4,7 @@ export default class Chair extends ItemToSell{
 
     public create(game: Phaser.Game) {
         this.name = 'racing car chair';
-        this.price = 30;
+        this.price = 20;
         if (!this.sold) {
             this.sprite = game.add.sprite(this.x, this.y, 'chair');
             this.sprite.inputEnabled = true;

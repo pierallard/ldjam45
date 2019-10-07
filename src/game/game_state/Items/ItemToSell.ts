@@ -21,11 +21,24 @@ export abstract class ItemToSell {
         this.y = y;
     }
 
-    public sell()
+    public sell(e)
     {
         if (this.playerRoom.blackScren.visible) {
             return;
         }
+
+        const priceDlc = this.playerRoom.dlc.price;
+        let itemsAboveDlcPrice: number[] = [];
+        this.playerRoom.itemsToSell.items.forEach((item) => {
+            if (item.price > priceDlc) itemsAboveDlcPrice.push(item.price);
+        });
+        const maxAuthorizedPrice = itemsAboveDlcPrice.sort((a, b) => a - b)[0];
+
+        if (this.price > maxAuthorizedPrice) {
+            this.playerRoom.playerMessageBox.addMessageBox(e.game, "Ahah, I'm not crazy, I don't need\nto sell this expansive thing\njust for a DLC!");
+            return;
+        }
+
         this.wallet.add(this.price);
         this.sold = true;
         this.sprite.destroy();

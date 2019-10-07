@@ -20,13 +20,13 @@ import {AbstractDungeonLevel} from "./AbstractDungeonLevel";
 
 
 export default class PlayerRoom extends Phaser.State {
-  private itemsToSell: ItemsToSell;
+  public itemsToSell: ItemsToSell;
   private wallet: Wallet;
   private walletGUI: WalletGUI;
   public dlc: DLC;
   private levelName: string;
   private background: Phaser.Image;
-  private playerMessageBox: PlayerMessageBox;
+  public playerMessageBox: PlayerMessageBox;
   private haveDisplayedFirstMessage: boolean;
   blackScren: Phaser.Graphics;
   private gameEnded: boolean;

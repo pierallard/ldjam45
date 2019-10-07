@@ -5,7 +5,7 @@ export default class Tshirt extends ItemToSell {
 
     public create(game: Phaser.Game) {
         this.name = 'South park tshirt';
-        this.price = 10;
+        this.price = 12;
         if (!this.sold) {
             this.sprite = game.add.sprite(this.x, this.y, 'tshirt');
             this.sprite.inputEnabled = true;

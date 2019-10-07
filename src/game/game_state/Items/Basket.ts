@@ -4,7 +4,7 @@ export default class Basket extends ItemToSell{
 
     public create(game: Phaser.Game) {
         this.name = 'basket 80\'s';
-        this.price = 20;
+        this.price = 15;
         if (!this.sold) {
             this.sprite = game.add.sprite(this.x, this.y, 'basket');
             this.sprite.inputEnabled = true;
