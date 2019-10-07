@@ -10,6 +10,7 @@ import {isAcheted, achete, DLC_MULTIPLAYER} from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
 import { DLC, DLC_TRANSHUMANISM } from "../DLCs";
 import DLCactivator from "../DLCactivator";
+import PersistentPlayerInfos from "../PersistentPlayerInfos";
 
 export const SECONDSBLIND = 1.5;
 
@@ -115,7 +116,7 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     this.player.update(game);
 
     if (this.hasAchetedDlc(DLC_TRANSHUMANISM)) {
-      game.add.sprite(20, game.height - 16, 'bladder-indicator', this.player.vessie); // change the level of liquid
+      game.add.sprite(20, game.height - 16, 'bladder-indicator', PersistentPlayerInfos.vessie); // change the level of liquid
     }
 
     return true;

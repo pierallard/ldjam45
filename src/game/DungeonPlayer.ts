@@ -3,6 +3,7 @@ import {TILE_SIZE} from "../app";
 import TilemapLevel from "./TilemapLevel";
 import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
 import DLCs, { DLC_FAST } from "../game/DLCs";
+import PersistentPlayerInfos from "./PersistentPlayerInfos";
 
 export const MOVE_TIME = Phaser.Timer.SECOND * 0.3;
 
@@ -16,7 +17,6 @@ export class DungeonPlayer {
   private actionKey: Phaser.Key;
   private tilemap: TilemapLevel;
   private isForbidMove: boolean;
-  public vessie: number = 0;
   public hasPassword: boolean = false;
   private audio;
 
@@ -139,14 +139,14 @@ export class DungeonPlayer {
 
   public drink()
   {
-    if (this.vessie < 4) {
-      this.vessie = this.vessie + 1;
+    if (PersistentPlayerInfos.vessie < 4) {
+      PersistentPlayerInfos.vessie = PersistentPlayerInfos.vessie + 1;
     }
   }
 
   public hasToPee(): boolean
   {
-    return this.vessie == 4;
+    return PersistentPlayerInfos.vessie == 4;
   }
 
   public obtainPassword(): void
