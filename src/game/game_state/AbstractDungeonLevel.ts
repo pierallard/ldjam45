@@ -6,9 +6,8 @@ import TilemapLevel from "../TilemapLevel";
 import MenuDLC from "../MenuDLC";
 import {Pie} from "../Pie";
 import {SCALE, TILE_SIZE} from "../../app";
-import DLCs, {isAcheted, achete, DLC_MULTIPLAYER} from "../DLCs";
+import {isAcheted, achete, DLC_MULTIPLAYER} from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
-import {Door} from "../Door";
 import { DLC, DLC_TRANSHUMANISM } from "../DLCs";
 import DLCactivator from "../DLCactivator";
 
@@ -162,13 +161,18 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   }
 
   public defaultDlcCallback(game: Phaser.Game, dlc: DLC) {
-    game.state.start('PlayerRoom');
-
-    const playerRoom = game.state.states['PlayerRoom'];
-    (<PlayerRoom>playerRoom).setdlcItem(dlc);
-    (<PlayerRoom>playerRoom).setCurrentLevelName(this.getLevelName());
-    achete(dlc.name);
+    const wallet = (<PlayerRoom> game.state.states['PlayerRoom']).getWallet();
+    if (wallet.total() >= dlc.price) {
+      dlc.isAcheted = true;
+      wallet.remove(dlc.price);
+      this.menuDLC.close();
+      this.dlc = dlc;
+    } else {
+      game.state.start('PlayerRoom');
+      const playerRoom = game.state.states['PlayerRoom'];
+      (<PlayerRoom>playerRoom).setdlcItem(dlc);
+      (<PlayerRoom>playerRoom).setCurrentLevelName(this.getLevelName());
+      achete(dlc.name);
+    }
   }
-
-
 }
