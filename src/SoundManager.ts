@@ -1,3 +1,5 @@
+import {DLC_SOUND, isAcheted} from "./game/DLCs";
+
 export enum SOUND {
   COCAMACHINE = 'cocamachine',
   KEYBOARD = 'keyboard',
@@ -10,8 +12,8 @@ class Sound {
   constructor(game: Phaser.Game, type: SOUND, id: number) {
     this.type = type;
     this.id = id;
-    this.audio = game.add.audio(type + '_' + id);
-    this.audio.allowMultiple = true;
+    this.audio = game.add.audio(type + '');
+    this.audio.allowMultiple = false;
   }
 
   public id: number;
@@ -20,13 +22,21 @@ class Sound {
   public originalVolume = 1;
 
   play(volume = 1) {
+    if (!isAcheted(DLC_SOUND)) {
+      return;
+    }
+
     this.originalVolume = volume;
 
     if (this.audio.isPlaying) {
-      this.audio.restart(this.audio.currentMarker, 0);
+      // this.audio.restart(this.audio.currentMarker, 0);
     } else {
       this.audio.play();
     }
+  }
+
+  stop() {
+    this.audio.stop();
   }
 
   setMuted(muted: boolean) {
@@ -56,15 +66,24 @@ export class SoundManager {
     sound.play(volume);
   }
 
+  static stop(type: SOUND) {
+    const ss = this.sounds.filter((sound) => {
+      return sound.type === type;
+    });
+    ss.forEach((s) => {
+      s.stop();
+    });
+  }
+
   static playMusic(game: Phaser.Game) {
     this.music = game.add.audio('backgroundsound');
     this.music.allowMultiple = true;
-    this.music.play();
     this.music.loop = true;
+    this.music.play();
     this.music.volume = 0;
   }
 
   static pumpUpTheBass() {
-    this.music.volume = 0.5;
+    this.music.volume = 0.1;
   }
 }

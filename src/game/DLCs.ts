@@ -1,3 +1,5 @@
+import {SoundManager} from "../SoundManager";
+
 export interface DLC {
   name: string;
   code: string;
@@ -169,7 +171,11 @@ const dlcs: DLC[] = [
 ];
 
 export const achete = (name: string) => {
-  dlcs.find(dlc => dlc.name === name).isAcheted = true;
+  const dlc = dlcs.find(dlc => dlc.name === name);
+  dlc.isAcheted = true;
+  if (dlc.name === DLC_MUSIC) {
+    SoundManager.pumpUpTheBass();
+  }
 };
 
 export const isAcheted = (name: string) => {

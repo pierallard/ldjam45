@@ -2,22 +2,16 @@ import Point from "./Point";
 import {Activable} from "./Activable";
 import {DEBUG, TILE_SIZE} from "../app";
 import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
+import Sound = Phaser.Sound;
+import {SOUND, SoundManager} from "../SoundManager";
 
 export class Computer implements Activable {
   private position: Point;
   private level: AbstractDungeonLevel;
-  private peeSound;
-  private keyboardSound;
 
   constructor(level: AbstractDungeonLevel, point: Point) {
     this.level = level;
     this.position = point;
-
-    this.peeSound = level.game.add.audio('pee');
-    this.peeSound.allowMultiple = false;
-
-    this.keyboardSound = level.game.add.audio('keyboard');
-    this.keyboardSound.allowMultiple = false;
 
   }
 
@@ -30,9 +24,7 @@ export class Computer implements Activable {
       let player = level4.player;
       if (this.level.hasAchetedDlc('hacker')) {
           if (player.hasPassword) {
-            if (!this.keyboardSound.isPlaying) {
-              this.keyboardSound.play();
-            }
+            SoundManager.play(SOUND.KEYBOARD);
             this.level.addMessageBox(game, `You: Let's recompile the wifi firmware\n\nand rebind the printer \n\non the VGA keyboard!`, () => {
                 level4.explose();
                 this.level.addPie(game, new Point(this.position.x * TILE_SIZE + 2, this.position.y * TILE_SIZE + 2),
@@ -45,9 +37,7 @@ export class Computer implements Activable {
       }
       if (this.level.hasAchetedDlc('businessman')) {
           if (this.level.hasAchetedDlc('vessie') && player.hasToPee()) {
-            if (!this.peeSound.isPlaying) {
-              this.peeSound.play();
-            }
+            SoundManager.play(SOUND.PEE);
             this.level.addMessageBox(game, `You: HAHA Take This! -- *unzips pants*`, () => {
                 level4.explose();
                 this.level.addPie(game, new Point(this.position.x * TILE_SIZE + 2, this.position.y * TILE_SIZE + 2),

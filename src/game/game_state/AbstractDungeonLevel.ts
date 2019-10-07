@@ -6,11 +6,12 @@ import TilemapLevel from "../TilemapLevel";
 import MenuDLC from "../MenuDLC";
 import {Pie} from "../Pie";
 import {DEBUG, SCALE, TILE_SIZE} from "../../app";
-import {isAcheted, achete, DLC_MULTIPLAYER, DLC_LIFEBAR} from "../DLCs";
+import {isAcheted, achete, DLC_MULTIPLAYER, DLC_LIFEBAR, DLC_MUSIC} from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
 import { DLC, DLC_TRANSHUMANISM } from "../DLCs";
 import DLCactivator from "../DLCactivator";
 import PersistentPlayerInfos from "../PersistentPlayerInfos";
+import {SoundManager} from "../../SoundManager";
 
 export const SECONDSBLIND = 1.5;
 
@@ -175,6 +176,9 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
     const wallet = (<PlayerRoom> game.state.states['PlayerRoom']).getWallet();
     if (wallet.total() >= dlc.price) {
       dlc.isAcheted = true;
+      if (dlc.name === DLC_MUSIC) {
+        SoundManager.pumpUpTheBass();
+      }
       wallet.remove(dlc.price);
       this.menuDLC.close();
       this.dlc = dlc;
@@ -183,7 +187,6 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
       const playerRoom = game.state.states['PlayerRoom'];
       (<PlayerRoom>playerRoom).setdlcItem(dlc);
       (<PlayerRoom>playerRoom).setCurrentLevelName(this.getLevelName());
-      achete(dlc.name);
     }
   }
 

@@ -8,10 +8,10 @@ import Playboy from "./Items/Playboy";
 import ItemsToSell from "./Items/ItemsToSell";
 import BritneyPoster from "./Items/BritneyPoster";
 import Bed from "./Items/Bed";
-import {DLC} from "../DLCs";
+import {DLC, achete} from "../DLCs";
 import GameBoy from "./Items/GameBoy";
 import PokemonCard from "./Items/PokemonCard";
-import {GAME_HEIGHT, GAME_WIDTH, SCALE} from "../../app";
+import {GAME_HEIGHT, GAME_WIDTH} from "../../app";
 import Sock from "./Items/Sock";
 import {ItemToSell} from "./Items/ItemToSell";
 import Underpants from "./Items/Underpants";
@@ -159,6 +159,7 @@ export default class PlayerRoom extends Phaser.State {
     this.game.time.events.add(Phaser.Timer.SECOND * 2, () => {
       this.wallet.remove(this.dlc.price);
       const name = 'DungeonL' + this.levelName.substr(1);
+      achete(this.dlc.name);
       this.game.state.start(name);
       const dungeon = <AbstractDungeonLevel> this.game.state.states[name];
       dungeon.setDlcBuy(this.dlc);

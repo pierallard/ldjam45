@@ -2,6 +2,7 @@ import Point from "./Point";
 import {Activable} from "./Activable";
 import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
 import {DEBUG, TILE_SIZE} from "../app";
+import {SOUND, SoundManager} from "../SoundManager";
 
 export class CocaMachine implements Activable {
   private position: Point;
@@ -11,7 +12,6 @@ export class CocaMachine implements Activable {
   constructor(level: AbstractDungeonLevel, point: Point) {
     this.level = level;
     this.position = point;
-    this.sound = level.game.add.audio('cocamachine');
   }
 
   getPosition(): Point {
@@ -19,10 +19,7 @@ export class CocaMachine implements Activable {
   }
 
   doAction(game: Phaser.Game) {
-    console.log('coca machine');
-    if (!this.sound.isPlaying) {
-      this.sound.play();
-    }
+    SoundManager.play(SOUND.COCAMACHINE);
     this.level.addPie(game, new Point(
         this.position.x * TILE_SIZE + 2,
         this.position.y * TILE_SIZE + 2

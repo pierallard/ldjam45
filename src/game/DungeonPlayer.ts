@@ -4,6 +4,7 @@ import TilemapLevel from "./TilemapLevel";
 import {AbstractDungeonLevel} from "./game_state/AbstractDungeonLevel";
 import DLCs, { DLC_FAST } from "../game/DLCs";
 import PersistentPlayerInfos from "./PersistentPlayerInfos";
+import {SOUND, SoundManager} from "../SoundManager";
 
 export const MOVE_TIME = Phaser.Timer.SECOND * 0.3;
 
@@ -18,7 +19,6 @@ export class DungeonPlayer {
   private tilemap: TilemapLevel;
   private isForbidMove: boolean;
   public hasPassword: boolean = false;
-  private audio;
 
   constructor(point: Point) {
     this.position = point;
@@ -33,9 +33,6 @@ export class DungeonPlayer {
     const spriteName = this.isBusinessMan(game) ? 'player_business_front' : 'player_front';
     this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, spriteName);
     this.tilemap = tilemap;
-
-    this.audio = game.add.audio('walk');
-    this.audio.allowMultiple = false;
 
     this.sprite.anchor.setTo(.5,.5);
     game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
@@ -52,15 +49,11 @@ export class DungeonPlayer {
   public update(game: Phaser.Game) {
 
     if (this.sprite.body.velocity.x != 0 || this.sprite.body.velocity.y != 0) {
-        if (!this.audio.isPlaying) {
-          this.audio.play();
-        }
+      SoundManager.play(SOUND.WALK);
     }
-    else {
-        this.audio.stop();
-    }
-    this.stopPlayer();
+
     if (this.isForbidMove) {
+      this.stopPlayer();
       return;
     }
 
@@ -71,20 +64,24 @@ export class DungeonPlayer {
 
     if (this.leftKey.isDown) {
       this.sprite.body.velocity.x = -velocityDeFrite;
+      this.sprite.body.velocity.y = 0;
     } else if (this.rightKey.isDown) {
       this.sprite.body.velocity.x = +velocityDeFrite;
+      this.sprite.body.velocity.y = 0;
     } else if (this.upKey.isDown) {
 
       if (this.isBusinessMan(game)) { this.sprite.loadTexture('player_business_back'); }
       else { this.sprite.loadTexture('player_back'); }
 
       this.sprite.body.velocity.y = -velocityDeFrite;
+      this.sprite.body.velocity.x = 0;
     } else if (this.downKey.isDown) {
 
       if (this.isBusinessMan(game)) { this.sprite.loadTexture('player_business_front'); }
       else { this.sprite.loadTexture('player_front'); }
 
       this.sprite.body.velocity.y = +velocityDeFrite;
+      this.sprite.body.velocity.x = 0;
     } else if (this.actionKey.isDown) {
       this.doAction(game);
     } else {
@@ -106,6 +103,7 @@ export class DungeonPlayer {
     this.sprite.body.velocity.y = 0;
     this.sprite.body.velocity.x = 0;
     this.setFakePosition();
+    SoundManager.stop(SOUND.WALK);
   }
 
   public switchToBusinessSuits()
