@@ -32,9 +32,11 @@ export default class DungeonLevel3 extends AbstractDungeonLevel {
 
     if (this.showBeginningMessage) {
       this.showBeginningMessage = false;
-      this.addMessageBox(game, "YOU: 'I can't see anything!\n\nWhere am I?\n\nWhat's this sound?'", () => {
-        this.player.stopPlayer();
-      });
+      if (!this.hasAchetedDlc(DLC_FLASHLIGHT)) {
+        this.addMessageBox(game, "YOU: 'I can't see anything!\n\nWhere am I?\n\nWhat's this sound?'", () => {
+          this.player.stopPlayer();
+        });
+      }
     }
   }
 
