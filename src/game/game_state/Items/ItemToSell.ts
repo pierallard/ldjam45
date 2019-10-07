@@ -27,14 +27,31 @@ export abstract class ItemToSell {
             return;
         }
 
-        const priceDlc = this.playerRoom.dlc.price;
-        let itemsAboveDlcPrice: number[] = [];
-        this.playerRoom.itemsToSell.items.forEach((item) => {
-            if (item.price > priceDlc) itemsAboveDlcPrice.push(item.price);
-        });
-        const maxAuthorizedPrice = itemsAboveDlcPrice.sort((a, b) => a - b)[0];
+        let itemsAccepted = [];
 
-        if (this.price > maxAuthorizedPrice) {
+        // Pas vendus
+        itemsAccepted = this.playerRoom.itemsToSell.items.filter((item) => !item.sold);
+
+        // Pas le lit si y a d'autres trucs
+        if (itemsAccepted.length > 1) {
+            itemsAccepted = itemsAccepted.filter((item) => item.name != "Scandinavian bed");
+        }
+
+        const priceDlc = this.playerRoom.dlc.price;
+        let itemsAboveDlcPrice: ItemToSell[] = [];
+        itemsAccepted.forEach((item) => {
+            if (item.price > priceDlc) itemsAboveDlcPrice.push(item);
+        });
+        itemsAboveDlcPrice = itemsAboveDlcPrice.sort((a, b) => a.price - b.price);
+        itemsAboveDlcPrice.shift();
+
+        itemsAccepted = itemsAccepted.filter((item) => {
+            return !itemsAboveDlcPrice.includes(item);
+        });
+
+        console.log("ACCEPTED = ", itemsAccepted);
+
+        if (!itemsAccepted.includes(this)) {
             this.playerRoom.playerMessageBox.addMessageBox(e.game, "Ahah, I'm not crazy, I don't need\nto sell this expansive thing\njust for a DLC!");
             return;
         }
