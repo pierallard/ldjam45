@@ -6,7 +6,7 @@ import TilemapLevel from "../TilemapLevel";
 import MenuDLC from "../MenuDLC";
 import {Pie} from "../Pie";
 import {DEBUG, SCALE, TILE_SIZE} from "../../app";
-import {isAcheted, achete, DLC_MULTIPLAYER} from "../DLCs";
+import {isAcheted, achete, DLC_MULTIPLAYER, DLC_LIFEBAR} from "../DLCs";
 import PlayerRoom from "./PlayerRoom";
 import { DLC, DLC_TRANSHUMANISM } from "../DLCs";
 import DLCactivator from "../DLCactivator";
@@ -75,6 +75,9 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
 
     if (this.hasAchetedDlc(DLC_MULTIPLAYER)) {
       game.add.sprite(60, game.height - 16, 'multiplayer-btn');
+    }
+    if (this.hasAchetedDlc(DLC_LIFEBAR)) {
+      game.add.sprite(140, game.height - 16, 'lifebar-btn');
     }
     if (this.hasAchetedDlc('Business Man Skin Pack (Cosmetic)')) {
       this.player.switchToBusinessSuits();

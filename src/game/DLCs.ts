@@ -15,19 +15,30 @@ export const DLC_FLASHLIGHT = 'NEW! Flashlight Item - Light Pack Platinium';
 export const DLC_ANIMALS = 'Linguistic Pack: Animals (Limited Edition)';
 export const DLC_MULTIPLAYER = 'Multi-player Mode (Special offer: 50% discount)';
 export const DLC_FAST = 'Speed run: so fast, so furious!';
+export const DLC_LIFEBAR = 'HUD Enhanced Edition - Lifebar';
 
 const dlcs: DLC[] = [
   {
     name: 'Lock Picking Capabilities',
     code: 'lockpick',
-    description: `With this new DLC, your hero
-      would be able to lock pick any classic door in the game!
+    description: `With this new DLC, your hero would be able to lock pick any classic door in the game!
       Buy now to add this incredible feature.`.split("\n"),
     image: 'dlc-lockpicking.jpeg',
     price: 15.99,
     isAcheted: false,
     isSelected: false,
     splitName: 'Lock Picking Capabilities',
+  },
+  {
+    name: "Urban Vehicles - and more!",
+    code: 'vehicles',
+    description: `Cars, Bikes, Bus... Get them all! This Pack adds up to 50+ new Vehicles that will
+      be available in the city. And if you prefer to walk, we also added Skateboards, Yeay!`.split("\n"),
+    image: 'dlc-vehicles.png',
+    price: 7.99,
+    isAcheted: false,
+    isSelected: false,
+    splitName: 'Urban Vehicles PACK',
   },
   {
     name: DLC_FLASHLIGHT,
@@ -45,8 +56,7 @@ const dlcs: DLC[] = [
     name: DLC_ANIMALS,
     code: 'animals',
     description: `You'll never be able to speak to animals...
-      Except with this new pack! By installing this linguistic pack 
-      your character will be able to speak to animals. Cows, cats, birds... make some new friends!`.split("\n"),
+      Except with this new pack! By installing this linguistic pack your character will be able to speak to animals. Cows, cats, birds... make some new friends!`.split("\n"),
     image: 'dlc-animals.jpg',
     price: 25.99,
     isAcheted: false,
@@ -54,11 +64,21 @@ const dlcs: DLC[] = [
     splitName: 'Linguistic Pack: Animals',
   },
   {
+    name: "Linguistic Pack: Russian (Limited Edition)",
+    code: 'lang_russian',
+    description: `Yet another Linguistic Pack!
+      You character will be able to speak to Russian people.. unlock new situation, get native instantly and deal with the mafia in-game!`.split("\n"),
+    image: 'dlc-russian.png',
+    price: 9.99,
+    isAcheted: false,
+    isSelected: false,
+    splitName: 'Linguistic Pack: Russian',
+  },
+  {
     name: DLC_BUSINESSPACK,
     code: 'businessman',
-    description: `Unlock a new skin of Business man
-      by buying this content! Your ennemies won't
-      be able to recognize you! BUY NOW.`.split("\n"),
+    description: `Unlock a new skin of Business man by buying this content! 
+    Your ennemies won't be able to recognize you! BUY NOW.`.split("\n"),
     image: 'dlc-business.jpg',
     price: 29.99,
     isAcheted: false,
@@ -69,8 +89,8 @@ const dlcs: DLC[] = [
     name: 'Hacker DLC Pack Premium',
     code: 'hacker',
     description: `You always dreamed to be a Hacker?
-      With this new DLC, unlock new skills such as...
-      Hacker stuff! Become a professional of IT stuff and.. HACKER!`.split("\n"),
+      With this new DLC, unlock new skills such as... Hacker stuff! 
+      Become a professional of IT stuff and.. HACKER!`.split("\n"),
     image: 'dlc-hacker.jpg',
     price: 39.99,
     isAcheted: false,
@@ -88,6 +108,17 @@ const dlcs: DLC[] = [
     isAcheted: false,
     isSelected: false,
     splitName: 'Multi-player Mode',
+  },
+  {
+    name: "HUD Enhanced Edition - Lifebar",
+    code: 'lifebar',
+    description: `Our developers worked very hard on improving the HUD of our game...
+      Welcome to the Lifebar displayer HUD Element, never die again!`.split("\n"),
+    image: 'dlc-lifebar.png',
+    price: 12.99,
+    isAcheted: false,
+    isSelected: false,
+    splitName: 'HUD Enhanced Edition - Lifebar',
   },
   {
     name: DLC_TRANSHUMANISM,

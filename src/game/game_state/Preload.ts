@@ -92,6 +92,7 @@ export default class Preload extends Phaser.State {
 
     this.game.load.spritesheet('laptop', 'src/assets/images/laptop.png', 106, 117);
     this.game.load.spritesheet('multiplayer-btn', 'src/assets/images/multiplayer-btn.png', 74, 13);
+    this.game.load.spritesheet('lifebar-btn', 'src/assets/images/lifebar-btn.png', 74, 13);
     this.game.load.spritesheet('hud-background', 'src/assets/images/hud-background.png', 300, 18);
     this.game.load.spritesheet('bladder-indicator', 'src/assets/images/bladder.png', 34, 13);
 
