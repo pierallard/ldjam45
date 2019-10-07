@@ -1,3 +1,4 @@
+import {SoundManager} from "../../SoundManager";
 
 export class Logo extends Phaser.State {
   private enter;
@@ -9,7 +10,7 @@ export class Logo extends Phaser.State {
     game.add.bitmapText(85, 188, 'Carrier Command', "Press enter to begin!", 5);
 
     this.enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-
+    SoundManager.playMusic(game);
   }
 
   update(game: Phaser.Game) {

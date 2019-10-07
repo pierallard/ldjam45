@@ -22,7 +22,6 @@ class Sound {
   play(volume = 1) {
     this.originalVolume = volume;
 
-    console.log('play ' + this.type + ' - ' + this.id + ' (' + this.audio.volume + ')');
     if (this.audio.isPlaying) {
       this.audio.restart(this.audio.currentMarker, 0);
     } else {
@@ -36,8 +35,8 @@ class Sound {
 }
 
 export class SoundManager {
-  private static music: Phaser.Sound;
   private static sounds: Sound[];
+  private static music: Phaser.Sound;
 
   static create(game: Phaser.Game) {
       this.sounds = [];
@@ -55,5 +54,17 @@ export class SoundManager {
     });
     const sound = ss[Math.floor(Math.random() * ss.length)];
     sound.play(volume);
+  }
+
+  static playMusic(game: Phaser.Game) {
+    this.music = game.add.audio('backgroundsound');
+    this.music.allowMultiple = true;
+    this.music.play();
+    this.music.loop = true;
+    this.music.volume = 0;
+  }
+
+  static pumpUpTheBass() {
+    this.music.volume = 0.5;
   }
 }

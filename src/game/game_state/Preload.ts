@@ -31,6 +31,7 @@ export default class Preload extends Phaser.State {
     this.game.load.audio('cocamachine', 'src/assets/musics/cocamachine.mp3');
     this.game.load.audio('keyboard', 'src/assets/musics/keyboard.mp3');
     this.game.load.audio('water', 'src/assets/musics/water.mp3');
+    this.game.load.audio('backgroundsound', 'src/assets/musics/backgroundsound.mp3');
   }
 
   private loadImages() {
