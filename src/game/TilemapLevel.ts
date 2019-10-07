@@ -39,6 +39,7 @@ export default class TilemapLevel {
     this.map.setCollisionBetween(1, 1000, true, this.walls);
     this.map.setCollision(
         [
+          10, // freedoor
           37, // water
           38, // coca
           60, // computer
