@@ -18,6 +18,7 @@ export class DungeonPlayer {
   private isForbidMove: boolean;
   public vessie: number = 0;
   public hasPassword: boolean = false;
+  private audio;
 
   constructor(point: Point) {
     this.position = point;
@@ -33,6 +34,9 @@ export class DungeonPlayer {
     this.sprite = game.add.sprite(DungeonPlayer.getRealPosition(this.position).x, DungeonPlayer.getRealPosition(this.position).y, spriteName);
     this.tilemap = tilemap;
 
+    this.audio = game.add.audio('walk');
+    this.audio.allowMultiple = false;
+
     this.sprite.anchor.setTo(.5,.5);
     game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     this.sprite.body.collideWorldBounds = true;
@@ -46,6 +50,15 @@ export class DungeonPlayer {
   }
 
   public update(game: Phaser.Game) {
+
+    if (this.sprite.body.velocity.x != 0 || this.sprite.body.velocity.y != 0) {
+        if (!this.audio.isPlaying) {
+          this.audio.play();
+        }
+    }
+    else {
+        this.audio.stop();
+    }
     this.stopPlayer();
     if (this.isForbidMove) {
       return;
