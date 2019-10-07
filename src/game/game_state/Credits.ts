@@ -11,16 +11,18 @@ export class Credits extends State {
     this.texts = [];
     this.texts.push('TODO Nom de jeu');
     this.texts.push('');
-    this.texts.push('This game was created in honor of');
-    this.texts.push('TODO');
-    this.texts.push('TODO');
+    this.texts.push('This game was created in honor of:');
+    this.texts.push('Total War');
+    this.texts.push('The Sims');
+    this.texts.push('Train Simulator');
+    this.texts.push('Crusader Kings II');
     this.texts.push('');
     this.texts.push('');
     this.texts.push('');
     this.texts.push('');
     this.texts.push('A game designed for the Ludum Dare 45, by');
     this.texts.push('docteurklein + grena + nidup + pierallard + ');
-    this.texts.push('pagury + titi + toxinu');
+    this.texts.push('pagury + titi + toxinu + lemenski');
   }
 
   create(game: Game) {
