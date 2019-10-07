@@ -174,10 +174,11 @@ export abstract class AbstractDungeonLevel extends Phaser.State {
   public defaultDlcCallback(game: Phaser.Game, dlc: DLC) {
     const wallet = (<PlayerRoom> game.state.states['PlayerRoom']).getWallet();
     if (wallet.total() >= dlc.price) {
-      dlc.isAcheted = true;
+      achete(dlc.name);
       wallet.remove(dlc.price);
       this.menuDLC.close();
       this.dlc = dlc;
+      this.create(game);
     } else {
       game.state.start('PlayerRoom');
       const playerRoom = game.state.states['PlayerRoom'];
